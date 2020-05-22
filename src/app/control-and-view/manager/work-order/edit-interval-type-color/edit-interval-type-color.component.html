@@ -1,0 +1,27 @@
+<div
+  style="padding-left: 9rem;padding-right: 9rem; padding-top:0rem !important; padding-bottom:0rem !important;overflow: hidden">
+  <div class="row col-md-12 ">
+    <h4 style="margin-left: 40%;">EDIT INTERVAL TYPE COLOR</h4>
+  </div><br>
+  <div class="row bg-info col-md-12" style="padding-bottom: 15rem">
+    <div class="col-md-6 ">
+      <div class="form-group">
+        <label><h4>Interval Type:</h4></label>
+        <input type="text" [(ngModel)]="interval.IntervalTypeDescription" readonly
+          class="form-control col-lg-9 col-md-9 col-sm-9" />
+      </div>
+    </div>
+    <div class="col-md-6 ">
+      <div class="form-group">
+        <label><h4>Colour</h4></label>&nbsp;
+        <input [(colorPicker)]="interval.Colour" [style.background]="interval.Colour"
+          class="form-control col-sm-9 col-md-9 col-lg-9" />
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12" style="margin-left: 40%">
+    <button type="button" style="text-align:center" class="btn btn-success"
+      (click)="updateIntervalColor()"><b>UPDATE</b></button>
+    <button type="button" style="text-align:center" class="btn btn-warning" (click)="goBack()"><b>GO BACK</b></button>
+  </div>
+</div>
