@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SupervisorDashboardComponent } from './supervisor-dashboard.component';
 import { SupervsrinspectiontemplateModule } from '../../../supervisor/supervsrinspectiontemplate/supervsrinspectiontemplate.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-// import { ViewinspectiomanagerModule } from "../../../manager/inspection/viewinspectionmanager/viewinspectiomanager.module";
 const routes: Routes = [
   {
     path: 'SupervisorDashboard',
@@ -25,41 +24,41 @@ const routes: Routes = [
         outlet: 'Superout',
         loadChildren: '../../../supervisor/create-work-order/create-work-order.module#CreateWorkOrderModule',
       },
-      {
-        path: 'Createinspectionbysuprvsr',
-        outlet: 'Superout',
-        loadChildren: '../../../supervisor/createinspection/createinspection.module#CreateinspectionModule',
-      },
+      // {
+      //   path: 'Createinspectionbysuprvsr',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../supervisor/createinspection/createinspection.module#CreateinspectionModule',
+      // },
       {
         path: 'viewWorkOrderSupervisor',
         outlet: 'Superout',
         loadChildren: '../../../supervisor/view-work-order/view-work-order.module#ViewWorkOrderModule',
       },
-      {
-        path: 'Viewinspctnbysprvsr',
-        outlet: 'Superout',
-        loadChildren: '../../../supervisor/viewinspctnbysprvsr/viewinspctnbysprvsr.module#ViewinspctnbysprvsrModule',
-      },
-      {
-        path: 'Viewinspctnbysprvsr/Supervsrinspectiontemplate/:InspectionOrderKey',
-        outlet: 'Superout',
-        loadChildren: '../../../supervisor/supervsrinspectiontemplate/supervsrinspectiontemplate.module#SupervsrinspectiontemplateModule',
-      },
+      // {
+      //   path: 'Viewinspctnbysprvsr',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../supervisor/viewinspctnbysprvsr/viewinspctnbysprvsr.module#ViewinspctnbysprvsrModule',
+      // },
+      // {
+      //   path: 'Viewinspctnbysprvsr/Supervsrinspectiontemplate/:InspectionOrderKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../supervisor/supervsrinspectiontemplate/supervsrinspectiontemplate.module#SupervsrinspectiontemplateModule',
+      // },
 
-      {
-        path: 'ViewInspectionManager/:InspectionOrderKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/inspection/viewinspectionmanager/viewinspectiomanager.module#ViewinspectiomanagerModule',
-      },
-
-
+      // {
+      //   path: 'ViewInspectionManager/:InspectionOrderKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/inspection/viewinspectionmanager/viewinspectiomanager.module#ViewinspectiomanagerModule',
+      // },
 
 
-      {
-        path: 'Training',
-        outlet: 'Superout',
-        loadChildren: '../../../supervisor/training/training.module#TrainingModule',
-      },
+
+
+      // {
+      //   path: 'Training',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../supervisor/training/training.module#TrainingModule',
+      // },
       {
         path: 'supervisorMyProfile',
         outlet: 'Superout',
@@ -111,238 +110,233 @@ const routes: Routes = [
         loadChildren: '../../../manager/work-order/edit-workorder-type/edit-work-order-type.module#EditWorkOrderTypeModule',
 
       },
-      {
-        path: 'CreateEmployee',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/create-employee/create-employee.module#CreateEmployeeModule',
+      // {
+      //   path: 'CreateEmployee',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/create-employee/create-employee.module#CreateEmployeeModule',
 
-      },
-      {
-        path: 'Settingusernameandpswrdaftremplcreatebyman/:EmployeeKey/:str/:UserRoleTypeKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/settingusernameandpswrdaftremplcreatebyman/settingusernameandpswrdafter.module#SettingusernameandpswrdafterModule',
+      // },
+      // {
+      //   path: 'Settingusernameandpswrdaftremplcreatebyman/:EmployeeKey/:str/:UserRoleTypeKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/settingusernameandpswrdaftremplcreatebyman/settingusernameandpswrdafter.module#SettingusernameandpswrdafterModule',
 
-      },
-      {
-        path: 'ViewEmployee',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/view-employee/view-employee.module#ViewEmployeeModule',
+      // },
+      // {
+      //   path: 'ViewEmployee',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/view-employee/view-employee.module#ViewEmployeeModule',
 
-      },
-      {
-        path: 'ViewEmployee/EditEmployeedetails/:EmployeeKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/edit-employeedetails/edit-employeedetails.module#EditEmployeedetailsModule',
+      // },
+      // {
+      //   path: 'ViewEmployee/EditEmployeedetails/:EmployeeKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/edit-employeedetails/edit-employeedetails.module#EditEmployeedetailsModule',
 
-      },
-      {
-        path: 'MeetingTrainingCreate',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/meeting-training-create/meeting-training-create.module#MeetingTrainingCreateModule',
+      // },
+      // {
+      //   path: 'MeetingTrainingCreate',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/meeting-training-create/meeting-training-create.module#MeetingTrainingCreateModule',
 
-      },
-      {
-        path: 'JobTitileView',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/job-title-view/job-titile-view.module#JobTitileViewModule',
+      // },
+      // {
+      //   path: 'JobTitileView',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/job-title-view/job-titile-view.module#JobTitileViewModule',
 
-      },
-      {
-        path: 'JobTitileView/JobTitleAdd',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/job-title-add/job-titile-add.module#JobTitileAddModule',
+      // },
+      // {
+      //   path: 'JobTitileView/JobTitleAdd',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/job-title-add/job-titile-add.module#JobTitileAddModule',
 
-      },
-      {
-        path: 'JobTitileView/JobTitleEdit/:JobTitle_Key',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/job-title-edit/job-titile-edit.module#JobTitileEditModule',
+      // },
+      // {
+      //   path: 'JobTitileView/JobTitleEdit/:JobTitle_Key',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/job-title-edit/job-titile-edit.module#JobTitileEditModule',
 
-      },
-      {
-        path: 'manageLoginCredentials',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/manage-login-credentials/manage-login-credentials.module#ManageLoginCredentialsModule',
+      // },
+      // {
+      //   path: 'manageLoginCredentials',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/manage-login-credentials/manage-login-credentials.module#ManageLoginCredentialsModule',
 
-      },
-      {
-        path: 'manageLoginCredentials/resetPassword/:EmpKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/reset-pass-word/reset-pass-word.module#ResetPassWordModule',
+      // },
+      // {
+      //   path: 'manageLoginCredentials/resetPassword/:EmpKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/reset-pass-word/reset-pass-word.module#ResetPassWordModule',
 
-      },
+      // },
       {
         path: 'WorkorderReport',
         outlet: 'Superout',
         loadChildren: '../../../manager/reports/workorder-report/workorder-report.module#WorkorderReportModule',
 
       },
-      {
-        path: 'Batch-work-order-Report',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/reports/batch-work-order-report/batch-work-order-report.module#BatchWorkOrderReportModule',
+      // {
+      //   path: 'Batch-work-order-Report',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/reports/batch-work-order-report/batch-work-order-report.module#BatchWorkOrderReportModule',
 
-      },
-      {
-        path: 'BatchScheduleAssignment',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/reports/batch-schedule-assignment-report/batch-schedule-assignment-report.module#BatchScheduleAssignmentReportModule',
+      // },
+      // {
+      //   path: 'BatchScheduleAssignment',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/reports/batch-schedule-assignment-report/batch-schedule-assignment-report.module#BatchScheduleAssignmentReportModule',
 
-      },
-      {
-        path: 'InspectionReport',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/reports/inspection-report/inspection-report.module#InspectionReportModule',
+      // },
+      // {
+      //   path: 'InspectionReport',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/reports/inspection-report/inspection-report.module#InspectionReportModule',
 
-      },
-      {
-        path: 'BarcodeReport',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/reports/barcode-report/barcode-report.module#BarcodeReportModule',
+      // },
+      // {
+      //   path: 'BarcodeReport',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/reports/barcode-report/barcode-report.module#BarcodeReportModule',
 
-      },
+      // },
       {
         path: 'DashboardReport',
         outlet: 'Superout',
         loadChildren: '../../../manager/reports/dashboard-report/dashboard-report.module#DashboardReportModule',
 
       },
-      {
-        path: 'SchedulingView',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/scheduling/scheduling-view/scheduling-view.module#SchedulingViewModule',
+      // {
+      //   path: 'SchedulingView',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/scheduling/scheduling-view/scheduling-view.module#SchedulingViewModule',
 
-      },
-      {
-        path: 'SchedulingView/CreateBatchWork',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/scheduling/create-batch-work/create-batch-work.module#CreateBatchWorkModule',
+      // },
+      // {
+      //   path: 'SchedulingView/CreateBatchWork',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/scheduling/create-batch-work/create-batch-work.module#CreateBatchWorkModule',
 
-      },
-      {
-        path: 'SchedulingView/EditBatchWork/:scheduleNameKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/scheduling/edit-batch-work/edit-batch-work.module#EditBatchWorkModule',
+      // },
+      // {
+      //   path: 'SchedulingView/EditBatchWork/:scheduleNameKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/scheduling/edit-batch-work/edit-batch-work.module#EditBatchWorkModule',
 
-      },
-      {
-        path: 'DocumentfolderView',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/documents/documentfolder-view/documentfolder-view.module#DocumentfolderViewModule',
+      // },
+      // {
+      //   path: 'DocumentfolderView',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/documents/documentfolder-view/documentfolder-view.module#DocumentfolderViewModule',
 
-      },
-      {
-        path: 'DocumentfolderView/NewdocumentfolderCreate',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/documents/newdocumentfolder-create/newdocumentfolder-create.module#NewdocumentfolderCreateModule',
+      // },
+      // {
+      //   path: 'DocumentfolderView/NewdocumentfolderCreate',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/documents/newdocumentfolder-create/newdocumentfolder-create.module#NewdocumentfolderCreateModule',
 
-      },
-      {
-        path: 'DocumentfolderView/DocumentfolderEdit/:FormtypeId',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/documents/documentfolder-edit/documentfolder-edit.module#DocumentfolderEditModule',
+      // },
+      // {
+      //   path: 'DocumentfolderView/DocumentfolderEdit/:FormtypeId',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/documents/documentfolder-edit/documentfolder-edit.module#DocumentfolderEditModule',
 
-      },
-      {
-        path: 'DocumentsUpload',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/documents/documents-upload/documents-upload.module#DocumentsUploadModule',
+      // },
+      // {
+      //   path: 'DocumentsUpload',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/documents/documents-upload/documents-upload.module#DocumentsUploadModule',
 
-      },
-      {
-        path: 'ViewDocuments',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/documents/view-documents/view-documents.module#ViewDocumentsModule',
+      // },
+      // {
+      //   path: 'ViewDocuments',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/documents/view-documents/view-documents.module#ViewDocumentsModule',
 
-      },
-      {
-        path: 'InspectiontemplateCreate',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/inspection/inspectiontemplate-create/inspectiontemplate-create.module#InspectiontemplateCreateModule',
+      // },
+      // {
+      //   path: 'InspectiontemplateCreate',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/inspection/inspectiontemplate-create/inspectiontemplate-create.module#InspectiontemplateCreateModule',
 
-      },
-      {
-        path: 'InspectiontemplateandquestionsView',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/inspection/inspectiontemplateandquestions-view/inspectiontemplateandquestions-view.module#InspectiontemplateandquestionsViewModule',
+      // },
+      // {
+      //   path: 'InspectiontemplateandquestionsView',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/inspection/inspectiontemplateandquestions-view/inspectiontemplateandquestions-view.module#InspectiontemplateandquestionsViewModule',
 
-      },
-      {
-        path: 'InspectiontemplateandquestionsView/InspectiontemplateEdit',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/inspection/inspectiontemplate-edit/inspectiontemplate-edit.module#InspectiontemplateEditModule',
+      // },
+      // {
+      //   path: 'InspectiontemplateandquestionsView/InspectiontemplateEdit',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/inspection/inspectiontemplate-edit/inspectiontemplate-edit.module#InspectiontemplateEditModule',
 
-      },
-      {
-        path: 'InspectiontemplatedetailEdit/:TemplateID',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/inspection/inspectiontemplatedetail-edit/inspectiontemplatedetail-edit.module#InspectiontemplatedetailEditModule',
+      // },
+      // {
+      //   path: 'InspectiontemplatedetailEdit/:TemplateID',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/inspection/inspectiontemplatedetail-edit/inspectiontemplatedetail-edit.module#InspectiontemplatedetailEditModule',
 
-      },
-      {
-        path: 'MeetingTrainingView',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/meeting-training-view/meeting-training-view.module#MeetingTrainingViewModule',
+      // },
+      // {
+      //   path: 'MeetingTrainingView',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/meeting-training-view/meeting-training-view.module#MeetingTrainingViewModule',
 
-      },
-      {
-        path: 'MeetingTrainingView/EventView',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/event-view/event-view.module#EventViewModule',
+      // },
+      // {
+      //   path: 'MeetingTrainingView/EventView',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/event-view/event-view.module#EventViewModule',
 
-      },
-      {
-        path: 'MeetingTrainingView/viewEventEmployees/:EventKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/view-employeesof-event/view-employeesof-event.module#ViewEmployeesofEventModule',
+      // },
+      // {
+      //   path: 'MeetingTrainingView/viewEventEmployees/:EventKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/view-employeesof-event/view-employeesof-event.module#ViewEmployeesofEventModule',
 
-      },
-      {
-        path: 'MeetingTrainingView/viewEventEmployees/:EventKey/MeetingTrainingEdit/:EventKey/:ActionKey',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/meeting-training-edit/meeting-training-edit.module#MeetingTrainingEditModule',
+      // },
+      // {
+      //   path: 'MeetingTrainingView/viewEventEmployees/:EventKey/MeetingTrainingEdit/:EventKey/:ActionKey',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/meeting-training-edit/meeting-training-edit.module#MeetingTrainingEditModule',
 
-      },
-      {
-        path: 'Scheduler',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/schedulerNew/scheduler.module#SchedulerModule',
-      },
-      {
-        path: 'RequestsFromEmployees',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/pto-requestsfrom-employees/ptorequestsfromemployees.module#PtorequestsfromemployeesModule',
-      },
-      {
-        path: 'RequestsFromEmployees/PTORequestAction/:requestID',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/people/pto-request-action/pto-request-action.module#PtoRequestActionModule',
-      },
-      {
-        path: 'PtoRequest',
-        outlet: 'Superout',
-        loadChildren: '../../../employee/pto-request/pto-request.module#PtoRequestModule',
-      },
-      {
-        path: 'ViewPtoRequest',
-        outlet: 'Superout',
-        loadChildren: '../../../employee/pto-request-view/pto-request-view.module#PtoRequestViewModule',
-      },
-      {
-        path: 'ViewPtoRequest/PTORequestDetails/:requestID',
-        outlet: 'Superout',
-        loadChildren: '../../../employee/pto-request-details/pto-request-details.module#PtoRequestDetailsModule',
-      },
-      {
-        path: 'ViewPtoRequest/PTORequestEdit/:requestID',
-        outlet: 'Superout',
-        loadChildren: '../../../employee/pto-request-edit/pto-request-edit.module#PtoRequestEditModule',
-      },
-      {
-        path: 'schedulerReport',
-        outlet: 'Superout',
-        loadChildren: '../../../manager/reports/scheduler-report/scheduler-report.module#SchedulerReportModule',
-      },
+      // },
+      // {
+      //   path: 'RequestsFromEmployees',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/pto-requestsfrom-employees/ptorequestsfromemployees.module#PtorequestsfromemployeesModule',
+      // },
+      // {
+      //   path: 'RequestsFromEmployees/PTORequestAction/:requestID',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/people/pto-request-action/pto-request-action.module#PtoRequestActionModule',
+      // },
+      // {
+      //   path: 'PtoRequest',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../employee/pto-request/pto-request.module#PtoRequestModule',
+      // },
+      // {
+      //   path: 'ViewPtoRequest',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../employee/pto-request-view/pto-request-view.module#PtoRequestViewModule',
+      // },
+      // {
+      //   path: 'ViewPtoRequest/PTORequestDetails/:requestID',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../employee/pto-request-details/pto-request-details.module#PtoRequestDetailsModule',
+      // },
+      // {
+      //   path: 'ViewPtoRequest/PTORequestEdit/:requestID',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../employee/pto-request-edit/pto-request-edit.module#PtoRequestEditModule',
+      // },
+      // {
+      //   path: 'schedulerReport',
+      //   outlet: 'Superout',
+      //   loadChildren: '../../../manager/reports/scheduler-report/scheduler-report.module#SchedulerReportModule',
+      // },
       {
         path: 'ViewServiceRequest',
         outlet: 'Superout',

@@ -13,7 +13,6 @@ import { ViewEmployeesofEventComponent } from './view-employeesof-event/view-emp
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { EditEmployeedetailsComponent } from './edit-employeedetails/edit-employeedetails.component';
 import { SettingusernameandpswrdaftremplcreatebymanComponent } from './settingusernameandpswrdaftremplcreatebyman/settingusernameandpswrdaftremplcreatebyman.component';
-import { SchedulerComponent } from './schedulerNew/scheduler.component';
 
 import { PtoRequestActionComponent } from './pto-request-action/pto-request-action.component';
 import { PtoRequestsfromEmployeesComponent } from './pto-requestsfrom-employees/pto-requestsfrom-employees.component';
@@ -44,8 +43,6 @@ import { EmployeeWorkingHourAddComponent } from './employee-working-hour-add/emp
     ViewEmployeeComponent,
     EditEmployeedetailsComponent,
     SettingusernameandpswrdaftremplcreatebymanComponent,
-    SchedulerComponent,
-
     PtoRequestActionComponent,
     PtoRequestsfromEmployeesComponent,
     TradeRequestActionComponent,

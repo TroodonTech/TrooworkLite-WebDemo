@@ -15,12 +15,12 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
         loadChildren: '../../user-welcome-pages/employee-welcome/employee-welcome.module#EmployeeWelcomeModule',
 
       },
-      {
-        path: 'Viewmeetingortrainingevent',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/viewmeetingortrainingevent/viewmeetingortrainingevent.module#ViewmeetingortrainingeventModule',
+      // {
+      //   path: 'Viewmeetingortrainingevent',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/viewmeetingortrainingevent/viewmeetingortrainingevent.module#ViewmeetingortrainingeventModule',
 
-      },
+      // },
       {
         path: 'Viewworkordersforemployee',
         outlet: 'EmployeeOut',
@@ -45,51 +45,46 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
         loadChildren: '../../user-password-changes/employee-change-password/employee-change-password.module#EmployeeChangePasswordModule',
 
       },
-      {
-        path: 'ViewSchedulerForEmployee',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/view-employee-scheduler/view-employee-scheduler.module#ViewEmployeeSchedulerModule',
-      },
-      {
-        path: 'PtoRequest',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/pto-request/pto-request.module#PtoRequestModule',
-      },
-      {
-        path: 'ViewPtoRequest',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/pto-request-view/pto-request-view.module#PtoRequestViewModule',
-      },
-      {
-        path: 'ViewPtoRequest/PTORequestDetails/:requestID',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/pto-request-details/pto-request-details.module#PtoRequestDetailsModule',
-      },
-      {
-        path: 'ViewPtoRequest/PTORequestEdit/:requestID',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/pto-request-edit/pto-request-edit.module#PtoRequestEditModule',
-      },
-      {
-        path: 'TradeRequest',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/trade-request/trade-request.module#TradeRequestModule',
-      },
-      {
-        path: 'ViewTradeRequest',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/trade-request-view/trade-request-view.module#TradeRequestViewModule',
-      },
-      {
-        path: 'ViewTradeRequest/TradeRequestEdit/:requestID',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/trade-request-edit/trade-request-edit.module#TradeRequestEditModule',
-      },
-      {
-        path: 'ViewTradeRequest/TradeRequestApprove/:requestID',
-        outlet: 'EmployeeOut',
-        loadChildren: '../../../employee/trade-request-approve/trade-request-approve.module#TradeRequestApproveModule',
-      },
+      // {
+      //   path: 'PtoRequest',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/pto-request/pto-request.module#PtoRequestModule',
+      // },
+      // {
+      //   path: 'ViewPtoRequest',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/pto-request-view/pto-request-view.module#PtoRequestViewModule',
+      // },
+      // {
+      //   path: 'ViewPtoRequest/PTORequestDetails/:requestID',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/pto-request-details/pto-request-details.module#PtoRequestDetailsModule',
+      // },
+      // {
+      //   path: 'ViewPtoRequest/PTORequestEdit/:requestID',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/pto-request-edit/pto-request-edit.module#PtoRequestEditModule',
+      // },
+      // {
+      //   path: 'TradeRequest',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/trade-request/trade-request.module#TradeRequestModule',
+      // },
+      // {
+      //   path: 'ViewTradeRequest',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/trade-request-view/trade-request-view.module#TradeRequestViewModule',
+      // },
+      // {
+      //   path: 'ViewTradeRequest/TradeRequestEdit/:requestID',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/trade-request-edit/trade-request-edit.module#TradeRequestEditModule',
+      // },
+      // {
+      //   path: 'ViewTradeRequest/TradeRequestApprove/:requestID',
+      //   outlet: 'EmployeeOut',
+      //   loadChildren: '../../../employee/trade-request-approve/trade-request-approve.module#TradeRequestApproveModule',
+      // },
      ]
   }
 ];

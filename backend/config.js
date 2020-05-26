@@ -41,6 +41,6 @@ config.app.views = '../dist/mdb-angular-free';
 config.db.host = "localhost";
 config.db.user = "root";
 config.db.password = "root";
-config.db.database = "trooworkdb";
+config.db.database = "trooworkdb_lite";
 
 module.exports = config;

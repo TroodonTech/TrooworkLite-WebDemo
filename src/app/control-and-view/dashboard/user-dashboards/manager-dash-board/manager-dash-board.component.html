@@ -38,8 +38,8 @@
                   Type</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ViewServiceRequest']}}]"><b>View Service
                   Request</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewIntervaltype']}}]"><b>Color
-                  Coding</b></a>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewIntervaltype']}}]"><b>Color
+                  Coding</b></a> -->
             </div>
           </li>
           <li class="nav-item dropdown" style="margin-left: -1rem;">
@@ -48,10 +48,10 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateEmployee']}}]"><b>Create
                   Employee</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ViewEmployee']}}]"><b>View Employee</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['MeetingTrainingCreate']}}]"><b>Create
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['MeetingTrainingCreate']}}]"><b>Create
                   Meeting/Training</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['MeetingTrainingView']}}]"><b>View
-                  Meeting/Training</b></a>
+                  Meeting/Training</b></a> -->
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['JobTitileView']}}]"><b>Create
                   Job-Title</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['manageLoginCredentials']}}]"><b>Manage
@@ -65,12 +65,12 @@
             <div class="dropdown-content" style="margin-left:1rem;">
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['DashboardReport']}}]"><b>WorkOrder
                   Dashboard</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['woprogressReport']}}]"><b>WorkOrder
-                  In-Progress Report</b></a>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['woprogressReport']}}]"><b>WorkOrder
+                  In-Progress Report</b></a> -->
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['WorkorderReport']}}]"><b>WorkOrder</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['Batch-work-order-Report']}}]"><b>Batch
                   WorkOrder Report</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['BatchScheduleAssignment']}}]"><b>View
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['BatchScheduleAssignment']}}]"><b>View
                   Batch-Schedule Assignment</b>
               </a>
               <a class="dropdown-item"
@@ -87,10 +87,10 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['inspectionAuditReport']}}]"><b>Inspection
                   Audit Report</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['picklistReport']}}]"><b>Inspection-
-                  PickList Report</b></a>
+                  PickList Report</b></a> -->
             </div>
           </li>
-          <li class="nav-item dropdown" style="margin-left: -1rem;">
+          <!-- <li class="nav-item dropdown" style="margin-left: -1rem;">
             <img class="imagesize nav-link" src="assets/icons/ASSIGNMENTS--3.png">
             <div class="dropdown-content" style="margin-left:1rem;">
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['SchedulingView']}}]"><b>Create/Edit
@@ -102,18 +102,15 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewMasterShifts']}}]"><b>Create/Edit
                   Shifts</b></a>
             </div>
-          </li>
-          <li *ngIf="scheduleIcon==1" class="nav-item dropdown" style="margin-left: -1rem;">
+          </li> -->
+          <!-- <li *ngIf="scheduleIcon==1" class="nav-item dropdown" style="margin-left: -1rem;">
             <img class="imagesize nav-link" src="assets/icons/scheduling.png">
             <div class="dropdown-content" style="margin-left:1rem;">
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['Scheduler']}}]"><b>Scheduler</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ScheduleEmployee']}}]"><b>Schedule
                   Employee</b></a>
-              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['manualEmpOff']}}]"><b>Manual Employee Leave</b></a> -->
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['RequestsFromEmployees']}}]"><b>View
                   Employee PTO Requests</b></a>
-              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['TradeRequestsFromEmployees']}}]"><b>View
-                  Employee Trade Requests</b></a> -->
               <a class="dropdown-item"
                 [routerLink]="[{outlets:{ManagerOut:['EmployeeWorkingHourEmpListView']}}]"><b>Employee Working
                   Hour</b></a>
@@ -123,8 +120,6 @@
                   Group</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['schedulerReport']}}]"><b>Scheduler
                   Report</b></a>
-              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ManualSchedulerCronjob']}}]"><b>Scheduler
-                  CronJob - Manual</b></a> -->
             </div>
           </li>
           <li class="nav-item dropdown" style="margin-left: -1rem;">
@@ -153,7 +148,7 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['feedbackManage']}}]"><b>View
                   FeedBack Template</b></a>
             </div>
-          </li>
+          </li> -->
           <li class="nav-item dropdown" style="margin-left: -1rem;">
             <img class="imagesize nav-link" data-toggle="dropdown" src="assets/icons/INVENTORY--3.png">
             <div class="dropdown-content" style="margin-left:1rem;">
@@ -161,7 +156,7 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['FloorView']}}]"><b>Floor</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ZoneView']}}]"><b>Zone</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['roomView']}}]"><b>Room</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['EquipmentView']}}]"><b>Equipment</b></a>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['EquipmentView']}}]"><b>Equipment</b></a> -->
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['DepartmentView']}}]"><b>Department</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['GenerateQRCode']}}]"><b>Generate QR
                   Code</b></a>

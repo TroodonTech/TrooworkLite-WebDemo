@@ -10,7 +10,6 @@ import { TradeRequestComponent } from './trade-request/trade-request.component';
 import { TradeRequestViewComponent } from './trade-request-view/trade-request-view.component';
 import { TradeRequestEditComponent } from './trade-request-edit/trade-request-edit.component';
 import { TradeRequestDetailsComponent } from './trade-request-details/trade-request-details.component';
-import { ViewEmployeeSchedulerComponent } from './view-employee-scheduler/view-employee-scheduler.component';
 import { TradeRequestApproveComponent } from './trade-request-approve/trade-request-approve.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { TradeRequestApproveComponent } from './trade-request-approve/trade-requ
     TradeRequestViewComponent,
     TradeRequestEditComponent,
     TradeRequestDetailsComponent,
-    ViewEmployeeSchedulerComponent,
     TradeRequestApproveComponent
   ]
 })

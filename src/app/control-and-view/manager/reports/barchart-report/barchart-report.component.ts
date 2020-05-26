@@ -193,8 +193,8 @@ export class BarchartReportComponent implements OnInit {
       xAxes: [{
         // barPercentage: 0.5,
         // barThickness: 10,
-        categoryPercentage: 1.0,
-        barPercentage: 0.5,
+        // categoryPercentage: 1.0,
+        // barPercentage: 0.5,
         ticks: {
           beginAtZero: true,
           fontFamily: "'Open Sans Bold', sans-serif",
@@ -213,7 +213,7 @@ export class BarchartReportComponent implements OnInit {
         // stacked: true
       }],
       yAxes: [{
-        barThickness: 100,
+        // barThickness: s100,
         // gridLines: {
         //     display: true,
         //     color: "#fff",

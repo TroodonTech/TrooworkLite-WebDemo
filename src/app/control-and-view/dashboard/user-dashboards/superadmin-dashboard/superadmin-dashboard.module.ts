@@ -89,23 +89,23 @@ const routes: Routes = [
         loadChildren: '../../../dashboard/user-password-changes/supeadmin-change-password/superadmin-change-password.module#SuperadminChangePasswordModule',
 
       },
-      {
-        path: 'cronJob',
-        outlet: 'SuperAdminOut',
-        loadChildren: '../../../superadmin/organization/manual-cron-job/manual-cron-job.module#ManualCronJobModule',
+      // {
+      //   path: 'cronJob',
+      //   outlet: 'SuperAdminOut',
+      //   loadChildren: '../../../superadmin/organization/manual-cron-job/manual-cron-job.module#ManualCronJobModule',
 
-      },
-      {
-        path: 'cronJobView',
-        outlet: 'SuperAdminOut',
-        loadChildren: '../../../superadmin/organization/view-cron-job/view-cron-job.module#ViewCronJobModule',
+      // },
+      // {
+      //   path: 'cronJobView',
+      //   outlet: 'SuperAdminOut',
+      //   loadChildren: '../../../superadmin/organization/view-cron-job/view-cron-job.module#ViewCronJobModule',
 
-      },
-      {
-        path: 'cronJobBatchDetailedView',
-        outlet: 'SuperAdminOut',
-        loadChildren: '../../../superadmin/organization/cron-job-batch-details/cron-job-batch-details.module#CronJobBatchDetailsModule',
-      },
+      // },
+      // {
+      //   path: 'cronJobBatchDetailedView',
+      //   outlet: 'SuperAdminOut',
+      //   loadChildren: '../../../superadmin/organization/cron-job-batch-details/cron-job-batch-details.module#CronJobBatchDetailsModule',
+      // },
     ]
   }
 ];
