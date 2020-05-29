@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagerDashBoardComponent } from './manager-dash-board.component';
 
-import { PicklistReportModule } from "../../../manager/reports/picklist-report/picklist-report.module";
+import { CreateQuickTaskModule } from "../../../manager/tasks/create-quick-task/create-quick-task.module";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 const routes: Routes = [
@@ -694,8 +694,27 @@ const routes: Routes = [
       //   outlet: 'ManagerOut',
       //   loadChildren: '../../../manager/reports/picklist-report/picklist-report.module#PicklistReportModule'
 
-      // }
-
+      // }CreateTaskModule  } from "../../../manager/tasks/create-task/create-task.module";
+      {
+        path: 'CreateTask',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/create-task/create-task.module#CreateTaskModule'
+      },
+      {
+        path: 'viewTask',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/view-tasks/view-tasks.module#ViewTasksModule'
+      },
+      {
+        path: 'viewTask/editTask/:WorkorderKey',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/edit-tasks/edit-tasks.module#EditTasksModule'
+      },
+      {
+        path: 'createQuickTask',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/create-quick-task/create-quick-task.module#CreateQuickTaskModule',
+      },
     ]
   }
 ];

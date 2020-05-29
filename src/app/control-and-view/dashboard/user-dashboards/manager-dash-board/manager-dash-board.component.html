@@ -14,16 +14,20 @@
         <span class="navbar-toggler-icon"></span>
       </button> -->
     <links>
-      <div style="margin-left: 10%;margin-top: 1.3%">
+      <div style="margin-left: 17%;margin-top: 1.3%">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <img class="imagesize nav-link" src="assets/icons/homepage.png"
               [routerLink]="[{outlets:{ManagerOut:['welcomePage']}}]">
           </li>
           <li class="nav-item dropdown" style="margin-left: -1rem;">
-            <img class="imagesize nav-link" src="assets/icons/work order.png">
+            <img class="imagesize nav-link" src="assets/icons/task.png">
             <div class="dropdown-content" style="margin-left:1rem;">
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateWorkOrder']}}]"><b>Create Work
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateTask']}}]"><b>Create Task</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['createQuickTask']}}]"><b>Create Quick
+                  Tasks</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewTask']}}]"><b>View Tasks</b></a>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateWorkOrder']}}]"><b>Create Work
                   Order</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['createQuickOrder']}}]"><b>Create Quick
                   Order</b></a>
@@ -37,7 +41,7 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['WorkOrderType']}}]"><b>Work-Order
                   Type</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ViewServiceRequest']}}]"><b>View Service
-                  Request</b></a>
+                  Request</b></a> -->
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewIntervaltype']}}]"><b>Color
                   Coding</b></a> -->
             </div>

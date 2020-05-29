@@ -17,7 +17,7 @@ export class WelcomepageComponent implements OnInit {
   OrganizationID: Number;
   Message;
 
-  
+
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -38,15 +38,15 @@ export class WelcomepageComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   callCreateWO() {
-    
-    this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['CreateWorkOrder'] } }]);
+
+    this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['CreateTask'] } }]);
   }
   callCreateInspection() {
-    
+
     this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['InspectionCreate'] } }]);
   }
   ngOnInit() {
-   
+
 
     var token = localStorage.getItem('token');
     var encodedProfile = token.split('.')[1];
@@ -62,11 +62,15 @@ export class WelcomepageComponent implements OnInit {
       .subscribe((data: any[]) => {
         this.updateList = data;
       });
-    this.loginService.getMaintenanceUpdateMsg(this.employeekey, this.OrganizationID).subscribe((data: any[])=> {
-      
+    this.loginService.getMaintenanceUpdateMsg(this.employeekey, this.OrganizationID).subscribe((data: any[]) => {
+      if (data.length > 0) {
         this.Message = data[0].Message;
+      }
+      else {
+        this.Message = "";
+      }
     });
 
 
- }
+  }
 }
