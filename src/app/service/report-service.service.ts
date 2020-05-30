@@ -390,4 +390,61 @@ export class ReportServiceService {
       .get(ConectionSettings.Url + '/getInspectionPickListReportDetails?from=' + from + '&to=' + to + '&template=' + template + '&employeeKey=' + Employee + '&orgID=' + orgID);
   }
 
+  /*
+  
+  TASKS....
+  
+  */
+  gettaskdashboardreport(dateTemp_1, dateTemp_2, em_Key, Workorder_TypeKey, empKey, orgID) {
+    const url = ConectionSettings.Url + '/getEmployeeForPieTASK';
+    const obj = {
+      Date: dateTemp_1,
+      Date1: dateTemp_2,
+      EmployeeKey: em_Key,
+      WorkorderTypeKey: Workorder_TypeKey,
+      managerKey: empKey,
+      OrganizationID: orgID
+    };
+    return this
+      .http
+      .post(url, obj);
+  }
+
+  gettaskvaluesfilterbypie(dateTemp_1, dateTemp_2, em_Key, Workorder_TypeKey, org_id, Manager) {
+    const url = ConectionSettings.Url + '/TASKByfilterPie';
+    const obj = {
+      manager: Manager,
+      workorderDate: dateTemp_1,
+      workorderDate2: dateTemp_2,
+      employeeKey: em_Key,
+      workorderTypeKey: Workorder_TypeKey,
+      OrganizationID: org_id
+    };
+    return this
+      .http
+      .post(url, obj);
+
+  }
+
+  generateTaskReport(FacilityKey, FloorKey, RoomTypeKey, ZoneKey, fromdate, todate, RoomKey, EmployeeKey, WorkorderStatusKey, empKey, orgID, WorkorderType_Key) {
+    const url = ConectionSettings.Url + '/taskReportByallFilters';
+    const obj = {
+      OrganizationID: orgID,
+      manager: empKey,
+      workorderDate: fromdate,
+      workorderDate2: todate,
+      facilitykey: FacilityKey,
+      floorKey: FloorKey,
+      roomTypeKey: RoomTypeKey,
+      zoneKey: ZoneKey,
+      roomKey: RoomKey,
+      employeeKey: EmployeeKey,
+      workorderStatusKey: WorkorderStatusKey,
+      WorkorderTypeKey: WorkorderType_Key
+    };
+    return this
+      .http
+      .post(url, obj);
+
+  }
 }

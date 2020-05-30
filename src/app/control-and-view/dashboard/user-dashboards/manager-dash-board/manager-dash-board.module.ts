@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagerDashBoardComponent } from './manager-dash-board.component';
 
-import { CreateQuickTaskModule } from "../../../manager/tasks/create-quick-task/create-quick-task.module";
+import { TaskDashboardReportModule } from "../../../manager/reports/task-dashboard-report/task-dashboard-report.module";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 const routes: Routes = [
@@ -714,6 +714,31 @@ const routes: Routes = [
         path: 'createQuickTask',
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/tasks/create-quick-task/create-quick-task.module#CreateQuickTaskModule',
+      },
+      {
+        path: 'createBatchTask',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/create-batch-task/create-batch-task.module#CreateBatchTaskModule',
+      },
+      {
+        path: 'viewBatchTask',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/view-batch-task/view-batch-task.module#ViewBatchTaskModule',
+      },
+      {
+        path: 'TaskDashboardReport',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/reports/task-dashboard-report/task-dashboard-report.module#TaskDashboardReportModule',
+      },
+      {
+        path: 'viewTaskRemainingDetails/:fromdt/:todt/:empKey/:wotypeKey/:empName/:wotypeName',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/reports/view-tasks-remaining-details/view-tasks-remaining-details.module#ViewTasksRemainingDetailsModule'
+      },
+      {
+        path: 'TaskReport',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/reports/tasks-report/tasks-report.module#TasksReportModule'
       },
     ]
   }

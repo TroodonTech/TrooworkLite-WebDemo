@@ -25,8 +25,12 @@
             <div class="dropdown-content" style="margin-left:1rem;">
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateTask']}}]"><b>Create Task</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['createQuickTask']}}]"><b>Create Quick
-                  Tasks</b></a>
+                  Task</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewTask']}}]"><b>View Tasks</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['createBatchTask']}}]"><b>Create Batch
+                  Task</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewBatchTask']}}]"><b>View Batch
+                  Tasks</b></a>
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateWorkOrder']}}]"><b>Create Work
                   Order</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['createQuickOrder']}}]"><b>Create Quick
@@ -67,13 +71,13 @@
           <li class="nav-item dropdown" style="margin-left: -1rem;">
             <img class="imagesize nav-link" data-toggle="dropdown" src="assets/icons/reports.png">
             <div class="dropdown-content" style="margin-left:1rem;">
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['DashboardReport']}}]"><b>WorkOrder
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['TaskDashboardReport']}}]"><b>Task
                   Dashboard</b></a>
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['woprogressReport']}}]"><b>WorkOrder
                   In-Progress Report</b></a> -->
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['WorkorderReport']}}]"><b>WorkOrder</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['Batch-work-order-Report']}}]"><b>Batch
-                  WorkOrder Report</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['TaskReport']}}]"><b>Task</b></a>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['Batch-work-order-Report']}}]"><b>Batch
+                  WorkOrder Report</b></a> -->
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['BatchScheduleAssignment']}}]"><b>View
                   Batch-Schedule Assignment</b>
               </a>

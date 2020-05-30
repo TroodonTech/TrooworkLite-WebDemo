@@ -13,7 +13,10 @@ import { ReviewReportComponent } from './review-report/review-report.component';
 import { WorkorderInProgressReportComponent } from './workorder-in-progress-report/workorder-in-progress-report.component';
 import { InspectionAuditReportComponent } from './inspection-audit-report/inspection-audit-report.component';
 import { ViewRemainingWorkordersDetailsComponent } from './view-remaining-workorders-details/view-remaining-workorders-details.component';
-import { PicklistReportComponent } from './picklist-report/picklist-report.component'
+import { PicklistReportComponent } from './picklist-report/picklist-report.component';
+import { TaskDashboardReportComponent } from './task-dashboard-report/task-dashboard-report.component';
+import { TasksReportComponent } from './tasks-report/tasks-report.component';
+import { ViewTasksRemainingDetailsComponent } from './view-tasks-remaining-details/view-tasks-remaining-details.component'
 
 @NgModule({
   imports: [
@@ -21,6 +24,6 @@ import { PicklistReportComponent } from './picklist-report/picklist-report.compo
   ],
   declarations: [InspectionReportComponent, BarcodeReportComponent,
     DashboardReportComponent, WorkorderReportComponent, BatchWorkOrderReportComponent,
-    BatchScheduleAssignmentReportComponent, EmployeesDowntimeReportComponent, InventoryReportComponent, SchedulerReportComponent, ReviewReportComponent, WorkorderInProgressReportComponent, InspectionAuditReportComponent, ViewRemainingWorkordersDetailsComponent, PicklistReportComponent]
+    BatchScheduleAssignmentReportComponent, EmployeesDowntimeReportComponent, InventoryReportComponent, SchedulerReportComponent, ReviewReportComponent, WorkorderInProgressReportComponent, InspectionAuditReportComponent, ViewRemainingWorkordersDetailsComponent, PicklistReportComponent, TaskDashboardReportComponent, TasksReportComponent, ViewTasksRemainingDetailsComponent]
 })
 export class ReportsModule { }

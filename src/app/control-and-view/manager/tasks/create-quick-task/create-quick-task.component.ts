@@ -96,11 +96,11 @@ export class CreateQuickTaskComponent implements OnInit {
       }
 
       if (this.EmployeeKey) {
-        this.emp_key = this.EmployeeKey;
+        this.EmployeeKey = this.EmployeeKey;
       } else {
-        this.emp_key = - 1;
+        this.EmployeeKey = - 1;
       }
-
+console.log(this.EmployeeKey+"..."+this.emp_key);
       if (this.PriorityKey) {
         this.priority = this.PriorityKey;
       } else {
@@ -123,7 +123,7 @@ export class CreateQuickTaskComponent implements OnInit {
         floorkeys: '-1',
         zonekeys: '-1',
         roomtypekeys: '-1',
-        employeekey: this.emp_key,
+        employeekey: this.EmployeeKey,
         priority: this.priority,
         fromdate: this.startDT,
         todate: this.startDT,
@@ -143,8 +143,8 @@ export class CreateQuickTaskComponent implements OnInit {
       this.taskServ
         .addQuickTask(this.createworkorder)
         .subscribe(res => {
-          alert("Work-order created successfully");
-          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewWorkOrder'] } }]);
+          alert("Task created successfully");
+          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
         });
     }
 
