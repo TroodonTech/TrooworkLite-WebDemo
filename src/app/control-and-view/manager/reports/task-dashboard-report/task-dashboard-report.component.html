@@ -55,13 +55,13 @@
     </div>
     <div class="col-md-6">
       <h3 style="text-align: right"></h3>
-      <div class="form-group" style="width: 85%;">
+      <!-- <div class="form-group" style="width: 85%;">
         <label>Workorder Type</label>
         <ng-multiselect-dropdown [placeholder]="'Select'" [data]="workordertypeoption" [(ngModel)]="WorkorderTypeKey"
           [settings]="dropdownSettings" (onSelect)="dashboardreportbyfilter()" (onDeSelect)="dashboardreportbyfilter()"
           (onSelectAll)="dashboardreportbyfilter()" (onDeSelectAll)="dashboardreportbyfilter()">
         </ng-multiselect-dropdown>
-      </div>
+      </div> -->
       <div class="form-group" style="width: 68%;">
         <label>To Date</label>
         <ng-datepicker [options]="options" position="top-right" [(ngModel)]="todate"
@@ -116,7 +116,7 @@
             </a> -->
             <a (click)="viewWODetails(x.empkey,x.Workorder_TypeKey,x.EmployeeName,x.WorkorderTypeName)"
               style="color: blue !important;" *ngIf="(x.totalCount-(x.CompletedCount + x.CancelCount))>0">
-              <abbr title="Click to see pending workorder details">
+              <abbr title="Click to see pending task details">
                 {{x.totalCount-(x.CompletedCount + x.CancelCount)}}
               </abbr>
             </a>

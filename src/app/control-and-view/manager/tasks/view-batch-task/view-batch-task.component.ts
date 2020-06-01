@@ -157,7 +157,9 @@ export class ViewBatchTaskComponent implements OnInit {
         for (var i = 0; i < this.taskList.length; i++) {
           this.taskList[i].workorderCheckValue = false;
         }
-        this.pagination = +this.taskList[0].totalItems / (+this.pageno * (+this.items_perpage));
+        if (data.length > 0) {
+          this.pagination = +this.taskList[0].totalItems / (+this.pageno * (+this.items_perpage));
+        }
         if (this.pagination > 1) {
           this.showHide2 = true;
           this.showHide1 = true;
@@ -447,7 +449,7 @@ export class ViewBatchTaskComponent implements OnInit {
     }
   }
   //function called on search
-  searchBatchWo(search_value) {
+  searchBatchTask(search_value) {
     var value = search_value.trim();
     var fac_key;
     var floor_key;

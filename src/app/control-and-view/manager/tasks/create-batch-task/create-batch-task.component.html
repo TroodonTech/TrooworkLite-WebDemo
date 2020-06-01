@@ -1,6 +1,6 @@
 <div style="padding-left: 9rem;padding-right: 9rem;">
   <div class="row col-md-12 ">
-    <h4 style="margin-left: 40%">CREATE NEW TASK</h4>
+    <h4 style="margin-left: 40%">CREATE NEW BATCH TASK</h4>
   </div>
 
   <div style="margin-left: 1.5rem;margin-right: 1.5rem;padding-top: 1rem;padding-bottom: 1rem"
@@ -41,7 +41,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Zone</label><br>
+        <label>Zone*</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
           [disabled]="!FloorKey" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);"
           required>
@@ -132,7 +132,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Room</label><br>
+        <label>Room*</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomKey"
           [disabled]="!FloorKey" required>
           <option value="">--Select--</option>
@@ -185,7 +185,7 @@
       </div>
       <div class="form-group"
         *ngIf="isRecurring==true && (dailyrecurring==true||weeklyrecurring==true||monthlyrecurring==true)">
-        <label style="margin-top: 6.5%;">End Date*</label>
+        <label style="margin-top: 17%;">End Date*</label>
         <ng-datepicker [options]="options" position="top-right" [(ngModel)]="TaskEndDate"></ng-datepicker>
       </div>
     </div>

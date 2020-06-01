@@ -73,7 +73,7 @@
           </option>
         </select>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Workorder Type</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="WorkorderTypeKey"
           (change)="viewWO_Filter();" required>
@@ -82,7 +82,7 @@
             {{e.WorkorderTypeText}}
           </option>
         </select>
-      </div>
+      </div> -->
       <div class="form-group">
         <label>Schedule Name</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="BatchScheduleNameKey"
@@ -102,7 +102,7 @@
       <div class="active-pink-3 active-pink-4 mb-4" style="margin-left: 0.5rem;margin-right: 1.5rem;">
         <input class="form-control" name="searchWO" maxlength="20" type="text" specialIsAlphaNumeric minlength="3"
           formControlName="SearchWo" placeholder="Search Schedule Name,Employee" aria-label="Search"
-          [(ngModel)]="SearchWo" (input)="searchBatchWo($event.target.value);" style="width: 101%;">
+          [(ngModel)]="SearchWo" (input)="searchBatchTask($event.target.value);" style="width: 101%;">
         <div *ngIf="searchform.controls.SearchWo.errors?.minlength">Minimum 3 characters required.</div>
       </div>
     </form>

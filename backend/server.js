@@ -21497,7 +21497,7 @@ app.post(securedpath + '/taskScheduleByallFilters', supportCrossOriginScript, fu
 
 
 
-app.post(securedpath + '/searchWorkorderScheduleByallFilters', supportCrossOriginScript, function (req, res) {
+app.post(securedpath + '/searchTaskScheduleByallFilters', supportCrossOriginScript, function (req, res) {
 
     var newWOObj = req.body;
     var manager = newWOObj.manager;
@@ -21538,7 +21538,7 @@ app.post(securedpath + '/searchWorkorderScheduleByallFilters', supportCrossOrigi
 
 
 
-app.post(securedpath + '/deletebatchWorkOrders', function (req, res) {
+app.post(securedpath + '/deletebatchTasks', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     var newWOObj = req.body;
     var deletebatchWorkOrderString = newWOObj.deletebatchWorkOrderString;

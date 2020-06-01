@@ -180,7 +180,7 @@ export class EditBatchTaskComponent implements OnInit {
         this.FacilityKey = this.TaskEditList.FacilityKey;
         this.FloorKey = this.TaskEditList.FloorKey;
         this.ZoneKey = this.TaskEditList.ZoneKey;
-        this.RoomKey = this.TaskEditList.RoomKey;
+        this.RoomKey = this.TaskEditList.RoomKeyList;
         this.RoomTypeKey = this.TaskEditList.RoomTypeKey;
         if (this.TaskEditList.PriorityKey || this.TaskEditList.PriorityKey != -1) {
           this.PriorityKey = this.TaskEditList.PriorityKey;
@@ -486,11 +486,11 @@ export class EditBatchTaskComponent implements OnInit {
     this.repeatinterval = 1; // int,/*daily(every `2` days) weekly(every `1` week) monthly(every `3` months)*/
     this.occurenceinstance = null; // int,/*daily(3) weekly(null) monthly(null) monthly(1)*/
     this.occursonday = null;
-    if (this.workordertypekey) {
-      this.wot = this.workordertypekey;
-    } else {
-      this.wot = null;
-    }
+    // if (this.workordertypekey) {
+    //   this.wot = this.workordertypekey;
+    // } else {
+      this.wot = "Task";
+    // }
     if (this.WorkorderNotes) {
       this.notes = this.WorkorderNotes.trim();
     } else {

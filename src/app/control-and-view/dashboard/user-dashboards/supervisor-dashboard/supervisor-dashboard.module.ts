@@ -393,6 +393,11 @@ const routes: Routes = [
         outlet: 'Superout',
         loadChildren: '../../../manager/reports/tasks-report/tasks-report.module#TasksReportModule'
       },
+      {
+        path: 'viewBatchTask/EditBatchTask/:WorkorderScheduleKey',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/tasks/edit-batch-task/edit-batch-task.module#EditBatchTaskModule',
+      },
     ]
   }
 ];

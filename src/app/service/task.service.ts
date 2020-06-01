@@ -66,13 +66,13 @@ export class TaskService {
       .post(url, viewWorkOrder);
   }
   search_Batch_Task(obj) {
-    const url = ConectionSettings.Url + '/searchWorkorderScheduleByallFilters';
+    const url = ConectionSettings.Url + '/searchTaskScheduleByallFilters';
     return this
       .http
       .post(url, obj);
   }
   delete_batchTask(obj) {
-    const url = ConectionSettings.Url + '/deletebatchWorkOrders';
+    const url = ConectionSettings.Url + '/deletebatchTasks';
     return this
       .http
       .post(url, obj);
