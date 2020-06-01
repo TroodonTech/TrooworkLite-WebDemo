@@ -1,32 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewTasksComponent } from './view-tasks.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 import { NgDatepickerModule } from 'ng2-datepicker';
-import { CalendarModule } from 'primeng/calendar';
-import { EditBatchTaskComponent } from './edit-batch-task.component';
-
 const routes: Routes = [
   {
     path: '',
-    component: EditBatchTaskComponent
+    component: ViewTasksComponent
   }
 
 ];
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     MDBBootstrapModule,
-    FormsModule,
-    CalendarModule,
-    ReactiveFormsModule,
     NgDatepickerModule,
+    FormsModule, ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [EditBatchTaskComponent]
+  declarations: [ViewTasksComponent, FileSelectDirective]
 })
-export class EditBatchTaskModule { }
+export class ViewTasksModule { }

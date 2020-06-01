@@ -16,9 +16,17 @@
               [routerLink]="[{outlets:{Superout:['Supervisor_welcomePage']}}]">
           </li>
           <li class="nav-item dropdown">
-            <img class="imagesize nav-link" src="assets/icons/work order.png">
+            <img class="imagesize nav-link" src="assets/icons/task.png">
             <div class="dropdown-content" style="margin-left:1rem;">
-              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['CreateWorkOrderSuperVisor']}}]"><b>Create
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['CreateTask']}}]"><b>Create Task</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['createQuickTask']}}]"><b>Create Quick
+                  Task</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['viewTask']}}]"><b>View Tasks</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['createBatchTask']}}]"><b>Create Batch
+                  Task</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['viewBatchTask']}}]"><b>View Batch
+                  Tasks</b></a>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['CreateWorkOrderSuperVisor']}}]"><b>Create
                   Work-Order</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['createQuickOrderSuperVisor']}}]"><b>Create
                   Quick Work-Order</b></a>
@@ -32,15 +40,15 @@
               <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['WorkOrderType']}}]"><b>Work-Order
                   Type</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['ViewServiceRequest']}}]"><b>View Service
-                  Request</b></a>
+                  Request</b></a> -->
             </div>
           </li>
           <li class="nav-item dropdown">
             <img class="imagesize nav-link" data-toggle="dropdown" src="assets/icons/reports.png">
             <div class="dropdown-content" style="margin-left:1rem;">
-              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['DashboardReport']}}]"><b>WorkOrder
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['TaskDashboardReport']}}]"><b>Task
                   Dashboard</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['WorkorderReport']}}]"><b>WorkOrder</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{Superout:['TaskReport']}}]"><b>Task</b></a>
             </div>
           </li>
           <!-- <li class="nav-item dropdown">

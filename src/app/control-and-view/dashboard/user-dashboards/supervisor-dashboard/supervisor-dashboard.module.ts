@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SupervisorDashboardComponent } from './supervisor-dashboard.component';
-import { SupervsrinspectiontemplateModule } from '../../../supervisor/supervsrinspectiontemplate/supervsrinspectiontemplate.module';
+import { ViewTasksModule } from '../../../supervisor/tasks/view-tasks/view-tasks.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 const routes: Routes = [
   {
@@ -347,7 +347,52 @@ const routes: Routes = [
         outlet: 'Superout',
         loadChildren: '../../../manager/reports/view-remaining-workorders-details/view-remaining-workorders-details.module#ViewRemainingWorkordersDetailsModule'
 
-      }
+      },
+      {
+        path: 'CreateTask',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/tasks/create-task/create-task.module#CreateTaskModule'
+      },
+      {
+        path: 'viewTask',
+        outlet: 'Superout',
+        loadChildren: '../../../supervisor/tasks/view-tasks/view-tasks.module#ViewTasksModule'
+      },
+      {
+        path: 'viewTask/editTask/:WorkorderKey',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/tasks/edit-tasks/edit-tasks.module#EditTasksModule'
+      },
+      {
+        path: 'createQuickTask',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/tasks/create-quick-task/create-quick-task.module#CreateQuickTaskModule',
+      },
+      {
+        path: 'createBatchTask',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/tasks/create-batch-task/create-batch-task.module#CreateBatchTaskModule',
+      },
+      {
+        path: 'viewBatchTask',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/tasks/view-batch-task/view-batch-task.module#ViewBatchTaskModule',
+      },
+      {
+        path: 'TaskDashboardReport',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/reports/task-dashboard-report/task-dashboard-report.module#TaskDashboardReportModule',
+      },
+      {
+        path: 'viewTaskRemainingDetails/:fromdt/:todt/:empKey/:wotypeKey/:empName/:wotypeName',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/reports/view-tasks-remaining-details/view-tasks-remaining-details.module#ViewTasksRemainingDetailsModule'
+      },
+      {
+        path: 'TaskReport',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/reports/tasks-report/tasks-report.module#TasksReportModule'
+      },
     ]
   }
 ];

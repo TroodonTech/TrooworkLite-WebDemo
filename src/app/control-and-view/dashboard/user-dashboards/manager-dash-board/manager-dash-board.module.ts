@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagerDashBoardComponent } from './manager-dash-board.component';
 
-import { TaskDashboardReportModule } from "../../../manager/reports/task-dashboard-report/task-dashboard-report.module";
+import { EditBatchTaskModule } from "../../../manager/tasks/edit-batch-task/edit-batch-task.module";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 const routes: Routes = [
@@ -739,6 +739,11 @@ const routes: Routes = [
         path: 'TaskReport',
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/reports/tasks-report/tasks-report.module#TasksReportModule'
+      },
+      {
+        path: 'viewBatchTask/EditBatchTask/:WorkorderScheduleKey',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/edit-batch-task/edit-batch-task.module#EditBatchTaskModule',
       },
     ]
   }

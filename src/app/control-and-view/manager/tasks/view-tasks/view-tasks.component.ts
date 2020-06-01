@@ -462,7 +462,7 @@ export class ViewTasksComponent implements OnInit {
           this.WorkorderTypeKey = this.workorderTypeList[0].WorkorderTypeKey;
         }
       });
-    this.viewWO_Filter();
+    this.viewtask_Filter();
 
     this.searchform = this.formBuilder.group({
       SearchTask: ['', Validators.required]
@@ -560,7 +560,7 @@ export class ViewTasksComponent implements OnInit {
     }
   }
   //function called when filter is applied
-  viewWO_Filter() {
+  viewtask_Filter() {
     if ((this.todate) && (this.convert_DT(this.ondate) > this.convert_DT(this.todate))) {
       alert("Please check your start date!");
 
@@ -759,7 +759,7 @@ export class ViewTasksComponent implements OnInit {
         this.checkflag = false;
         this.workorderKey = [];
         alert("Task(s) deleted successfully");
-        this.viewWO_Filter();
+        this.viewtask_Filter();
 
       });
   }
@@ -794,7 +794,7 @@ export class ViewTasksComponent implements OnInit {
         .setCancelWorkorder(woKey, reason, today_DT, p, this.emp_key, this.org_id)
         .subscribe((data: any[]) => {
           alert("Selected workorder has been cancelled");
-          this.viewWO_Filter();
+          this.viewtask_Filter();
         });
     }
   }

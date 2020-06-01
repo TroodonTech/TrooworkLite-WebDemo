@@ -160,6 +160,8 @@ export class CreateBatchTaskComponent implements OnInit {
     this.emp_key = profile.employeekey;
     this.org_id = profile.OrganizationID;
     // this.WorkorderTypeKey = "";
+    this.EmployeeKey = "";
+    this.FacilityKey = "";
     this.FloorKey = "";
     this.ZoneKey = "";
     this.RoomTypeKey = "";
@@ -544,7 +546,7 @@ export class CreateBatchTaskComponent implements OnInit {
       this.Gps_SnapShot = 0;
     }
     // if (this.keepActive == true) {
-      this.keep_active = 1;
+    this.keep_active = 1;
     // }
     // else {
     //   this.keep_active = 0;

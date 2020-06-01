@@ -136,18 +136,9 @@
           <td>{{x.EndDate}}</td>
           <td>{{x.LastName}},{{x.FirstName}}</td>
           <td>{{x.WorkorderNotes}}</td>
-          <!-- <td>{{x.IntervalType}}</td> -->
           <td>
-            <span *ngIf="x.IsEquipment === 0 && x.IntervalType === 'm'">
-              <!-- <a [routerLink]="['EditBatchWorkorder',x.WorkorderScheduleKey]" class="btn btn-primary"
-                style="color:white !important" routerLinkActive="active"><b>Edit</b> </a> -->
-            </span>
-            <span *ngIf="x.IsEquipment === 0 && x.IntervalType !== 'm'">
-            </span>
-            <span *ngIf="x.IsEquipment === 1">
-              <a [routerLink]="['EditBatchWorkorder',x.WorkorderScheduleKey]" class="btn btn-primary"
-                style="color:white !important" routerLinkActive="active"><b>Edit</b> </a>
-            </span>
+            <a [routerLink]="['EditBatchTask',x.WorkorderScheduleKey]" class="btn btn-primary"
+              style="color:white !important" routerLinkActive="active"><b>Edit</b> </a>
           </td>
           <td>
             <input type="checkbox" [(ngModel)]="x.workorderCheckValue"

@@ -83,4 +83,80 @@ export class TaskService {
       .http
       .get(ConectionSettings.Url + '/getRemainingTaskDetails?from=' + from + "&to=" + to + "&empKey=" + empKey + "&wotypeKey=" + wotypeKey + "&org=" + org);
   }
+  deleteCurrent_BatchTask(obj) {
+    const url = ConectionSettings.Url + '/deleteTaskBatchSchedule';
+    return this
+      .http
+      .post(url, obj);
+  }
+
+  taskViewsSupervisorByAll(obj) {
+    const url = ConectionSettings.Url + '/taskViewSupervisorByAll';
+
+    return this
+      .http
+      .post(url, obj);
+  }
+  gettaskTablewithOnDateandToDateFilter(date1, date2, tosrvempky, orgid, FacKey, Flrky, RmTypKy, ZnKy) {
+    const url = ConectionSettings.Url + '/taskEmployeeByallFilters';
+    const obj = {
+      manager: tosrvempky,
+      workorderDate: date1,
+      workorderDate2: date2,
+      facilitykey: FacKey,
+      roomTypeKey: RmTypKy,
+      floorKey: Flrky,
+      zoneKey: ZnKy,
+      OrganizationID: orgid
+    };
+    return this
+      .http
+      .post(url, obj);
+  }
+
+
+
+
+  BarcodeRoom(BarcodeValue, toServeremployeekey, workorderkey, type, OrganizationID, complete_Time) {
+    return this
+      .http
+      .get(ConectionSettings.Url + '/barcodeRoom_Task?barcode=' + BarcodeValue + "&employeekey=" + toServeremployeekey + "&wkey=" + workorderkey + "&updatetype=" + type + "&OrganizationID=" + OrganizationID + "&complete_Time=" + complete_Time);
+  }
+  UpdateTaskbyPhotoForEmployee(fileName, toServeremployeekey, workorderkey, orgid, complete_Time) {
+    return this
+      .http
+      .get(ConectionSettings.Url + '/updateTaskByPhoto?pho=' + fileName + "&employeekey=" + toServeremployeekey + "&wkey=" + workorderkey + "&OrganizationID=" + orgid + "&complete_Time=" + complete_Time);
+  }
+  CompleteTaskByempWithoutPhotoandBarcd(toServeremployeekey, workorderkey, OrganizationID, complete_Time) {
+    return this
+      .http
+      .get(ConectionSettings.Url + '/TaskCompleted?employeekey=' + toServeremployeekey + "&wkey=" + workorderkey + "&OrganizationID=" + OrganizationID + "&complete_Time=" + complete_Time);
+  }
+  setCancelTask(wokey, reason, date1, time1, empkey, orgID) {
+    const url = ConectionSettings.Url + '/cancelTask';
+    const obj = {
+      workOrderKey: wokey,
+      Reason: reason,
+      updateDate: date1,
+      updateTime: time1,
+      empKey: empkey,
+      OrganizationID: orgID
+    };
+    return this
+      .http
+      .post(url, obj);
+  }
+  delete_Task(obj) {
+    const url = ConectionSettings.Url + '/deleteTasks';
+    return this
+      .http
+      .post(url, obj);
+  }
+
+  taskViewsEmpByAll(obj) {
+    const url = ConectionSettings.Url + '/taskViewsEmpByAll';
+    return this
+      .http
+      .post(url, obj);
+  }
 }

@@ -21,10 +21,12 @@
               [routerLink]="[{outlets:{EmployeeOut:['Emp_welcomePage']}}]">
           </li>
           <li class="nav-item dropdown">
-            <img class="imagesize nav-link" src="assets/icons/work order.png">
+            <img class="imagesize nav-link" src="assets/icons/task.png">
             <div class="dropdown-content" style="margin-left:1rem;">
-              <a class="dropdown-item" [routerLink]="[{outlets:{EmployeeOut:['Viewworkordersforemployee']}}]"><b>View
-                  Workorders</b></a></div>
+              <!-- <a class="dropdown-item" [routerLink]="[{outlets:{EmployeeOut:['Viewworkordersforemployee']}}]"><b>View
+                  Workorders</b></a></div> -->
+              <a class="dropdown-item" [routerLink]="[{outlets:{EmployeeOut:['viewTask']}}]"><b>View Tasks</b></a>
+            </div>
           </li>
           <!-- <li class="nav-item dropdown">
             <img class="imagesize nav-link" data-toggle="dropdown" src="assets/icons/PEOPLE--3.png">

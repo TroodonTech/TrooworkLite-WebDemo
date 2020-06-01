@@ -2123,7 +2123,12 @@ export class CreateTaskComponent implements OnInit {
     };
     this.taskServ.addTasks(this.taskCreation).subscribe(res => {
       alert("Task created successfully");
-      this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+      if (this.role == 'Manager') {
+        this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+      }
+      else if (this.role == 'Supervisor') {
+        this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTask'] } }]);
+      }
     });
     // }
   }

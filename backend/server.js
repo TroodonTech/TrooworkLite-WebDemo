@@ -21698,6 +21698,302 @@ app.post(securedpath + '/TASKByfilterPie', supportCrossOriginScript, function (r
     });
 });
 
+
+app.post(securedpath + '/deleteTaskBatchSchedule', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    var workschedulekey = req.body.workorderSchedulekey;
+    var OrganizationID = req.body.OrganizationID;
+
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        } else {
+            connection.query('set @workschedulekey=?;set @OrganizationID=?;  call usp_task_deleteTaskBatchSchedule(@workschedulekey,@OrganizationID)', [workschedulekey, OrganizationID], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+                    // console.log("deleteTaskBatchSchedule...from server.." + JSON.stringify(rows[2]));
+                    res.end(JSON.stringify(rows[2]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+app.options('/taskViewSupervisorByAll', supportCrossOriginScript);
+app.post(securedpath + '/taskViewSupervisorByAll', supportCrossOriginScript, function (req, res) {
+
+    var newWOObj = {};
+    newWOObj = req.body;
+
+    var OrganizationID = newWOObj.OrganizationID;
+    var employeekey = newWOObj.empKey;
+    var startDate = newWOObj.startDate;
+    var endDate = newWOObj.endDate;
+    var SearchWO = newWOObj.SearchWO;
+    var RoomTypeKey = newWOObj.RoomTypeKey;
+    var FloorKey = newWOObj.FloorKey;
+    var ZoneKey = newWOObj.ZoneKey;
+    var FacilityKey = newWOObj.FacilityKey;
+    var pageNo = newWOObj.pageNo;
+    var itemsPerPage = newWOObj.itemsPerPage;
+    var schedulename = newWOObj.schedulename;
+    var employee = newWOObj.employee;
+    var isFiltered = newWOObj.isFiltered;
+
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query('set @OrganizationID=?;set @employeekey=?;set @startDate=?;set @endDate=?;set @SearchWO=?; set@RoomTypeKey=?; set@FloorKey=?; set@ZoneKey=?; set@FacilityKey=?; set@pageNo=?;set@schedulename=?;set@employee=?; set@itemsPerPage=?; set@isFiltered=?; call usp_task_taskViewSupervisorByAll(@OrganizationID,@employeekey,@startDate,@endDate,@SearchWO,@RoomTypeKey,@FloorKey,@ZoneKey,@FacilityKey,@pageNo,@schedulename,@employee,@itemsPerPage,@isFiltered)', [OrganizationID, employeekey, startDate, endDate, SearchWO, RoomTypeKey, FloorKey, ZoneKey, FacilityKey, pageNo, schedulename, employee, itemsPerPage, isFiltered], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[14]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+
+app.post(securedpath + '/taskEmployeeByallFilters', supportCrossOriginScript, function (req, res) {
+    var newWOObj = {};
+    newWOObj = req.body;
+    var manager = newWOObj.manager;
+    var workorderDate = newWOObj.workorderDate;
+    var workorderDate2 = newWOObj.workorderDate2;
+    var facilitykey = newWOObj.facilitykey;
+    var roomTypeKey = newWOObj.roomTypeKey;
+    var floorKey = newWOObj.floorKey;
+    var zoneKey = newWOObj.zoneKey;
+    var OrganizationID = newWOObj.OrganizationID;
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query("set @manager =?;set @workorderDate =?;set @workorderDate2 =?;set @facilitykey=?; set @roomTypeKey=?;set @floorKey=?;set @zoneKey=?;set @OrganizationID =?;call usp_task_taskEmployeeByallFilters(@manager,@workorderDate,@workorderDate2,@facilitykey,@roomTypeKey,@floorKey,@zoneKey,@OrganizationID)", [manager, workorderDate, workorderDate2, facilitykey, roomTypeKey, floorKey, zoneKey, OrganizationID], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[8]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+
+app.get(securedpath + '/barcodeRoom_Task', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    var barcode = url.parse(req.url, true).query['barcode'];
+
+    var workorderkey = url.parse(req.url, true).query['wkey'];
+    var updatetype = url.parse(req.url, true).query['updatetype'];
+    var employeekey = url.parse(req.url, true).query['employeekey'];
+    var OrganizationID = url.parse(req.url, true).query['OrganizationID'];
+    var complete_Time = url.parse(req.url, true).query['complete_Time'];
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query("set @workdetail =?;set @barcode=?; set @empkey=?; set @updatetype=?; set @OrganizationID=?;set @complete_Time=?;call usp_task_TaskStatusUpdateByBarcode(@workdetail,@barcode,@empkey,@updatetype,@OrganizationID,@complete_Time)", [workorderkey, barcode, employeekey, updatetype, OrganizationID, complete_Time], function (err, rows) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[5][0]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+
+app.get(securedpath + '/updateTaskByPhoto', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    var pho = url.parse(req.url, true).query['pho'];
+    var wdkey = url.parse(req.url, true).query['wkey'];
+
+    var employeekey = url.parse(req.url, true).query['employeekey'];
+    var OrganizationID = url.parse(req.url, true).query['OrganizationID'];
+    var complete_Time = url.parse(req.url, true).query['complete_Time'];
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query(" set @wdk=?;set @imgname=?; set @employeekey=?; set @OrganizationID=?;set @complete_Time=?;call usp_task_TaskStatusUpdateByPhoto(@wdk,@imgname,@employeekey,@OrganizationID,@complete_Time)", [wdkey, pho, employeekey, OrganizationID, complete_Time], function (err, rows) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[3][0]));
+                }
+
+            });
+        }
+        connection.release();
+    });
+});
+
+
+
+app.get(securedpath + '/TaskCompleted', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    var employeekey = url.parse(req.url, true).query['employeekey'];
+    var work_det_key = url.parse(req.url, true).query['wkey'];
+    var OrganizationID = url.parse(req.url, true).query['OrganizationID'];
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query("set @workdetail =?; set @employeekey=?; set @OrganizationID=?;call usp_task_TaskStatusUpdate(@workdetail,@employeekey,@OrganizationID)", [work_det_key, employeekey, OrganizationID], function (err, rows) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[3][0]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+
+
+app.options('/cancelTask', supportCrossOriginScript);
+app.post(securedpath + '/cancelWorkOrder_SuType', supportCrossOriginScript, function (request, res) {
+
+    var workOrderKey = request.body.workOrderKey;
+    var reason = request.body.Reason;
+    var updateDate = request.body.updateDate;
+    var updateTime = request.body.updateTime;
+    var empKey = request.body.empKey;
+    var OrganizationID = request.body.OrganizationID;
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query('set @workOrderKey=?;set @reason=?;set @updateDate=?;set @updateTime=?; set @empKey=?; set @OrganizationID=?; call usp_task_TaskCancel(@workOrderKey,@reason,@updateDate,@updateTime,@empKey,@OrganizationID)', [workOrderKey, reason, updateDate, updateTime, empKey, OrganizationID], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                } else {
+                    res.end(JSON.stringify(rows[4]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+
+
+app.post(securedpath + '/deleteTasks', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    var newWOObj = {};
+    newWOObj = req.body;
+    var deleteWorkOrderString = newWOObj.deleteWorkOrderString;
+    var employeekey = newWOObj.employeekey;
+    var OrganizationID = newWOObj.OrganizationID;
+
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        } else {
+            connection.query('set @deleteWorkOrderString=?; set @employeekey=?;set @OrganizationID=?;  call usp_task_Tasksdelete(@deleteWorkOrderString,@employeekey,@OrganizationID)', [deleteWorkOrderString, employeekey, OrganizationID], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+                    console.log("deleteWorkOrders...from server.." + JSON.stringify(rows[3]));
+                    res.end(JSON.stringify(rows[3]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
+app.options('/taskViewsEmpByAll', supportCrossOriginScript);
+app.post(securedpath + '/taskViewsEmpByAll', supportCrossOriginScript, function (req, res) {
+
+    var newWOObj = {};
+    newWOObj = req.body;
+
+    var OrganizationID = newWOObj.OrganizationID;
+    var employeekey = newWOObj.empKey;
+    var startDate = newWOObj.startDate;
+    var endDate = newWOObj.endDate;
+    var SearchWO = newWOObj.SearchWO;
+    var RoomTypeKey = newWOObj.RoomTypeKey;
+    var FloorKey = newWOObj.FloorKey;
+    var ZoneKey = newWOObj.ZoneKey;
+    var FacilityKey = newWOObj.FacilityKey;
+    var pageNo = newWOObj.pageNo;
+    var itemsPerPage = newWOObj.itemsPerPage;
+    var isFiltered = newWOObj.isFiltered;
+
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query('set @OrganizationID=?;set @employeekey=?;set @startDate=?;set @endDate=?;set @SearchWO=?; set@RoomTypeKey=?; set@FloorKey=?; set@ZoneKey=?; set@FacilityKey=?; set@pageNo=?; set@itemsPerPage=?; set@isFiltered=?; call usp_task_taskViewsEmpByAll(@OrganizationID,@employeekey,@startDate,@endDate,@SearchWO,@RoomTypeKey,@FloorKey,@ZoneKey,@FacilityKey,@pageNo,@itemsPerPage,@isFiltered)', [OrganizationID, employeekey, startDate, endDate, SearchWO, RoomTypeKey, FloorKey, ZoneKey, FacilityKey, pageNo, itemsPerPage, isFiltered], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[12]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+
 /*
 Tasks api calls.... @Rodney ends
 */
