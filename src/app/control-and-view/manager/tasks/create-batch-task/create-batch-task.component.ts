@@ -341,16 +341,26 @@ export class CreateBatchTaskComponent implements OnInit {
   //function for creating workorder
 
   createTask() {
-    if (!this.FacilityKey) {
-      alert("Please select building!");
+    // if (!this.FacilityKey) {
+    //   alert("Please select building!");
+    // }
+    // else if (!this.FloorKey) {
+    //   alert("Please select floor!");
+    // }
+    // else if (!this.ZoneKey) {
+    //   alert("Please select zone!");
+    // } else if (!this.RoomKey) {
+    //   alert("Please select room!");
+    // }alert
+    if (!this.taskname) {
+      alert("Please enter task name");
+    } else if (!this.taskname.trim()) {
+      alert("Please enter task name");
     }
-    else if (!this.FloorKey) {
-      alert("Please select floor!");
-    }
-    else if (!this.ZoneKey) {
-      alert("Please select zone!");
-    } else if (!this.RoomKey) {
-      alert("Please select room!");
+    else if (!this.taskNotes) {
+      alert("Please enter task notes");
+    } else if (!this.taskNotes.trim()) {
+      alert("Please enter task notes");
     }
     else if (!(this.TaskStartDate)) {
       alert("Please provide work-order start date!");
@@ -401,11 +411,11 @@ export class CreateBatchTaskComponent implements OnInit {
 
     this.wot = "Task";
 
-    if (this.taskNotes) {
-      this.notes = this.taskNotes.trim();
-    } else {
-      this.notes = null;
-    }
+    // if (this.taskNotes) {
+    //   this.notes = this.taskNotes.trim();
+    // } else {
+    //   this.notes = null;
+    // }
     if (this.FacilityKey) {
 
     }
@@ -578,17 +588,24 @@ export class CreateBatchTaskComponent implements OnInit {
       occurstype: this.occurs_type,
       IsSnapshot: this.Gps_SnapShot,
       KeepActive: this.keep_active
-    };
-    this.taskServ.addtaskSchedule(this.workorderCreation).subscribe(res => {
-      alert("Batch task created successfully");
-      if (this.role == 'Manager') {
-        this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
-      }
-      // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
-      else if (this.role == 'Supervisor') {
-        this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
+    }; this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
+      if (data) {
+        alert("Task Name already exists !!!");
+        return false;
+      } else {
+        this.taskServ.addtaskSchedule(this.workorderCreation).subscribe(res => {
+          alert("Batch task created successfully");
+          if (this.role == 'Manager') {
+            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
+          }
+          // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
+          else if (this.role == 'Supervisor') {
+            this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
+          }
+        });
       }
     });
+
   }
 
   //function for creating workorder withequip

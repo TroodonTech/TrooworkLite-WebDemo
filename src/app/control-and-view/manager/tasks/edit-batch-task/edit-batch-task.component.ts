@@ -435,12 +435,12 @@ export class EditBatchTaskComponent implements OnInit {
     // else if (!this.workordertypekey) {
     //   alert("Please select work-order type!");
     // }
-    else if (!this.FacilityKey) {
-      alert("Please select building!");
-    }
-    else if (!this.FloorKey) {
-      alert("Please select floor!");
-    }
+    // else if (!this.FacilityKey) {
+    //   alert("Please select building!");
+    // }
+    // else if (!this.FloorKey) {
+    //   alert("Please select floor!");
+    // }
     else if (!(this.TaskStartDate)) {
       alert("Please provide work-order start date!");
     }

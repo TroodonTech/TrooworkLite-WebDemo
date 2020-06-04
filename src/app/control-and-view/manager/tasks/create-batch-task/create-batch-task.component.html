@@ -31,7 +31,7 @@
           placeholder="Task Name" [(ngModel)]="taskname">
       </div>
       <div class="form-group">
-        <label>Building*</label><br>
+        <label>Building</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FacilityKey"
           (change)="getFloorDisp($event.target.value);" required>
           <option value="">--Select--</option>
@@ -41,7 +41,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Zone*</label><br>
+        <label>Zone</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
           [disabled]="!FloorKey" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);"
           required>
@@ -69,7 +69,7 @@
       </div> -->
 
       <div class="form-group">
-        <label>Task Notes</label>
+        <label>Task Notes*</label>
         <textarea class="form-control rounded-1" maxlength="200" [(ngModel)]="taskNotes" rows="8"
           style="resize: none;width: 100% !important;max-width: 100% !important;"></textarea>
       </div>
@@ -91,7 +91,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Floor*</label><br>
+        <label>Floor</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FloorKey"
           [disabled]="!FacilityKey" (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);" required>
           <option value="">--Select--</option>
@@ -123,7 +123,7 @@
       </div> -->
 
       <div class="form-group">
-        <label>Priority Level</label><br>
+        <label>Touch Area</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="PriorityKey" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of priorityList" [value]="b.PriorityKey">
@@ -132,7 +132,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Room*</label><br>
+        <label>Room</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomKey"
           [disabled]="!FloorKey" required>
           <option value="">--Select--</option>

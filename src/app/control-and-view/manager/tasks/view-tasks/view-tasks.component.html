@@ -146,8 +146,8 @@
     <table *ngIf='taskList' class="table table-hover table-responsive table-bordered table"
       style="display: inline-table;margin-left: -8rem;max-width: 150%;width: 135%">
       <thead class="tableHead">
-        <th>Workorder Type Name</th>
         <th>Task Name</th>
+        <th>Task Barcode</th>
         <th style="width: 7%">Date</th>
         <th>Status</th>
         <th>Employee</th>
@@ -172,8 +172,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of taskList; let i=index">
-          <td> {{x.WorkorderTypeName}} </td>
           <td> {{x.TaskName}} </td>
+          <td> {{x.Barcode}} </td>
           <td> {{x.WorkorderTime}} </td>
           <td> {{x.WorkorderStatus}} </td>
           <td> {{x.LastName}},{{x.FirstName}} </td>
@@ -181,7 +181,7 @@
             <span *ngIf="x.RoomId==='Dummy'"> Refer notes </span>
             <span *ngIf="x.RoomId!=='Dummy'"> {{x.RoomId}} </span>
           </td>
-          <td> {{x.EquipmentName}} </td>
+          <!-- <td> {{x.EquipmentName}} </td> -->
           <td>
             <span *ngIf="x.IsReccurring === 1 && x.IsSchedule === 0">YES</span>
             <span *ngIf="x.IsReccurring === 1 && x.IsSchedule === 1">YES , {{x.ScheduleName}}</span>

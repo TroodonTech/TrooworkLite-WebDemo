@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagerDashBoardComponent } from './manager-dash-board.component';
 
-import { EditBatchTaskModule } from "../../../manager/tasks/edit-batch-task/edit-batch-task.module";
+import { ViewCompletedTasksDetailsModule } from "../../../manager/reports/view-completed-tasks-details/view-completed-tasks-details.module";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 const routes: Routes = [
@@ -744,6 +744,11 @@ const routes: Routes = [
         path: 'viewBatchTask/EditBatchTask/:WorkorderScheduleKey',
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/tasks/edit-batch-task/edit-batch-task.module#EditBatchTaskModule',
+      },
+      {
+        path: 'viewTaskCompletedDetails/:fromdt/:todt/:empKey/:wotypeKey/:empName/:wotypeName',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/reports/view-completed-tasks-details/view-completed-tasks-details.module#ViewCompletedTasksDetailsModule'
       },
     ]
   }

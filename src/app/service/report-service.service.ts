@@ -447,4 +447,10 @@ export class ReportServiceService {
       .post(url, obj);
 
   }
+
+  getallTaskName(EmployeeKey, orgID) {
+    return this
+      .http
+      .get(ConectionSettings.Url + '/getTaskNameList?employeeKey=' + EmployeeKey + '&OrganizationID=' + orgID);
+  }
 }

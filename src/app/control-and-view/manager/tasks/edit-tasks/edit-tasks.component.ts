@@ -186,10 +186,36 @@ export class EditTasksComponent implements OnInit {
           });
 
         // if (this.TaskEditList.EquipmentKey == -1) {
-        this.FloorKey = this.TaskEditList.FloorKey;
-        this.RoomTypeKey = this.TaskEditList.RoomTypeKey;
-        this.ZoneKey = this.TaskEditList.ZoneKey;
-        this.RoomKey = this.TaskEditList.RoomKey;
+        if (!this.TaskEditList.FacilityKey) {
+          this.FacilityKey = "";
+        }
+        else {
+          this.FacilityKey = this.TaskEditList.FacilityKey;
+        }
+        if (!this.TaskEditList.FloorKey) {
+          this.FloorKey = "";
+        }
+        else {
+          this.FloorKey = this.TaskEditList.FloorKey;
+        }
+        if (!this.TaskEditList.ZoneKey) {
+          this.ZoneKey = "";
+        }
+        else {
+          this.ZoneKey = this.TaskEditList.ZoneKey;
+        }
+        if (!this.TaskEditList.RoomTypeKey) {
+          this.RoomTypeKey = "";
+        }
+        else {
+          this.RoomTypeKey = this.TaskEditList.RoomTypeKey;
+        }
+        if (!this.TaskEditList.RoomKey) {
+          this.RoomKey = "";
+        }
+        else {
+          this.RoomKey = this.TaskEditList.RoomKey;
+        }
         this.TaskName = this.TaskEditList.TaskName;
         this.wot = "Task";
         // }
@@ -209,7 +235,6 @@ export class EditTasksComponent implements OnInit {
         var date_time = this.dateValue;
 
         this.workordertypekey = this.TaskEditList.WorkorderTypeKey;
-        this.FacilityKey = this.TaskEditList.FacilityKey;
         if (this.TaskEditList.PriorityKey) {
           this.PriorityKey = this.TaskEditList.PriorityKey;
         }
@@ -362,39 +387,18 @@ export class EditTasksComponent implements OnInit {
   //function for updating workorder
 
   UpdateWO() {
-    if (!this.TaskName) {
-      alert("Please enter task name!");
+    if (!this.WorkorderNotes) {
+      alert("Please enter task notes");
+    } else if (!this.WorkorderNotes.trim()) {
+      alert("Please enter task notes");
+    } else if (!this.TaskName) {
+      alert("Please enter a task name");
     }
-    else if (!this.FacilityKey) {
-      alert("Please select building!");
-    }
-    else if (!this.FloorKey) {
-      alert("Please select floor!");
-    }
+
     else if (!(this.timeValue)) {
       alert("Please provide time!");
     }
     else {
-      var roomlistObj = [];
-      var roomtypelistObj = [];
-      var zonelistObj = [];
-      var floorlistObj = [];
-      var facilitylistObj = [];
-      var facilityList = [];
-      var roomList = [];
-      var roomtypeList = [];
-      var zoneList = [];
-      var floorList = []; facilitylistObj = this.facilitylist;
-      facilityList = [];
-      roomList = [];
-      roomtypeList = [];
-      zoneList = [];
-      floorList = [];
-      floorlistObj = this.FloorList;
-      zonelistObj = this.zonelist;
-      roomtypelistObj = this.RoomTypeList;
-      roomlistObj = this.RoomList;
-
       this.intervaltype = '0'; // char(1),/*d for day, w for week, m for month*/
       this.repeatinterval = 1; // int,/*daily(every `2` days) weekly(every `1` week) monthly(every `3` months)*/
       this.occurenceinstance = null; // int,/*daily(3) weekly(null) monthly(null) monthly(1)*/
@@ -410,83 +414,108 @@ export class EditTasksComponent implements OnInit {
       } else {
         this.notes = null;
       }
-      if (this.FacilityKey) {
-
-      }
-      if (this.FloorKey) {
-
-
-      }
-
-      var roomsString;
-      if (this.RoomKey) {
-        roomsString = this.RoomKey;
-      } else {
-        if (roomlistObj) {
-
-          for (var j = 0; j < roomlistObj.length; j++) {
-            roomList.push(roomlistObj[j].RoomKey);
-          }
-          roomsString = roomList.join(',');
-        } else {
-
-          return;
-        }
-      }
-
 
       var facilityString;
       if (this.FacilityKey) {
         facilityString = this.FacilityKey;
       } else {
-        if (facilitylistObj) {
-
-          for (var j = 0; j < facilitylistObj.length; j++) {
-            facilityList.push(facilitylistObj[j].FacilityKey);
-          }
-          facilityString = facilityList.join(',');
-        }
+        facilityString = -1;
       }
-
       var floorString;
       if (this.FloorKey) {
         floorString = this.FloorKey;
       } else {
-        if (floorlistObj) {
-
-          for (var j = 0; j < floorlistObj.length; j++) {
-            floorList.push(floorlistObj[j].FloorKey);
-          }
-          floorString = floorList.join(',');
-        }
+        floorString = -1;
       }
 
       var zoneString;
       if (this.ZoneKey) {
         zoneString = this.ZoneKey;
       } else {
-        this.zone = null;
-        if (zonelistObj) {
-
-          for (var j = 0; j < zonelistObj.length; j++) {
-            zoneList.push(zonelistObj[j].ZoneKey);
-          }
-          zoneString = zoneList.join(',');
-        }
+        zoneString = -1;
       }
-
       var roomtypeString;
       if (this.RoomTypeKey) {
         roomtypeString = this.RoomTypeKey;
       } else {
-        if (roomtypelistObj) {
-
-          for (var j = 0; j < roomtypelistObj.length; j++) {
-            roomtypeList.push(roomtypelistObj[j].RoomTypeKey);
-          }
-          roomtypeString = roomtypeList.join(',');
-        }
+        roomtypeString = -1;
       }
+      var roomsString;
+      if (this.RoomKey) {
+        roomsString = this.RoomKey;
+      } else {
+        roomsString = -1;
+      }
+
+      // var roomsString;
+      // if (this.RoomKey) {
+      //   roomsString = this.RoomKey;
+      // } else {
+      //   if (roomlistObj) {
+
+      //     for (var j = 0; j < roomlistObj.length; j++) {
+      //       roomList.push(roomlistObj[j].RoomKey);
+      //     }
+      //     roomsString = roomList.join(',');
+      //   } else {
+
+      //     return;
+      //   }
+      // }
+
+
+      // var facilityString;
+      // if (this.FacilityKey) {
+      //   facilityString = this.FacilityKey;
+      // } else {
+      //   if (facilitylistObj) {
+
+      //     for (var j = 0; j < facilitylistObj.length; j++) {
+      //       facilityList.push(facilitylistObj[j].FacilityKey);
+      //     }
+      //     facilityString = facilityList.join(',');
+      //   }
+      // }
+
+      // var floorString;
+      // if (this.FloorKey) {
+      //   floorString = this.FloorKey;
+      // } else {
+      //   if (floorlistObj) {
+
+      //     for (var j = 0; j < floorlistObj.length; j++) {
+      //       floorList.push(floorlistObj[j].FloorKey);
+      //     }
+      //     floorString = floorList.join(',');
+      //   }
+      // }
+
+      // var zoneString;
+      // if (this.ZoneKey) {
+      //   zoneString = this.ZoneKey;
+      // } else {
+      //   this.zone = null;
+      //   if (zonelistObj) {
+
+      //     for (var j = 0; j < zonelistObj.length; j++) {
+      //       zoneList.push(zonelistObj[j].ZoneKey);
+      //     }
+      //     zoneString = zoneList.join(',');
+      //   }
+      // }
+
+      // var roomtypeString;
+      // if (this.RoomTypeKey) {
+      //   roomtypeString = this.RoomTypeKey;
+      // } else {
+      //   if (roomtypelistObj) {
+
+      //     for (var j = 0; j < roomtypelistObj.length; j++) {
+      //       roomtypeList.push(roomtypelistObj[j].RoomTypeKey);
+      //     }
+      //     roomtypeString = roomtypeList.join(',');
+      //   }
+      // }
 
       if (this.EmployeeKey) {
         this.emp_key = this.EmployeeKey;
@@ -569,7 +598,8 @@ export class EditTasksComponent implements OnInit {
       repeatinterval: 1,
       occursonday: null,
       keepActive: this.keep_active,
-      IsSnapshot: this.Gps_SnapShot
+      IsSnapshot: this.Gps_SnapShot,
+      NewTask: 0
     };
     this.taskServ.addTasks(this.workorderCreation).subscribe((data: any[]) => {//service for updating workorder
       this.deleteWO = {

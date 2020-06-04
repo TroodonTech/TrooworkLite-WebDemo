@@ -159,4 +159,16 @@ export class TaskService {
       .http
       .post(url, obj);
   }
+  checkTaskName(taskname, org_id) {
+    return this
+      .http
+      .get(ConectionSettings.Url + '/checkTaskName?taskName=' + taskname + "&OrganizationID=" + org_id);
+
+  }
+
+  getCompletedTaskDetails(from, to, empKey, wotypeKey, org) {
+    return this
+      .http
+      .get(ConectionSettings.Url + '/getCompletedTaskDetails?from=' + from + "&to=" + to + "&empKey=" + empKey + "&wotypeKey=" + wotypeKey + "&org=" + org);
+  }
 }

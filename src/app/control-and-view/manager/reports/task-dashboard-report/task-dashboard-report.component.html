@@ -98,6 +98,7 @@
           <th>Total WorkOrder</th>
           <!-- <th>Cancelled WorkOrder</th> -->
           <th> Quantity Left</th>
+          <th> Quantity Completed</th>
         </tr>
       </thead>
       <tbody>
@@ -122,6 +123,15 @@
             </a>
             <span
               *ngIf="(x.totalCount-(x.CompletedCount + x.CancelCount))==0">{{x.totalCount-(x.CompletedCount + x.CancelCount)}}</span>
+          </td>
+          <td>
+            <a (click)="viewTaskCompletedDetails(x.empkey,x.Workorder_TypeKey,x.EmployeeName,x.WorkorderTypeName)"
+              style="color: blue !important;" *ngIf="x.CompletedCount>0">
+              <abbr title="Click to see pending task details">
+                {{x.CompletedCount }}
+              </abbr>
+            </a>
+            <span *ngIf="x.CompletedCount>0"> {{x.CompletedCount }}</span>
           </td>
         </tr>
         <tr *ngIf="reporttable?.length == 0">

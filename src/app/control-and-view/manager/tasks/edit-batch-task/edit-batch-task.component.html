@@ -27,7 +27,7 @@
         <input type="button" *ngIf="newType" (click)="GobacktoMenu()" class="btn btn-primary button_style"
           style="margin-top: 0rem" value="Go Default" /> -->
         <label class="col-md-12 col-lg-12 col-sm-12">Task Name*</label>
-        <input type="text" name="TaskName" class="form-control" style="width: 94%;margin-left: 3%;"
+        <input type="text" name="TaskName" readonly class="form-control" style="width: 94%;margin-left: 3%;"
           placeholder="Task Name" [(ngModel)]="TaskName">
       </div>
       <div class="form-group">

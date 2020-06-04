@@ -19,10 +19,10 @@
       </div> -->
       <div class="form-group">
         <label>Task Name*</label>
-        <input type="text" name="TaskName" class="form-control" placeholder="Task Name" [(ngModel)]="TaskName">
+        <input type="text" name="TaskName" readonly class="form-control" placeholder="Task Name" [(ngModel)]="TaskName">
       </div>
       <div class="form-group">
-        <label>Building*</label><br>
+        <label>Building</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FacilityKey"
           (change)="getFloorDisp($event.target.value);" required>
           <option value="">--Select--</option>
@@ -59,7 +59,7 @@
         <ng-datepicker [options]="options" position="top-right" [(ngModel)]="dateValue"></ng-datepicker>
       </div>
       <div class="form-group">
-        <label>Task Notes</label>
+        <label>Task Notes*</label>
         <textarea class="form-control rounded-1" [(ngModel)]="WorkorderNotes" rows="6"
           style="resize: none;width: 100% !important"></textarea>
       </div>
@@ -81,11 +81,9 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Floor*</label><br>
+        <label>Floor</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FloorKey"
-          [disabled]="!FacilityKey"
-          (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);getEquiment($event.target.value,FacilityKey);"
-          required>
+          [disabled]="!FacilityKey" (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of FloorList" [value]="b.FloorKey">
             {{b.FloorName}}
@@ -115,7 +113,7 @@
       </div> -->
 
       <div class="form-group">
-        <label>Priority Level</label><br>
+        <label>Touch Area</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="PriorityKey" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of priorityList" [value]="b.PriorityKey">

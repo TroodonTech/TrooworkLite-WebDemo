@@ -304,7 +304,7 @@ export class TaskDashboardReportComponent implements OnInit {
   dashboardreportbyfilter() {
     this.pievalues = [];
     this.reporttable = [];
-    
+
     if (!this.EmployeeKey) {
       this.em_Key = null;
     }
@@ -386,7 +386,7 @@ export class TaskDashboardReportComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  viewWODetails(empkey, WOTypeKey, empName, woTypeName) {
+  viewWODetailsviewWODetails(empkey, WOTypeKey, empName, woTypeName) {
     if (!this.todate) {
       this.todate = this.fromdate;
     }
@@ -405,6 +405,28 @@ export class TaskDashboardReportComponent implements OnInit {
     }
     else if (this.role == 'Supervisor') {
       this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTaskRemainingDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
+    }
+  }
+
+  viewTaskCompletedDetails(empkey, WOTypeKey, empName, woTypeName) {
+    if (!this.todate) {
+      this.todate = this.fromdate;
+    }
+    this.ds.setFromDate(this.fromdate);
+    this.ds.setToDate(this.todate);
+    this.ds.setEmployees(this.EmployeeKey);
+    this.ds.setWorkorderTypes(this.WorkorderTypeKey);
+    this.ds.setEmp(empkey);
+    this.ds.setWOType(WOTypeKey);
+    this.ds.setWOTypeName(woTypeName);
+    this.ds.setempName(empName);
+
+
+    if (this.role == 'Manager') {
+      this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTaskCompletedDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
+    }
+    else if (this.role == 'Supervisor') {
+      this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTaskCompletedDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
     }
   }
 }
