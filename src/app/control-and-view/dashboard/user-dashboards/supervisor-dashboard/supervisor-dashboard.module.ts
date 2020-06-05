@@ -398,6 +398,11 @@ const routes: Routes = [
         outlet: 'Superout',
         loadChildren: '../../../manager/tasks/edit-batch-task/edit-batch-task.module#EditBatchTaskModule',
       },
+      {
+        path: 'viewTaskCompletedDetails/:fromdt/:todt/:empKey/:wotypeKey/:empName/:wotypeName',
+        outlet: 'Superout',
+        loadChildren: '../../../manager/reports/view-completed-tasks-details/view-completed-tasks-details.module#ViewCompletedTasksDetailsModule'
+      },
     ]
   }
 ];

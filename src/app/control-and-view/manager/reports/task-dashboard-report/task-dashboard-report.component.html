@@ -127,11 +127,11 @@
           <td>
             <a (click)="viewTaskCompletedDetails(x.empkey,x.Workorder_TypeKey,x.EmployeeName,x.WorkorderTypeName)"
               style="color: blue !important;" *ngIf="x.CompletedCount>0">
-              <abbr title="Click to see pending task details">
+              <abbr title="Click to see completed task details">
                 {{x.CompletedCount }}
               </abbr>
             </a>
-            <span *ngIf="x.CompletedCount>0"> {{x.CompletedCount }}</span>
+            <span *ngIf="x.CompletedCount==0"> {{x.CompletedCount }}</span>
           </td>
         </tr>
         <tr *ngIf="reporttable?.length == 0">

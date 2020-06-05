@@ -15308,7 +15308,7 @@ app.get(securedpath + '/cronjobMST', function (req, res) {
         }
         else {
             console.log("Success! Connection with Database spicnspan via connection pool succeeded");
-            connection.query('call usp_workOrdersBatchAddByEvent()', [], function (err, rows) {
+            connection.query('call usp_task_taskBatchAddByEvent()', [], function (err, rows) {
                 if (err) {
                     console.log("Problem with MySQL" + err);
                 }
@@ -15333,7 +15333,7 @@ app.get(securedpath + '/cronjobCST', function (req, res) {
         }
         else {
             console.log("Success! Connection with Database spicnspan via connection pool succeeded");
-            connection.query('call usp_workOrdersBatchAddByEvent_CST()', [], function (err, rows) {
+            connection.query('call usp_task_taskBatchAddByEvent_CST()', [], function (err, rows) {
                 if (err) {
                     console.log("Problem with MySQL" + err);
                 }
