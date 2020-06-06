@@ -661,7 +661,8 @@ export class EditBatchTaskComponent implements OnInit {
       occursonday: this.occurs_on,
       occurstype: this.occurs_type,
       IsSnapshot: this.Gps_SnapShot,
-      KeepActive: 1
+      KeepActive: 1,
+      NewTask:0
     };
     this.taskServ.addtaskSchedule(this.workorderCreation).subscribe(res => {//service for updating wo
       this.deleteWO = {

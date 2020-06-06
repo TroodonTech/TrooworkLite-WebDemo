@@ -304,31 +304,25 @@ export class EditTasksComponent implements OnInit {
   }
   getZoneRoomTypeRoom(floor, facility) {//getting zone,roomtype,room based on facility key,floor key
     if (floor && facility) {
-      if ((this.FloorKey)) {
-        this.ZoneKey = -1;
-        this.RoomTypeKey = -1;
-        this.RoomKey = -1;
-      }
-      else {
-        this.WorkOrderServiceService//service for getting zones
-          .getzone_facilityfloor(floor, facility, this.OrganizationID)
-          .subscribe((data: any[]) => {
-            this.zonelist = data;
-            this.ZoneKey = "";
-          });
-        this.WorkOrderServiceService//service for getting roomtype lists
-          .getroomType_facilityfloor(floor, facility, this.OrganizationID)
-          .subscribe((data: any[]) => {
-            this.RoomTypeList = data;
-            this.RoomTypeKey = "";
-          });
-        this.WorkOrderServiceService//service for getting roomlist
-          .getRoom_facilityfloor(floor, facility, this.OrganizationID)
-          .subscribe((data: any[]) => {
-            this.RoomList = data;
-            this.RoomKey = "";
-          });
-      }
+      this.WorkOrderServiceService//service for getting zones
+        .getzone_facilityfloor(floor, facility, this.OrganizationID)
+        .subscribe((data: any[]) => {
+          this.zonelist = data;
+          this.ZoneKey = "";
+        });
+      this.WorkOrderServiceService//service for getting roomtype lists
+        .getroomType_facilityfloor(floor, facility, this.OrganizationID)
+        .subscribe((data: any[]) => {
+          this.RoomTypeList = data;
+          this.RoomTypeKey = "";
+        });
+      this.WorkOrderServiceService//service for getting roomlist
+        .getRoom_facilityfloor(floor, facility, this.OrganizationID)
+        .subscribe((data: any[]) => {
+          this.RoomList = data;
+          this.RoomKey = "";
+        });
+      // }
     }
     else {
       this.ZoneKey = "";

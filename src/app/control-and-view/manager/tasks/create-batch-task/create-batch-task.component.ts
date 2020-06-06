@@ -587,7 +587,8 @@ export class CreateBatchTaskComponent implements OnInit {
       occursonday: this.occurs_on,
       occurstype: this.occurs_type,
       IsSnapshot: this.Gps_SnapShot,
-      KeepActive: this.keep_active
+      KeepActive: this.keep_active,
+      NewTask:1
     }; this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
       if (data) {
         alert("Task Name already exists !!!");

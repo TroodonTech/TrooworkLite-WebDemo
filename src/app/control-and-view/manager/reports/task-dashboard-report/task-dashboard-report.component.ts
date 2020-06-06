@@ -386,7 +386,7 @@ export class TaskDashboardReportComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  viewWODetailsviewWODetails(empkey, WOTypeKey, empName, woTypeName) {
+  viewTaskDetails(empkey, WOTypeKey, empName, woTypeName) {
     if (!this.todate) {
       this.todate = this.fromdate;
     }

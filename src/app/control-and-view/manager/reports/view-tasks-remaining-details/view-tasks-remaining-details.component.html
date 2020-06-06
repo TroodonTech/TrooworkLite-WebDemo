@@ -20,12 +20,12 @@
     </div>
     <div class="col-md-6">
       <h3 style="text-align: right"></h3>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Task Name</label><br>
         <input type="text" style="background-color: #D4F4FF !important;" readonly [(ngModel)]="wotypeName"
           class="form-control">
-      </div>
-      <div class="form-group">
+      </div> -->
+      <div class="form-group" style="margin-top: 20.7%;">
         <label>To Date</label><br>
         <input type="text" style="background-color: #D4F4FF !important;" readonly [(ngModel)]="to" class="form-control">
       </div>
@@ -41,6 +41,7 @@
       style="display: inline-table;margin-left: -8rem;max-width: 150%;width: 135%">
       <thead class="tableHead">
         <th>Task Name</th>
+        <th>Task Barcode</th>
         <th style="width: 7%">Date</th>
         <th>Status</th>
         <th>Employee</th>
@@ -55,7 +56,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of workorderList; let i=index">
-          <td>{{x.WorkorderTypeName}}</td>
+          <td>{{x.TaskName}}</td>
+          <td>{{x.Barcode}}</td>
           <td>{{x.WorkorderTime}}</td>
           <td> {{x.WorkorderStatus}}</td>
           <td>{{x.LastName}},{{x.FirstName}}</td>
