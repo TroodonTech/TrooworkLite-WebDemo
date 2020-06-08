@@ -93,7 +93,7 @@ export class CreateBatchTaskComponent implements OnInit {
   name: String;
   IsSupervisor: Number;
   employeekey;
-  keepActive;
+  keepActive = true;
   keep_active;
   taskNotes;
   taskname;
@@ -555,12 +555,12 @@ export class CreateBatchTaskComponent implements OnInit {
     else {
       this.Gps_SnapShot = 0;
     }
-    // if (this.keepActive == true) {
-    this.keep_active = 1;
-    // }
-    // else {
-    //   this.keep_active = 0;
-    // }
+    if (this.keepActive == true) {
+      this.keep_active = 1;
+    }
+    else {
+      this.keep_active = 0;
+    }
     //creating workorder for already existing workordertype
     this.workorderCreation = {
       taskName: this.taskname,
@@ -588,7 +588,7 @@ export class CreateBatchTaskComponent implements OnInit {
       occurstype: this.occurs_type,
       IsSnapshot: this.Gps_SnapShot,
       KeepActive: this.keep_active,
-      NewTask:1
+      NewTask: 1
     }; this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
       if (data) {
         alert("Task Name already exists !!!");

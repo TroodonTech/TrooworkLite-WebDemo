@@ -79,7 +79,7 @@ export class EditTasksComponent implements OnInit {
   is_BarcodeRequired;
   occurenceinstance;
   keepActive;
-  keep_active = 1;
+  keep_active;
   GpsSnapShot;
   Gps_SnapShot;
   TaskName;
@@ -555,12 +555,12 @@ export class EditTasksComponent implements OnInit {
     } else {
       this.workTime = new Date().getHours() + ':' + new Date().getMinutes();
     }
-    // if (this.keepActive == true) {
+    if (this.keepActive == true) {
     this.keep_active = 1;
-    // }
-    // else {
-    //   this.keep_active = 0;
-    // }
+    }
+    else {
+      this.keep_active = 0;
+    }
     if (this.GpsSnapShot == true) {
       this.Gps_SnapShot = 1;
     }

@@ -9,13 +9,13 @@ export class DataService {
   fromDate;
   toDate;
   employees;
-  workorderTypes;
+  TaskID;
   emp;
-  wOType;
+  // wOType;
   shifttype;
   shiftvalue;
   empname;
-  wotypeName;
+  TaskName;
   setFromDate(from) {
     this.fromDate = from;
   }
@@ -25,17 +25,17 @@ export class DataService {
   setEmployees(employees) {
     this.employees = employees;
   }
-  setWorkorderTypes(workordertypes) {
-    this.workorderTypes = workordertypes;
+  setTaskID(TaskID) {
+    this.TaskID = TaskID;
   }
   setEmp(emp) {
     this.emp = emp;
   }
-  setWOType(wotype) {
-    this.wOType = wotype;
-  }
-  setWOTypeName(wotyName) {
-    this.wotypeName = wotyName;
+  // setWOType(wotype) {
+  //   this.wOType = wotype;
+  // }
+  setTaskName(wotyName) {
+    this.TaskName = wotyName;
   }
   setempName(empName) {
     this.empname = empName;
@@ -61,20 +61,20 @@ export class DataService {
     let temp = this.employees;
     return temp;
   }
-  getWorkorderTypes() {
-    let temp = this.workorderTypes;
+  getTaskID() {
+    let temp = this.TaskID;
     return temp;
   }
   getEmp() {
     let temp = this.emp;
     return temp;
   }
-  getWOType() {
-    let temp = this.wOType;
-    return temp;
-  }
-  getWOTypeName() {
-    let temp = this.wotypeName;
+  // getWOType() {
+  //   let temp = this.wOType;
+  //   return temp;
+  // }
+  getTaskName() {
+    let temp = this.TaskName;
     return temp;
   }
   getempName() {

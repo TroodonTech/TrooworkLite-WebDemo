@@ -27,6 +27,8 @@ export class TaskDashboardReportComponent implements OnInit {
   OrganizationID: Number;
   subscription: Subscription;
 
+  taskList;
+  TaskID;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -131,7 +133,7 @@ export class TaskDashboardReportComponent implements OnInit {
     this.loading = true;
     this.EmployeeKey = "";
     this.fromdate = new Date();
-
+this.TaskID="";
     var token = localStorage.getItem('token');
     var encodedProfile = token.split('.')[1];
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
@@ -167,7 +169,7 @@ export class TaskDashboardReportComponent implements OnInit {
     var from = this.ds.getFromDate();
     var to = this.ds.getToDate();
     var employees = this.ds.getEmployees();
-    var workordertypes = this.ds.getWorkorderTypes();
+    var workordertypes = this.ds.getTaskID();
     var shiftType1 = this.ds.getshiftType();
     var shiftvalue1 = this.ds.getshiftValue();
 
@@ -175,9 +177,9 @@ export class TaskDashboardReportComponent implements OnInit {
     this.ds.setEmployees(null);
     this.ds.setFromDate(null);
     this.ds.setToDate(null);
-    this.ds.setWOType(null);
-    this.ds.setWOTypeName(null);
-    this.ds.setWorkorderTypes(null);
+    // this.ds.setWOType(null);
+    this.ds.setTaskName(null);
+    this.ds.setTaskID(null);
     this.ds.setempName(null);
     this.ds.setshiftType(null);
     this.ds.setshiftValue(null);
@@ -222,6 +224,11 @@ export class TaskDashboardReportComponent implements OnInit {
       .getallworkordertype(this.employeekey, this.OrganizationID)
       .subscribe((data: Reports[]) => {
         this.workordertypeoption = data;
+      });
+    this.ReportServiceService
+      .getallTaskName(this.employeekey, this.OrganizationID)
+      .subscribe((data: any[]) => {
+        this.taskList = data;
       });
 
     if (workordertypes) {
@@ -330,32 +337,36 @@ export class TaskDashboardReportComponent implements OnInit {
     }
 
     this.manager = this.employeekey;
-    if (this.WorkorderTypeKey.length == 0) {
-      workordertypeString = null;
-    }
-    else {//converting workordertype list to comma separated string
+    // if (this.WorkorderTypeKey.length == 0) {
+    //   workordertypeString = null;
+    // }
+    // else {//converting workordertype list to comma separated string
 
-      var workordertypeList = [];
-      var workordertypeListObj = this.WorkorderTypeKey;
-      var workordertypeString;
-      if (workordertypeListObj.length > 0) {
-        if (workordertypeListObj) {
-          for (var j = 0; j < workordertypeListObj.length; j++) {
-            workordertypeList.push(workordertypeListObj[j].WorkorderTypeKey);
-          }
-        }
-        workordertypeString = workordertypeList.join(',');
-      }
+    //   var workordertypeList = [];
+    //   var workordertypeListObj = this.WorkorderTypeKey;
+    //   var workordertypeString;
+    //   if (workordertypeListObj.length > 0) {
+    //     if (workordertypeListObj) {
+    //       for (var j = 0; j < workordertypeListObj.length; j++) {
+    //         workordertypeList.push(workordertypeListObj[j].WorkorderTypeKey);
+    //       }
+    //     }
+    //     workordertypeString = workordertypeList.join(',');
+    //   }
+    // }
+
+    if (!this.TaskID) {
+      this.TaskID = null;
     }
     this.loading = true;
     this.ReportServiceService//service for fetching values for table
-      .gettaskdashboardreport(date1, date2, this.em_Key, workordertypeString, this.employeekey, this.OrganizationID)
+      .gettaskdashboardreport(date1, date2, this.em_Key, this.TaskID, this.employeekey, this.OrganizationID)
       .subscribe((data: Reports[]) => {
         this.reporttable = data;
         this.loading = false;
 
         this.ReportServiceService//service for fetching values for piechart
-          .gettaskvaluesfilterbypie(date1, date2, this.em_Key, workordertypeString, this.OrganizationID, this.employeekey)
+          .gettaskvaluesfilterbypie(date1, date2, this.em_Key, this.TaskID, this.OrganizationID, this.employeekey)
           .subscribe((data: Reports[]) => {
             this.pievalues = data;
             this.sampledata2 = [['WorkorderStatus', 'count']];//converting array to json format for piechart
@@ -386,47 +397,47 @@ export class TaskDashboardReportComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  viewTaskDetails(empkey, WOTypeKey, empName, woTypeName) {
+  viewTaskDetails(empkey, WOTypeKey, empName, TaskName) {
     if (!this.todate) {
       this.todate = this.fromdate;
     }
     this.ds.setFromDate(this.fromdate);
     this.ds.setToDate(this.todate);
     this.ds.setEmployees(this.EmployeeKey);
-    this.ds.setWorkorderTypes(this.WorkorderTypeKey);
+    this.ds.setTaskID(this.TaskID);
     this.ds.setEmp(empkey);
-    this.ds.setWOType(WOTypeKey);
-    this.ds.setWOTypeName(woTypeName);
+    this.ds.setTaskID(this.TaskID);
+    this.ds.setTaskName(TaskName);
     this.ds.setempName(empName);
 
 
     if (this.role == 'Manager') {
-      this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTaskRemainingDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
+      this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTaskRemainingDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, TaskName] } }]);
     }
     else if (this.role == 'Supervisor') {
-      this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTaskRemainingDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
+      this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTaskRemainingDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, TaskName] } }]);
     }
   }
 
-  viewTaskCompletedDetails(empkey, WOTypeKey, empName, woTypeName) {
+  viewTaskCompletedDetails(empkey, WOTypeKey, empName, TaskName) {
     if (!this.todate) {
       this.todate = this.fromdate;
     }
     this.ds.setFromDate(this.fromdate);
     this.ds.setToDate(this.todate);
     this.ds.setEmployees(this.EmployeeKey);
-    this.ds.setWorkorderTypes(this.WorkorderTypeKey);
+    this.ds.setTaskID(this.TaskID);
     this.ds.setEmp(empkey);
-    this.ds.setWOType(WOTypeKey);
-    this.ds.setWOTypeName(woTypeName);
+    this.ds.setTaskID(this.TaskID);
+    this.ds.setTaskName(TaskName);
     this.ds.setempName(empName);
 
 
     if (this.role == 'Manager') {
-      this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTaskCompletedDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
+      this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTaskCompletedDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, TaskName] } }]);
     }
     else if (this.role == 'Supervisor') {
-      this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTaskCompletedDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, woTypeName] } }]);
+      this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTaskCompletedDetails', this.convert_DT(this.fromdate), this.convert_DT(this.todate), empkey, WOTypeKey, empName, TaskName] } }]);
     }
   }
 }

@@ -489,7 +489,7 @@ export class EditBatchTaskComponent implements OnInit {
     // if (this.workordertypekey) {
     //   this.wot = this.workordertypekey;
     // } else {
-      this.wot = "Task";
+    this.wot = "Task";
     // }
     if (this.WorkorderNotes) {
       this.notes = this.WorkorderNotes.trim();
@@ -661,8 +661,8 @@ export class EditBatchTaskComponent implements OnInit {
       occursonday: this.occurs_on,
       occurstype: this.occurs_type,
       IsSnapshot: this.Gps_SnapShot,
-      KeepActive: 1,
-      NewTask:0
+      KeepActive: this.Keep_Active,
+      NewTask: 0
     };
     this.taskServ.addtaskSchedule(this.workorderCreation).subscribe(res => {//service for updating wo
       this.deleteWO = {

@@ -46,7 +46,7 @@
         <th>Status</th>
         <th>Employee</th>
         <th>Room</th>
-        <th>Equipment</th>
+        <!-- <th>Equipment</th> -->
         <th>Recurring</th>
         <th>Check-In Time</th>
         <th>Check-Out Time</th>
@@ -63,8 +63,8 @@
           <td>{{x.LastName}},{{x.FirstName}}</td>
           <td *ngIf="x.RoomId==='Dummy'">Refer notes</td>
           <td *ngIf="x.RoomId!=='Dummy'">{{x.RoomId}}</td>
-          <td>{{x.EquipmentName}}
-          </td>
+          <!-- <td>{{x.EquipmentName}}
+          </td> -->
           <td>
             <span *ngIf="x.IsReccurring === 1 && x.IsSchedule === 0">YES</span>
             <span *ngIf="x.IsReccurring === 1 && x.IsSchedule === 1">YES , {{x.ScheduleName}}</span>

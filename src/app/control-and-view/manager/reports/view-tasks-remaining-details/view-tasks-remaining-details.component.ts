@@ -12,8 +12,8 @@ export class ViewTasksRemainingDetailsComponent implements OnInit {
   from;
   to;
   empKey;
-  wotypeKey;
-  wotypeName;
+  TaskID;
+  TaskName;
   empName;
   workorderList;
   loading;
@@ -44,9 +44,9 @@ export class ViewTasksRemainingDetailsComponent implements OnInit {
     this.route.params.subscribe(params => this.from = params.fromdt);
     this.route.params.subscribe(params => this.to = params.todt);
     this.route.params.subscribe(params => this.empKey = params.empKey);
-    this.route.params.subscribe(params => this.wotypeKey = params.wotypeKey);
+    this.route.params.subscribe(params => this.TaskID = params.TaskID);
     this.route.params.subscribe(params => this.empName = params.empName);
-    this.route.params.subscribe(params => this.wotypeName = params.wotypeName);
+    this.route.params.subscribe(params => this.TaskName = params.TaskName);
   }
 
   ngOnInit() {
@@ -60,7 +60,7 @@ export class ViewTasksRemainingDetailsComponent implements OnInit {
     this.org = profile.OrganizationID;
 
     this.loading = true;
-    this.taskServ.getRemainingTaskDetails(this.from, this.to, this.empKey, this.wotypeKey, this.org)
+    this.taskServ.getRemainingTaskDetails(this.from, this.to, this.empKey, this.TaskID, this.org)
       .subscribe((data: any[]) => {
         this.workorderList = data;
         this.loading = false;

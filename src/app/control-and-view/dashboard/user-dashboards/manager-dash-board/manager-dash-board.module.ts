@@ -731,7 +731,7 @@ const routes: Routes = [
         loadChildren: '../../../manager/reports/task-dashboard-report/task-dashboard-report.module#TaskDashboardReportModule',
       },
       {
-        path: 'viewTaskRemainingDetails/:fromdt/:todt/:empKey/:wotypeKey/:empName/:wotypeName',
+        path: 'viewTaskRemainingDetails/:fromdt/:todt/:empKey/:TaskID/:empName/:TaskName',
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/reports/view-tasks-remaining-details/view-tasks-remaining-details.module#ViewTasksRemainingDetailsModule'
       },
@@ -746,7 +746,7 @@ const routes: Routes = [
         loadChildren: '../../../manager/tasks/edit-batch-task/edit-batch-task.module#EditBatchTaskModule',
       },
       {
-        path: 'viewTaskCompletedDetails/:fromdt/:todt/:empKey/:wotypeKey/:empName/:wotypeName',
+        path: 'viewTaskCompletedDetails/:fromdt/:todt/:empKey/:TaskID/:empName/:TaskName',
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/reports/view-completed-tasks-details/view-completed-tasks-details.module#ViewCompletedTasksDetailsModule'
       },

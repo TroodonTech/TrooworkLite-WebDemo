@@ -40,8 +40,8 @@ export class CreateTaskComponent implements OnInit {
   // WorkorderTypeKey;
   taskNotes;
   // showEqTypes = false;
-  keepActive = 1;
-  keep_active = 1;
+  keepActive = true;
+  keep_active;
   GpsSnapShot;
   Gps_SnapShot
   // temp-variables
@@ -821,7 +821,12 @@ export class CreateTaskComponent implements OnInit {
       //   }
       // }
 
-      this.keep_active = 1;
+      if (this.keepActive == true) {
+        this.keep_active = 1;
+      }
+      else {
+        this.keep_active = 0;
+      }
 
       if (this.GpsSnapShot == true) {
         this.Gps_SnapShot = 1;
@@ -2091,7 +2096,12 @@ export class CreateTaskComponent implements OnInit {
     //     }
     //   }
     // }
-    this.keep_active = 1;
+    if (this.keepActive == true) {
+      this.keep_active = 1;
+    }
+    else {
+      this.keep_active = 0;
+    }
 
     if (this.GpsSnapShot == true) {
       this.Gps_SnapShot = 1;
@@ -2154,7 +2164,7 @@ export class CreateTaskComponent implements OnInit {
 
     // }
     // else {
-      console.log(facilityString+" "+floorString+" "+zoneString+" "+roomsString);
+    console.log(facilityString + " " + floorString + " " + zoneString + " " + roomsString);
     this.taskCreation = {
       occursontime: this.workTime,
       workorderkey: - 99,
