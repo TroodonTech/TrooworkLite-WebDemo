@@ -22079,6 +22079,176 @@ app.get(securedpath + '/getCompletedTaskDetails', function (req, res) {
 /*
 Tasks api calls.... @Rodney ends
 */
+//Mob Lite Task
+app.options('/task_addNewtask', supportCrossOriginScript);
+app.post(securedpath + '/task_addNewtask', supportCrossOriginScript, function (req, res) {
+
+    var newWOObj = {};
+    newWOObj = req.body;
+    var workorderkey = newWOObj.workorderkey;
+    console.log("server new WO " + newWOObj.workorderkey);
+    var workordertype = "Task";
+    console.log("inside server wot= " + workordertype);
+    var equipmentkey = newWOObj.equipmentkey;
+    console.log("inside server equipmentkey= " + equipmentkey);
+    var roomkeys = newWOObj.roomkeys;
+    var facilitykeys = newWOObj.facilitykeys;
+    var floorkeys = newWOObj.floorkeys;
+    var zonekeys = newWOObj.zonekeys;
+    var roomtypekeys = newWOObj.roomtypekeys;
+    console.log("inside server roomkey= " + roomkeys);
+    var employeekey = newWOObj.employeekey;
+    console.log("inside server empkey= " + employeekey);
+    var priority = newWOObj.priority;
+    console.log("inside server priority= " + priority);
+    var fromdate = newWOObj.fromdate;
+    console.log("inside server fromdate= " + fromdate);
+    var todate = newWOObj.todate;
+    console.log("inside server todate= " + todate);
+    var intervaltype = newWOObj.intervaltype;
+    console.log("inside server intervaltype= " + intervaltype);
+    var repeatinterval = newWOObj.repeatinterval;
+    console.log("inside server repeatinterval= " + repeatinterval);
+    var occursonday = newWOObj.occursonday;
+    console.log("inside server occursonday= " + occursonday);
+    var occursontime = newWOObj.occursontime;
+    console.log("inside server occursontime= " + occursontime);
+    var occurstype = newWOObj.occurstype;
+    console.log("inside server occurstype= " + occurstype);
+    var workordernote = newWOObj.workordernote;
+    var isbar = newWOObj.isbar;
+    var isphoto = newWOObj.isphoto;
+    var metaupdatedby = newWOObj.metaupdatedby;
+    var OrganizationID = newWOObj.OrganizationID;
+    var keepActive = newWOObj.keepActive;
+    var IsSnapshot = newWOObj.IsSnapshot;
+	var taskName = newWOObj.taskName;
+
+    console.log("****************metaupdatedby************" + metaupdatedby + "  ZZZZZZ  " + isphoto + "  ZZZZZZ  " + roomkeys + "  ZZZZZZ  " + facilitykeys + "  ZZZZZZ  " + floorkeys + "  ZZZZZZ  " + zonekeys + "  ZZZZZZ  " + roomtypekeys + " occursontime " + occursontime);
+    console.log("3 VAlues are tot=16 " + isbar + " " + isphoto);
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query('set @workorderkey=?;set @workordertype=?;set @equipmentkey=?;set @roomkeys=?; set @employeekey=?; set @priority=?; set @fromdate=?; set @todate=?;set @intervaltype=?; set @repeatinterval=?;set @occursonday =?;set @occursontime =?;set @occurstype =?; set @workordernotes =?;set @isbar=?;set @isphoto=?;set @metaupdatedby=?; set @facilitykeys=?; set @floorkeys=?; set @zonekeys=?; set @roomtypekeys=?; set @OrganizationID=?; set@keepActive=?; set @IsSnapshot=?; set @taskName=?; call usp_mob_task_Addnewtask(@workorderkey,@workordertype,@equipmentkey,@roomkeys,@employeekey,@priority,@fromdate,@todate,@intervaltype,@repeatinterval,@occursonday,@occursontime,@occurstype,@workordernotes,@isbar,@isphoto,@metaupdatedby,@facilitykeys,@floorkeys,@zonekeys,@roomtypekeys,@OrganizationID,@keepActive,@IsSnapshot,@taskName) ', [workorderkey, workordertype, equipmentkey, roomkeys, employeekey, priority, fromdate, todate, intervaltype, repeatinterval, occursonday, occursontime, occurstype, workordernote, isbar, isphoto, metaupdatedby, facilitykeys, floorkeys, zonekeys, roomtypekeys, OrganizationID, keepActive, IsSnapshot, taskName], function (err, rows) {
+
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.end(JSON.stringify(rows[23]));
+                }
+
+            });
+
+        }
+        connection.release();
+    });
+
+});
+app.get(securedpath + '/mob_task_CreateByEmployeeBarcode', function (req, res) { //
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var barcode = url.parse(req.url, true).query['barcode'];
+    var Date = url.parse(req.url, true).query['Date'];
+    var isBar = url.parse(req.url, true).query['isBar'];
+    var checkIn = url.parse(req.url, true).query['checkIn'];
+    var empKey = url.parse(req.url, true).query['emp'];
+    var wot = url.parse(req.url, true).query['wot'];
+    var OrganizationID = url.parse(req.url, true).query['OrganizationID'];
+	var taskName = url.parse(req.url, true).query['taskName'];
+	var workorderNotes = url.parse(req.url, true).query['workorderNotes'];
+
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query("set@barcode=?;set@Date=?; set@isBar=?; set@checkIn=?; set@empKey=?; set @wot=?; set @OrganizationID=?;set @taskName=?; set @workorderNotes=?;call usp_mob_task_workorderCreateByEmpBarWOType(@barcode,@Date,@isBar,@checkIn,@empKey,@wot,@OrganizationID,@taskName,@workorderNotes)", [barcode, Date, isBar, checkIn, empKey, wot, OrganizationID,taskName,workorderNotes], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[9]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
+app.options('/task_addQuickworkorder', supportCrossOriginScript);
+app.post(securedpath + '/task_addQuickworkorder', supportCrossOriginScript, function (req, res) {
+
+    var newWOObj = {};
+    newWOObj = req.body;
+    var workorderkey = newWOObj.workorderkey;
+    console.log("server new WO " + newWOObj.workordertypekey);
+    var workordertypekey = newWOObj.workordertypekey;
+    console.log("inside server wot= " + workordertypekey);
+    var equipmentkey = newWOObj.equipmentkey;
+    console.log("inside server equipmentkey= " + equipmentkey);
+    var roomkeys = newWOObj.roomkeys;
+    var facilitykeys = newWOObj.facilitykeys;
+    var floorkeys = newWOObj.floorkeys;
+    var zonekeys = newWOObj.zonekeys;
+    var roomtypekeys = newWOObj.roomtypekeys;
+    console.log("inside server roomkey= " + roomkeys);
+    var employeekey = newWOObj.employeekey;
+    console.log("inside server empkey= " + employeekey);
+    var priority = newWOObj.priority;
+    console.log("inside server priority= " + priority);
+    var fromdate = newWOObj.fromdate;
+    console.log("inside server fromdate= " + fromdate);
+    var todate = newWOObj.todate;
+    console.log("inside server todate= " + todate);
+    var intervaltype = newWOObj.intervaltype;
+    console.log("inside server intervaltype= " + intervaltype);
+    var repeatinterval = newWOObj.repeatinterval;
+    console.log("inside server repeatinterval= " + repeatinterval);
+    var occursonday = newWOObj.occursonday;
+    console.log("inside server occursonday= " + occursonday);
+    var occursontime = newWOObj.occursontime;
+    console.log("inside server occursontime= " + occursontime);
+    var occurstype = newWOObj.occurstype;
+    console.log("inside server occurstype= " + occurstype);
+    var workordernote = newWOObj.workordernote;
+    var isbar = newWOObj.isbar;
+    var isphoto = newWOObj.isphoto;
+    var metaupdatedby = newWOObj.metaupdatedby;
+    var OrganizationID = req.body.OrganizationID;
+	 var taskname = req.body.taskName;
+
+    console.log("****************metaupdatedby************" + metaupdatedby + "ZZZZZZ " + isphoto);
+    console.log("3 VAlues are tot=16 " + isbar + " " + isphoto);
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query('set @workorderkey=?;set @workordertypekey=?;set @equipmentkey=?;set @roomkeys=?; set @employeekey=?; set @priority=?; set @fromdate=?; set @todate=?;set @intervaltype=?; set @repeatinterval=?;set @occursonday =?;set @occursontime =?;set @occurstype =?; set @workordernotes =?;set @isbar=?;set @isphoto=?;set @metaupdatedby=?; set @facilitykeys=?; set @floorkeys=?; set @zonekeys=?; set @roomtypekeys=?; set @OrganizationID=?; set @taskName=?; call usp_mob_task_QuickworkorderAdd(@workorderkey,@workordertypekey,@equipmentkey,@roomkeys,@employeekey,@priority,@fromdate,@todate,@intervaltype,@repeatinterval,@occursonday,@occursontime,@occurstype,@workordernotes,@isbar,@isphoto,@metaupdatedby,@facilitykeys,@floorkeys,@zonekeys,@roomtypekeys,@OrganizationID,@taskName) ', [workorderkey, workordertypekey, equipmentkey, roomkeys, employeekey, priority, fromdate, todate, intervaltype, repeatinterval, occursonday, occursontime, occurstype, workordernote, isbar, isphoto, metaupdatedby, facilitykeys, floorkeys, zonekeys, roomtypekeys, OrganizationID,taskName], function (err, rows) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.end(JSON.stringify(rows[23]));
+                }
+
+            });
+
+        }
+        connection.release();
+    });
+
+});
+
+//Mob Lite Task Ends Here -- prakash
 //handle generic exceptions
 //catch all other resource routes that are not defined above
 app.get(securedpath + '/*', function (req, res) {
