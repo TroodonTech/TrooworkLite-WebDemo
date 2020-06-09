@@ -22222,7 +22222,7 @@ app.post(securedpath + '/task_addQuickworkorder', supportCrossOriginScript, func
     var isphoto = newWOObj.isphoto;
     var metaupdatedby = newWOObj.metaupdatedby;
     var OrganizationID = newWOObj.OrganizationID;
-	 var taskname = newWOObj.taskName;
+	 var taskName = newWOObj.taskName;
 
     console.log("****************metaupdatedby************" + metaupdatedby + "ZZZZZZ " + isphoto);
     console.log("3 VAlues are tot=16 " + isbar + " " + isphoto);
