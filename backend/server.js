@@ -22138,7 +22138,7 @@ app.post(securedpath + '/task_addNewtask', supportCrossOriginScript, function (r
                 if (err) {
                     console.log(err);
                 } else {
-                    res.end(JSON.stringify(rows[23]));
+                    res.end(JSON.stringify(rows[25]));
                 }
 
             });
@@ -22221,8 +22221,8 @@ app.post(securedpath + '/task_addQuickworkorder', supportCrossOriginScript, func
     var isbar = newWOObj.isbar;
     var isphoto = newWOObj.isphoto;
     var metaupdatedby = newWOObj.metaupdatedby;
-    var OrganizationID = req.body.OrganizationID;
-	 var taskname = req.body.taskName;
+    var OrganizationID = newWOObj.OrganizationID;
+	 var taskname = newWOObj.taskName;
 
     console.log("****************metaupdatedby************" + metaupdatedby + "ZZZZZZ " + isphoto);
     console.log("3 VAlues are tot=16 " + isbar + " " + isphoto);
