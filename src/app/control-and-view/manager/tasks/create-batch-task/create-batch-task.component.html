@@ -43,8 +43,7 @@
       <div class="form-group">
         <label>Zone</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
-          [disabled]="!FloorKey" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);"
-          required>
+          [disabled]="!FloorKey" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of zonelist" [value]="b.ZoneKey">
             {{b.ZoneName}}
@@ -54,8 +53,7 @@
       <div class="form-group">
         <label>Room Type</label><br>
         <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomTypeKey"
-          [disabled]="!FloorKey" (change)="getRoom($event.target.value,ZoneKey,FacilityKey,FloorKey);"
-          required>
+          [disabled]="!FloorKey" (change)="getRoom($event.target.value,ZoneKey,FacilityKey,FloorKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of RoomTypeList" [value]="b.RoomTypeKey">
             {{b.RoomTypeName}}
@@ -185,7 +183,7 @@
       </div>
       <div class="form-group"
         *ngIf="isRecurring==true && (dailyrecurring==true||weeklyrecurring==true||monthlyrecurring==true)">
-        <label style="margin-top: 17%;">End Date*</label>
+        <label style="margin-top: 6.5%;">End Date*</label>
         <ng-datepicker [options]="options" position="top-right" [(ngModel)]="TaskEndDate"></ng-datepicker>
       </div>
     </div>
@@ -195,7 +193,7 @@
         <label style="margin-top: 1rem;" class="col-sm-2 col-md-2 col-lg-2 col">On Gap Of</label>
         <select [(ngModel)]="DailyrecurringGap" class="form-control col col-sm-3 col-md-3 col-lg-3"
           style="margin-top: 1rem;margin-left: -0.5rem">
-          <option value="">--Select--</option>
+          <option value="0">--Select--</option>
           <option *ngFor=" let b of monthlyDays; let i = index" [value]="i + 1">
             {{i + 1}}
           </option>
@@ -306,7 +304,7 @@
       </div>
     </div> -->
     <div style="margin-left:46%">
-      <button type="button" class="btn btn-success" (click)=createTask()><b>SAVE</b></button>
+      <button type="button" class="btn btn-success" (click)=createBatchTask()><b>SAVE</b></button>
     </div>
   </div>
 </div>

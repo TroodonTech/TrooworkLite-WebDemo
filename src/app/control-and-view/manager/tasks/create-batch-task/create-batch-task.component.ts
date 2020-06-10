@@ -173,6 +173,8 @@ export class CreateBatchTaskComponent implements OnInit {
     this.month2 = "";
     this.pos2 = "";
     this.dailyrecurring = true;
+    this.DailyrecurringGap == "";
+    this.dailyFrequency = "";
 
     this.WorkOrderServiceService//for getting all building names
       .getallFacility(this.emp_key, this.org_id)
@@ -340,7 +342,7 @@ export class CreateBatchTaskComponent implements OnInit {
   }
   //function for creating workorder
 
-  createTask() {
+  createBatchTask() {
     // if (!this.FacilityKey) {
     //   alert("Please select building!");
     // }
@@ -351,7 +353,7 @@ export class CreateBatchTaskComponent implements OnInit {
     //   alert("Please select zone!");
     // } else if (!this.RoomKey) {
     //   alert("Please select room!");
-    // }alert
+    // }
     if (!this.taskname) {
       alert("Please enter task name");
     } else if (!this.taskname.trim()) {
@@ -363,10 +365,10 @@ export class CreateBatchTaskComponent implements OnInit {
       alert("Please enter task notes");
     }
     else if (!(this.TaskStartDate)) {
-      alert("Please provide work-order start date!");
+      alert("Please provide start date!");
     }
     else if (!(this.TaskEndDate)) {
-      alert("Please provide work-order end date!");
+      alert("Please provide end date!");
     } else if ((this.TaskEndDate) && (this.convert_DT(this.TaskStartDate) > this.convert_DT(this.TaskEndDate))) {
       alert("Please check your end date!");
 
@@ -410,16 +412,19 @@ export class CreateBatchTaskComponent implements OnInit {
     this.occursonday = null;
 
     this.wot = "Task";
-
-    // if (this.taskNotes) {
-    //   this.notes = this.taskNotes.trim();
-    // } else {
-    //   this.notes = null;
-    // }
+    if (this.taskNotes) {
+      this.notes = this.taskNotes.trim();
+    } else {
+      this.notes = null;
+    }
     if (this.FacilityKey) {
 
+    } else {
+      this.FacilityKey = -1;
     }
     if (this.FloorKey) {
+    } else {
+      this.FloorKey = -1;
     }
     var roomsString;
     if (this.RoomKey) {
@@ -430,9 +435,10 @@ export class CreateBatchTaskComponent implements OnInit {
           roomList.push(roomlistObj[j].RoomKey);
         }
         roomsString = roomList.join(',');
-      } else {
-        return;
       }
+    }
+    if (!roomsString) {
+      roomsString = -1;
     }
     var facilityString;
     if (this.FacilityKey) {
@@ -445,6 +451,9 @@ export class CreateBatchTaskComponent implements OnInit {
         facilityString = facilityList.join(',');
       }
     }
+    if (!facilityString) {
+      facilityString = -1;
+    }
     var floorString;
     if (this.FloorKey) {
       floorString = this.FloorKey;
@@ -455,6 +464,9 @@ export class CreateBatchTaskComponent implements OnInit {
         }
         floorString = floorList.join(',');
       }
+    }
+    if (!floorString) {
+      floorString = -1;
     }
     var zoneString;
     if (this.ZoneKey) {
@@ -468,6 +480,9 @@ export class CreateBatchTaskComponent implements OnInit {
         zoneString = zoneList.join(',');
       }
     }
+    if (!zoneString) {
+      zoneString = -1;
+    }
     var roomtypeString;
     if (this.RoomTypeKey) {
       roomtypeString = this.RoomTypeKey;
@@ -479,7 +494,9 @@ export class CreateBatchTaskComponent implements OnInit {
         roomtypeString = roomtypeList.join(',');
       }
     }
-
+    if (!roomtypeString) {
+      roomtypeString = -1;
+    }
     if (this.EmployeeKey) {
       this.employeekey = this.EmployeeKey;
     } else {
@@ -561,6 +578,9 @@ export class CreateBatchTaskComponent implements OnInit {
     else {
       this.keep_active = 0;
     }
+    if (!this.occurs_type) {
+      this.occurs_type = null;
+    }
     //creating workorder for already existing workordertype
     this.workorderCreation = {
       taskName: this.taskname,
@@ -589,7 +609,9 @@ export class CreateBatchTaskComponent implements OnInit {
       IsSnapshot: this.Gps_SnapShot,
       KeepActive: this.keep_active,
       NewTask: 1
-    }; this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
+    };
+    console.log(this.workorderCreation);
+    this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
       if (data) {
         alert("Task Name already exists !!!");
         return false;

@@ -27,13 +27,13 @@ config.app.views = '../dist/mdb-angular-free';
 //config.db.host = "us-cdbr-azure-west-b.cleardb.com";
 //config.db.user = "b8d7dccac78d6a";
 //config.db.password = "9293cbd8";
-//config.db.database = "trooworkdb";
+//config.db.database = "trooworkdb_lite";
 
 //demo db
 // config.db.host = "trooworkdevdbinstance.c1c3s2r6mw5k.us-west-2.rds.amazonaws.com";
 // config.db.user = "trooworkroot";
 // config.db.password = "Zaq1Zaq1";
-// config.db.database = "trooworkdb";
+// config.db.database = "trooworkdb_lite";
 
 
 
