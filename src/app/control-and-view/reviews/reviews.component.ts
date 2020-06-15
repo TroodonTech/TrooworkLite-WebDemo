@@ -214,25 +214,25 @@ export class ReviewsComponent implements OnInit {
 
       this.reviewservice.getReviewQuestions(this.tempKey$, this.OrgId$).subscribe((data: any[]) => {
         this.reviewQuestions = data;
-
-        if (this.reviewQuestions[0].ScoreName === 'Yes/No') {
-          this.names = ['Yes', 'No'];
-          this.ScoreName = this.reviewQuestions[0].ScoreName;
-        }
-        else if (this.reviewQuestions[0].ScoreName === 'Pass/Fail') {
-          this.names = ['Fail', 'N/A'];
-          this.ScoreName = this.reviewQuestions[0].ScoreName;
-        }
-        else if (this.reviewQuestions[0].ScoreName === '5 Star') {
-          for (var i = 0; i < this.reviewQuestions.length; i++) {
-            this.starList[i] = [true, true, true, true, true];
+        if (data.length > 0) {
+          if (this.reviewQuestions[0].ScoreName === 'Yes/No') {
+            this.names = ['Yes', 'No'];
+            this.ScoreName = this.reviewQuestions[0].ScoreName;
           }
-        } else if (this.reviewQuestions[0].ScoreName === '3 Star') {
-          for (var i = 0; i < this.reviewQuestions.length; i++) {
-            this.starList[i] = [true, true, true];
+          else if (this.reviewQuestions[0].ScoreName === 'Pass/Fail') {
+            this.names = ['Fail', 'N/A'];
+            this.ScoreName = this.reviewQuestions[0].ScoreName;
+          }
+          else if (this.reviewQuestions[0].ScoreName === '5 Star') {
+            for (var i = 0; i < this.reviewQuestions.length; i++) {
+              this.starList[i] = [true, true, true, true, true];
+            }
+          } else if (this.reviewQuestions[0].ScoreName === '3 Star') {
+            for (var i = 0; i < this.reviewQuestions.length; i++) {
+              this.starList[i] = [true, true, true];
+            }
           }
         }
-
       });
     });
   }

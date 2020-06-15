@@ -7,11 +7,12 @@ import { CreateQuickTaskComponent } from './create-quick-task/create-quick-task.
 import { CreateBatchTaskComponent } from './create-batch-task/create-batch-task.component';
 import { ViewBatchTaskComponent } from './view-batch-task/view-batch-task.component';
 import { EditBatchTaskComponent } from './edit-batch-task/edit-batch-task.component';
+import { ViewTaskServiceRequestComponent } from './view-task-service-request/view-task-service-request.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [CreateTaskComponent, ViewTasksComponent, EditTasksComponent, CreateQuickTaskComponent, CreateBatchTaskComponent, ViewBatchTaskComponent, EditBatchTaskComponent]
+  declarations: [CreateTaskComponent, ViewTasksComponent, EditTasksComponent, CreateQuickTaskComponent, CreateBatchTaskComponent, ViewBatchTaskComponent, EditBatchTaskComponent, ViewTaskServiceRequestComponent]
 })
 export class TasksModule { }

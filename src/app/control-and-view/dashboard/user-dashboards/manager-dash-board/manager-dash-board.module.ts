@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagerDashBoardComponent } from './manager-dash-board.component';
 
-import { ViewCompletedTasksDetailsModule } from "../../../manager/reports/view-completed-tasks-details/view-completed-tasks-details.module";
+import { ViewTaskServiceRequestModule } from "../../../manager/tasks/view-task-service-request/view-task-service-request.module";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 const routes: Routes = [
@@ -620,11 +620,11 @@ const routes: Routes = [
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/work-order/view-service-request/view-service-request.module#ViewServiceRequestModule',
       },
-      // {
-      //   path: 'reviewReport',
-      //   outlet: 'ManagerOut',
-      //   loadChildren: '../../../manager/reports/review-report/review-report.module#ReviewReportModule',
-      // },
+      {
+        path: 'reviewReport',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/reports/review-report/review-report.module#ReviewReportModule',
+      },
       {
         path: 'feedbackManage',
         outlet: 'ManagerOut',
@@ -750,6 +750,11 @@ const routes: Routes = [
         outlet: 'ManagerOut',
         loadChildren: '../../../manager/reports/view-completed-tasks-details/view-completed-tasks-details.module#ViewCompletedTasksDetailsModule'
       },
+      {
+        path: 'ViewTaskServiceRequest',
+        outlet: 'ManagerOut',
+        loadChildren: '../../../manager/tasks/view-task-service-request/view-task-service-request.module#ViewTaskServiceRequestModule',
+      }
     ]
   }
 ];

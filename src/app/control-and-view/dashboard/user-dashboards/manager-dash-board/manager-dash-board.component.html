@@ -31,6 +31,9 @@
                   Task</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewBatchTask']}}]"><b>View Batch
                   Tasks</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ViewTaskServiceRequest']}}]"><b>View
+                  Service
+                  Request</b></a>
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['CreateWorkOrder']}}]"><b>Create Work
                   Order</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['createQuickOrder']}}]"><b>Create Quick
@@ -43,9 +46,7 @@
                   Work
                   Order</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['WorkOrderType']}}]"><b>Work-Order
-                  Type</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['ViewServiceRequest']}}]"><b>View Service
-                  Request</b></a> -->
+                  Type</b></a> -->
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['viewIntervaltype']}}]"><b>Color
                   Coding</b></a> -->
             </div>
@@ -76,6 +77,8 @@
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['woprogressReport']}}]"><b>WorkOrder
                   In-Progress Report</b></a> -->
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['TaskReport']}}]"><b>Task</b></a>
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['reviewReport']}}]"><b>FeedBack
+                  Report</b></a>
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['Batch-work-order-Report']}}]"><b>Batch
                   WorkOrder Report</b></a> -->
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['BatchScheduleAssignment']}}]"><b>View
@@ -90,8 +93,7 @@
                   Summary Report</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['inventoryReport']}}]"><b>Inventory
                   Report</b></a>
-              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['reviewReport']}}]"><b>FeedBack
-                  Report</b></a>
+              
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['inspectionAuditReport']}}]"><b>Inspection
                   Audit Report</b></a>
               <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['picklistReport']}}]"><b>Inspection-
@@ -170,7 +172,8 @@
                   Code</b></a>
               <!-- <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['GenerateQRCodeList']}}]"><b>Generate QR
                   Code List</b></a> -->
-
+              <a class="dropdown-item" [routerLink]="[{outlets:{ManagerOut:['feedbackManage']}}]"><b>View
+                  FeedBack Template</b></a>
             </div>
           </li>
           <li class="nav-item dropdown" style="margin-left: -1rem;">

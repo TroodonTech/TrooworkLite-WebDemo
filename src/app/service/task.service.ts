@@ -171,4 +171,10 @@ export class TaskService {
       .http
       .get(ConectionSettings.Url + '/getCompletedTaskDetails?from=' + from + "&to=" + to + "&empKey=" + empKey + "&wotypeKey=" + wotypeKey + "&org=" + org);
   }
+  generatetaskbyservicerequest(vpto) {
+    const url = ConectionSettings.Url + '/generateTaskbyservicerequest';
+    return this
+      .http
+      .post(url, vpto);
+  }
 }

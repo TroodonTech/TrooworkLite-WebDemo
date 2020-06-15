@@ -9,8 +9,8 @@
 
     <div class="form-group col-md-6">
       <label>Building*</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="FacilityKey" (change)="getFloorDisp($event.target.value);rooms_Filter();"
-        required>
+      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="FacilityKey"
+        (change)="getFloorDisp($event.target.value);rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of building" [value]="b.FacilityKey">
           {{b.FacilityText}}
@@ -97,8 +97,8 @@
           <td>{{ x.RoomTypeText }}</td>
           <td>{{ x.RoomName }}</td>
           <td>
-            <a class="btn btn-primary" [routerLink]="['WOQRCodeView', x.RoomKey]"><b>WO Request QR Code</b></a>&nbsp;
-            <a class="btn btn-primary" [routerLink]="['FeedbackQRCodeView', x.RoomKey]"><b>Feedback QR Code</b></a>
+            <a class="btn btn-primary" [routerLink]="['WOQRCodeView', x.RoomKey]"><b>Service Request</b></a>&nbsp;
+            <a class="btn btn-primary" [routerLink]="['FeedbackQRCodeView', x.RoomKey]"><b>Feedback</b></a>
           </td>
         </tr>
         <tr *ngIf="rooms?.length == 0">

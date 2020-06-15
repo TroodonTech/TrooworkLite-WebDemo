@@ -22076,6 +22076,40 @@ app.get(securedpath + '/getCompletedTaskDetails', function (req, res) {
     });
 });
 
+app.post(securedpath + '/generateTaskbyservicerequest', supportCrossOriginScript, function (req, res) {
+
+    var newWOObj = {};
+    newWOObj = req.body;
+
+    var OrganizationID = newWOObj.OrganizationID;
+    var employeekey = newWOObj.employeekey;
+    var date1 = newWOObj.date1;
+    var time1 = newWOObj.time1;
+    var servicerequestid = newWOObj.servicerequestid;
+    var CreateEmpKey = newWOObj.CreateEmpKey;
+    var taskname = newWOObj.taskname;
+    var taskNotes = newWOObj.taskNotes;
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            console.log("Failed! Connection with Database spicnspan via connection pool failed");
+        }
+        else {
+            console.log("Success! Connection with Database spicnspan via connection pool succeeded");
+            connection.query('set @OrganizationID=?;set @employeekey=?;set @date1=?;set @time1=?;set @servicerequestid=?; set@CreateEmpKey=?; set @taskname=?;set @taskNotes=?; call usp_task_generateTaskbyservicerequest(@OrganizationID,@employeekey,@date1,@time1,@servicerequestid,@CreateEmpKey,@taskname,@taskNotes)', [OrganizationID, employeekey, date1, time1, servicerequestid, CreateEmpKey, taskname, taskNotes], function (err, rows) {
+                if (err) {
+                    console.log("Problem with MySQL" + err);
+                }
+                else {
+
+                    res.end(JSON.stringify(rows[8]));
+                }
+            });
+        }
+        connection.release();
+    });
+});
 /*
 Tasks api calls.... @Rodney ends
 */
