@@ -36,12 +36,12 @@ export class SupervisorWelcomeComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   callCreateWO() {
-    
-    this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['CreateWorkOrderSuperVisor'] } }]);
+
+    this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['CreateTask'] } }]);
   }
   callCreateInspection() {
-  
-    this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['Createinspectionbysuprvsr'] } }]);
+
+    this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTask'] } }]);
   }
   ngOnInit() {
 
@@ -65,10 +65,10 @@ export class SupervisorWelcomeComponent implements OnInit {
       .subscribe((data: any[]) => {
         this.empName = data[0].EmpName;
       });
-      this.loginService.getMaintenanceUpdateMsg(this.employeekey, this.OrganizationID).subscribe((data: any[])=> {
-       
-          this.Message = data[0].Message;
-      });
+    this.loginService.getMaintenanceUpdateMsg(this.employeekey, this.OrganizationID).subscribe((data: any[]) => {
+
+      this.Message = data[0].Message;
+    });
   }
 
 }

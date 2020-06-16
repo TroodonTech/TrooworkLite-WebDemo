@@ -43,7 +43,7 @@ export class WelcomepageComponent implements OnInit {
   }
   callCreateInspection() {
 
-    this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['InspectionCreate'] } }]);
+    this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
   }
   ngOnInit() {
 
