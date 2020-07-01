@@ -48,14 +48,14 @@
       <tbody>
         <tr *ngFor="let x of requestdetails">
           <td>{{ x.ServiceRequestedDate }}</td>
-          <td>
+          <td class=" notranslate">
             <span style="color: red">{{x.FacilityName}}</span> - <span style="color: blue">{{x.FloorName}}</span> -
             <span style="color: black">{{x.ZoneName}}</span>
 
           </td>
 
-          <td>{{ x.RoomId }}</td>
-          <td>{{ x.Requestnotes }}</td>
+          <td class=" notranslate">{{ x.RoomId }}</td>
+          <td class=" notranslate">{{ x.Requestnotes }}</td>
           <td>
             <select style="background-color: #D4F4FF !important;" [disabled]="x.IsWorkorderCreated === 1"
               class="form-control" [(ngModel)]="x.EmployeeKey" required>

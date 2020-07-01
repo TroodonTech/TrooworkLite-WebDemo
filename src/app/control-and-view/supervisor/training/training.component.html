@@ -24,10 +24,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let v of viewmeeting">
-          <td>{{ v.ActionType }}-{{ v.Action }}</td>
-          <td>{{ v.EventVenue }}</td>
-          <td>{{ v.EventHost }}</td>
-          <td>{{ v.EmployeeName }}</td>
+          <td class=" notranslate">{{ v.ActionType }}-{{ v.Action }}</td>
+          <td class=" notranslate">{{ v.EventVenue }}</td>
+          <td class=" notranslate">{{ v.EventHost }}</td>
+          <td class=" notranslate">{{ v.EmployeeName }}</td>
           <td>{{ v.EventStartTime }}-{{ v.EventEndTime }}</td>
           <td *ngIf="v.HasAttended === '0'">Not Attended</td>
           <td *ngIf="v.HasAttended === '1'">Attended</td>

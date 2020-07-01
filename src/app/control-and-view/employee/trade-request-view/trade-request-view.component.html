@@ -15,11 +15,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let x of requestdetails">
-            <td>{{ x.SubmittedDate }}</td>
-            <td>{{ x.employeename }}</td>
-            <td>{{ x.StartDate }}</td>
-            <td>{{ x.EndDate }}</td>
-            <td>{{ x.RequestStatus }}</td>
+            <td class="notranslate">{{ x.SubmittedDate }}</td>
+            <td class="notranslate">{{ x.employeename }}</td>
+            <td class="notranslate">{{ x.StartDate }}</td>
+            <td class="notranslate">{{ x.EndDate }}</td>
+            <td class="notranslate">{{ x.RequestStatus }}</td>
             <td *ngIf="x.RequestStatus=='Approved'||x.RequestStatus=='Rejected'">
               <a [routerLink]="['TradeRequestDetails', x.trade_requestID]" class="btn btn-primary"><b>Details</b></a>&nbsp;&nbsp;
             </td>

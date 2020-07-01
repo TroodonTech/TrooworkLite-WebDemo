@@ -30,8 +30,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let i of inspectionordertable;let k=index">
-            <td>{{i.TemplateName}} </td>
-            <td>{{i.FacilityName}}-{{i.RoomId}} </td>
+            <td class=" notranslate">{{i.TemplateName}} </td>
+            <td class=" notranslate">{{i.FacilityName}}-{{i.RoomId}} </td>
             <td *ngIf="i.InspectionCompletedBy === null && ('' + i.EmployeeKey === toServeremployeekey)"
               style="text-align: center">
               <a [routerLink]="['Supervsrinspectiontemplate',i.InspectionOrderKey]" class="btn btn-primary" style="width:60%;">Inspect</a>

@@ -21,15 +21,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let x of eventEmps" class="r2">
-            <td>{{x.ActionType}} - {{x.Action}}</td>
-            <td>{{x.EventVenue}}</td>
-            <td>{{x.EventHost}}</td>
-            <td>{{x.EmployeeName}}</td>
-            <td>{{x.Eventdate}}</td>
-            <td>{{x.EventStartTime}} - {{x.EventEndTime}}</td>
+            <td class="notranslate">{{x.ActionType}} - {{x.Action}}</td>
+            <td class="notranslate">{{x.EventVenue}}</td>
+            <td class="notranslate">{{x.EventHost}}</td>
+            <td class="notranslate">{{x.EmployeeName}}</td>
+            <td class="notranslate">{{x.Eventdate}}</td>
+            <td class="notranslate">{{x.EventStartTime}} - {{x.EventEndTime}}</td>
             <td *ngIf="x.HasAttended == 0">Not Attended</td>
             <td *ngIf="x.HasAttended == 1">Attended</td>
-            <td>{{ x.MeetingNotes }}</td>
+            <td class="notranslate">{{ x.MeetingNotes }}</td>
             <td>
               <a [routerLink]="['MeetingTrainingEdit', x.EventKey,x.ActionKey]" *ngIf="x.HasAttended == 0" class="btn btn-primary">Edit</a>
 

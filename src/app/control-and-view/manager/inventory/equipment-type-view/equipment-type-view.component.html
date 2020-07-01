@@ -26,8 +26,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of equipmentType">
-          <td>{{ x.EquipmentType }}</td>
-          <td>{{ x.EquipmentTypeDescription }}</td>
+          <td class="notranslate">{{ x.EquipmentType }}</td>
+          <td class="notranslate">{{ x.EquipmentTypeDescription }}</td>
           <td>
             <a [routerLink]="['EquipmentTypeEdit',x.EquipmentTypeKey]" class="btn btn-primary"><b>Edit</b></a>
             &nbsp;&nbsp;

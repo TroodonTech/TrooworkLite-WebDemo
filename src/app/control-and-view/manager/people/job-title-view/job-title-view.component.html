@@ -26,8 +26,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of jobView">
-          <td>{{ x.JobTitle }}</td>
-          <td>{{ x.JobTitleDescription }}</td>
+          <td class="notranslate">{{ x.JobTitle }}</td>
+          <td class="notranslate">{{ x.JobTitleDescription }}</td>
 
           <td>
             <a [routerLink]="['JobTitleEdit', x.JobTitleKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;

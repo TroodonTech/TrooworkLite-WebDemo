@@ -57,13 +57,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let e of employeedetailstable" [routerLink]="['EditEmployeedetails',e.EmployeeKey]">
-          <td>{{ e.EmployeeNumber }}</td>
-          <td>{{ e.DepartmentName }}</td>
-          <td>{{ e.LastName }}</td>
-          <td>{{ e.FirstName }}</td>
-          <td>{{ e.EmployeeStatus }}</td>
-          <td>{{ e.JobTitle }}</td>
-          <td>{{ e.PrimaryPhone }}</td>
+          <td class="notranslate">{{ e.EmployeeNumber }}</td>
+          <td class="notranslate">{{ e.DepartmentName }}</td>
+          <td class="notranslate">{{ e.LastName }}</td>
+          <td class="notranslate">{{ e.FirstName }}</td>
+          <td class="notranslate">{{ e.EmployeeStatus }}</td>
+          <td class="notranslate">{{ e.JobTitle }}</td>
+          <td class="notranslate">{{ e.PrimaryPhone }}</td>
         </tr>
         <tr *ngIf="employeedetailstable?.length == 0">
           <td colspan="7">

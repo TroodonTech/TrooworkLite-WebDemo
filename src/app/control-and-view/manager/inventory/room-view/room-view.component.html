@@ -99,12 +99,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of rooms">
-          <td>{{ x.FacilityName }}</td>
-          <td>{{ x.FloorName }}</td>
-          <td>{{ x.FloorTypeName }}</td>
-          <td>{{ x.ZoneName }}</td>
-          <td>{{ x.RoomTypeText }}</td>
-          <td>{{ x.RoomName }}</td>
+          <td class="notranslate">{{ x.FacilityName }}</td>
+          <td class="notranslate">{{ x.FloorName }}</td>
+          <td class="notranslate">{{ x.FloorTypeName }}</td>
+          <td class="notranslate">{{ x.ZoneName }}</td>
+          <td class="notranslate">{{ x.RoomTypeText }}</td>
+          <td class="notranslate">{{ x.RoomName }}</td>
           <td>
             <a [routerLink]="['RoomEdit', x.RoomKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteRoomPass(x.RoomKey); "><b>Delete</b></a>

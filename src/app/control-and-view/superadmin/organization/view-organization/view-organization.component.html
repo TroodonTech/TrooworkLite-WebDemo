@@ -15,10 +15,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let o of organization">
-          <td>{{ o.OrganizationName }}</td>
-          <td>{{ o.Location }}</td>
-          <td>{{ o.State }}</td>
-          <td>{{ o.Country }}</td>
+          <td class=" notranslate">{{ o.OrganizationName }}</td>
+          <td class=" notranslate">{{ o.Location }}</td>
+          <td class=" notranslate">{{ o.State }}</td>
+          <td class=" notranslate">{{ o.Country }}</td>
           <td>
             <a [routerLink]="['Orgedit',o.OrganizationID ]" class="btn btn-primary"><b>Edit</b></a> &nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteOrgPass(o.OrganizationID); "><b>Delete</b></a>

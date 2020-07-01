@@ -26,9 +26,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of zone">
-          <td>{{ x.FacilityName }}</td>
-          <td>{{ x.FloorName }}</td>
-          <td>{{ x.ZoneName }}</td>
+          <td class="notranslate">{{ x.FacilityName }}</td>
+          <td class="notranslate">{{ x.FloorName }}</td>
+          <td class="notranslate">{{ x.ZoneName }}</td>
           <td><a  [routerLink]="['Zonedit', x.FloorKey,x.FacilityKey,x.ZoneKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteZoneValuePass(x.FacilityKey,x.FloorKey,x.ZoneKey); "><b>Delete</b></a></td>
         </tr>

@@ -56,13 +56,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of workorderList; let i=index">
-          <td>{{x.TaskName}}</td>
+          <td class=" notranslate">{{x.TaskName}}</td>
           <td>{{x.Barcode}}</td>
           <td>{{x.WorkorderTime}}</td>
-          <td> {{x.WorkorderStatus}}</td>
-          <td>{{x.LastName}},{{x.FirstName}}</td>
-          <td *ngIf="x.RoomId==='Dummy'">Refer notes</td>
-          <td *ngIf="x.RoomId!=='Dummy'">{{x.RoomId}}</td>
+          <td class=" notranslate"> {{x.WorkorderStatus}}</td>
+          <td class=" notranslate">{{x.LastName}},{{x.FirstName}}</td>
+          <td class=" notranslate" *ngIf="x.RoomId==='Dummy'">Refer notes</td>
+          <td class=" notranslate" *ngIf="x.RoomId!=='Dummy'">{{x.RoomId}}</td>
           <!-- <td>{{x.EquipmentName}}
           </td> -->
           <td>

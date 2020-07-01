@@ -44,8 +44,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let v of viewFolderDescriptionTable">
-          <td>{{v.FileName}}</td>
-          <td>{{v.FormDesc}}</td>
+          <td class="notranslate">{{v.FileName}}</td>
+          <td class="notranslate">{{v.FormDesc}}</td>
           <td><a target="_self" href="./uploads/{{v.FileName}}" download="{{v.FileName}}"><button type="button" mdbBtn
                 color="primary" class="relative waves-light" (click)="downloadFile()" mdbWavesEffect><i class="fa fa-file-pdf-o"></i>
                 <b> DOWNLOAD</b></button></a></td>

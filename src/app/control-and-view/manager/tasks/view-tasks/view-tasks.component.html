@@ -172,12 +172,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of taskList; let i=index">
-          <td> {{x.TaskName}} </td>
+          <td class=" notranslate"> {{x.TaskName}} </td>
           <td> {{x.Barcode}} </td>
           <td> {{x.WorkorderTime}} </td>
-          <td> {{x.WorkorderStatus}} </td>
-          <td> {{x.LastName}},{{x.FirstName}} </td>
-          <td>
+          <td class=" notranslate"> {{x.WorkorderStatus}} </td>
+          <td class=" notranslate"> {{x.LastName}},{{x.FirstName}} </td>
+          <td class=" notranslate">
             <span *ngIf="x.RoomId==='Dummy'"> Refer notes </span>
             <span *ngIf="x.RoomId!=='Dummy'"> {{x.RoomId}} </span>
           </td>

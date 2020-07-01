@@ -130,12 +130,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of taskList; let i=index">
-          <td>{{x.ScheduleName}}</td>
+          <td class=" notranslate">{{x.ScheduleName}}</td>
           <td>{{x.WorkorderTypeName}}</td>
           <td>{{x.WorkorderTime}}</td>
           <td>{{x.EndDate}}</td>
           <td>{{x.LastName}},{{x.FirstName}}</td>
-          <td>{{x.WorkorderNotes}}</td>
+          <td class=" notranslate">{{x.WorkorderNotes}}</td>
           <td>
             <a [routerLink]="['EditBatchTask',x.WorkorderScheduleKey]" class="btn btn-primary"
               style="color:white !important" routerLinkActive="active"><b>Edit</b> </a>

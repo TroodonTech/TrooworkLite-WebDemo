@@ -10,7 +10,7 @@
     <ul id="menu" *ngFor="let item of viewEmpInspectionDetails;let i = index" class="form-group">
       <li class="col-sm-offset-4 col-sm-10" *ngIf="item.ScoreName === 'Yes/No'">
         <div class="list inspectionPadding">
-          <span class="item-text-wrap">{{i + 1}}. {{item.Question}}</span>
+          <span class="item-text-wrap notranslate">{{i + 1}}. {{item.Question}}</span>
           <div class="row col-md-12">
             <div class="col-md-6 ">
               <div class="form-group">
@@ -38,7 +38,7 @@
 
       <li class="col-sm-offset-4 col-sm-10" *ngIf="item.ScoreName ==='Pass/Fail'">
         <div class="list inspectionPadding">
-          <span class="item-text-wrap">{{i + 1}}. {{item.Question}}</span>
+          <span class="item-text-wrap notranslate">{{i + 1}}. {{item.Question}}</span>
 
           <div class="row col-md-12">
             <div class="col-md-6 ">
@@ -66,7 +66,7 @@
       </li>
       <li class="col-sm-offset-4 col-sm-10" *ngIf="item.ScoreName ==='5 Star'">
         <div class="list inspectionPadding">
-          <span class="item-text-wrap">{{i + 1}}. {{item.Question}}</span>
+          <span class="item-text-wrap notranslate">{{i + 1}}. {{item.Question}}</span>
           <div class="col-md-6">
             <div>
               <br>
@@ -86,7 +86,7 @@
       </li>
       <li class="col-sm-offset-4 col-sm-10" *ngIf="item.ScoreName ==='3 Star'">
         <div class="list inspectionPadding">
-          <span class="item-text-wrap">{{i + 1}}. {{item.Question}}</span>
+          <span class="item-text-wrap notranslate">{{i + 1}}. {{item.Question}}</span>
           <div class="col-md-6">
             <div>
               <br>
@@ -107,7 +107,7 @@
 
       <li class="col-sm-offset-4 col-sm-10" *ngIf="item.ScoreName === '0-25'">
         <div class="list inspectionPadding">
-          <span class="item-text-wrap">{{i + 1}}. {{item.Question}}</span>
+          <span class="item-text-wrap notranslate">{{i + 1}}. {{item.Question}}</span>
           <div class="row col-md-12">
             <div class="col-md-6 ">
               <div class="form-group">

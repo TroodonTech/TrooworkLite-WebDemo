@@ -103,9 +103,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of reporttable">
-          <td>{{x.EmployeeName}} </td>
+          <td class=" notranslate">{{x.EmployeeName}} </td>
           <td>{{((x.CompletedCount + x.CancelCount)/x.totalCount)*100|number:'1.0-0'}}% </td>
-          <td>{{x.WorkorderTypeName}}</td>
+          <td class=" notranslate">{{x.WorkorderTypeName}}</td>
           <td>{{x.totalCount}} </td>
           <!-- <td>{{x.CancelCount}} </td> -->
           <td>

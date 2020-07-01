@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let d of documents">
-          <td>{{ d.FormType }}</td>
+          <td class="notranslate">{{ d.FormType }}</td>
 
           <td>
             <a [routerLink]="['DocumentfolderEdit',d.FormtypeId]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;

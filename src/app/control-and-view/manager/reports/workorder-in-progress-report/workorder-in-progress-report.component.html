@@ -17,14 +17,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of woList">
-          <td>{{ x.WorkorderTypeName }}</td>
-          <td>{{ x.RoomName }}</td>
-          <td>{{ x.WorkorderTime }}</td>
-          <td>{{ x.LastName }},{{ x.FirstName }}</td>
-          <td>{{ x.FacilityName }}</td>
-          <td>{{ x.FloorName }}</td>
-          <td>{{ x.ZoneName }}</td>
-          <td>{{ x.WorkorderStatus }}</td>
+          <td class=" notranslate">{{ x.WorkorderTypeName }}</td>
+          <td class=" notranslate">{{ x.RoomName }}</td>
+          <td class=" notranslate">{{ x.WorkorderTime }}</td>
+          <td class=" notranslate">{{ x.LastName }},{{ x.FirstName }}</td>
+          <td class=" notranslate">{{ x.FacilityName }}</td>
+          <td class=" notranslate">{{ x.FloorName }}</td>
+          <td class=" notranslate">{{ x.ZoneName }}</td>
+          <td class=" notranslate">{{ x.WorkorderStatus }}</td>
         </tr>
         <tr *ngIf="woList?.length == 0">
           <td colspan="8" class="no-data-available">No records found</td>

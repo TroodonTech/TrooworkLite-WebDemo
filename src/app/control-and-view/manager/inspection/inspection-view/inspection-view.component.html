@@ -58,11 +58,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let i of inspectionordertable; let k=index">
-          <td>{{i.TemplateName}} </td>
-          <td>{{i.FacilityName}}-{{i.RoomId}} </td>
-          <td>{{i.Inspectiondate}} {{i.InspectionTime}}</td>
-          <td>{{i.LastName}},{{i.FirstName}} </td>
-          <td>{{i.EmployeeName}}</td>
+          <td class="notranslate">{{i.TemplateName}} </td>
+          <td class="notranslate">{{i.FacilityName}}-{{i.RoomId}} </td>
+          <td class="notranslate">{{i.Inspectiondate}} {{i.InspectionTime}}</td>
+          <td class="notranslate">{{i.LastName}},{{i.FirstName}} </td>
+          <td class="notranslate">{{i.EmployeeName}}</td>
           <td *ngIf="i.InspectionCompletedBy !== null"> <a (click)='GoView(i.InspectionOrderKey)' style="width: 100%;"
               class="btn btn-primary"><b>Inspection
                 Completed </b></a></td>

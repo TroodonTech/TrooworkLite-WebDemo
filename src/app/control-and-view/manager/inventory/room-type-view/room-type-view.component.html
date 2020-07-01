@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of roomTypes">
-          <td>{{ x.RoomType }}</td>
+          <td class="notranslate">{{ x.RoomType }}</td>
           <td>
             <a [routerLink]="['roomTypeEdit', x.RoomTypeKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteRoomTypePass(x.RoomTypeKey); "><b>Delete</b></a>

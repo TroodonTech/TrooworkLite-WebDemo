@@ -97,18 +97,18 @@
         </thead>
         <tbody>
           <tr *ngFor="let w of WorkorderDetTable;let i=index">
-            <td>{{w.WorkorderTypeName}} </td>
-            <td>{{w.WorkorderStatus}}</td>
-            <td>{{w.LastName}},{{w.FirstName}}</td>
-            <td *ngIf="w.RoomId==='Dummy'">Refer notes</td>
-            <td *ngIf="w.RoomId!=='Dummy'">{{w.RoomId}}</td>
-            <td>{{w.EquipmentName}}</td>
-            <td>{{w.WorkorderTime}}</td>
+            <td class="notranslate">{{w.WorkorderTypeName}} </td>
+            <td class="notranslate">{{w.WorkorderStatus}}</td>
+            <td class="notranslate">{{w.LastName}},{{w.FirstName}}</td>
+            <td *ngIf="w.RoomId==='Dummy'" class="notranslate">Refer notes</td>
+            <td *ngIf="w.RoomId!=='Dummy'" class="notranslate">{{w.RoomId}}</td>
+            <td class="notranslate">{{w.EquipmentName}}</td>
+            <td class="notranslate">{{w.WorkorderTime}}</td>
             <td>
               <span *ngIf="w.IsReccurring === 1 ">YES</span>
               <span *ngIf="w.IsReccurring === 0 ">NO</span>
             </td>
-            <td style="word-wrap: break-word">{{w.WorkorderNotes}}</td>
+            <td style="word-wrap: break-word" class="notranslate">{{w.WorkorderNotes}}</td>
             <td [style.background]="w.Color">
               <div *ngIf="FinishButton[i] == true && w.WorkorderStatus != 'Cancelled' ">
                 <button *ngIf="w.WorkorderStatus !== 'Completed'" type="button"

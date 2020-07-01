@@ -47,9 +47,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let v of viewinspectionTemplate">
-            <td>{{v.TemplateName}}</td>
-            <td>{{v.Question}}</td>
-            <td>{{v.ScoreName}}</td>
+            <td class="notranslate">{{v.TemplateName}}</td>
+            <td class="notranslate">{{v.Question}}</td>
+            <td class="notranslate">{{v.ScoreName}}</td>
             <td> <a class="btn btn-danger" (click)="basicModal.show();deleteInspTemplatePass(v.TemplateID,v.TemplateQuestionID);"><b>Delete</b></a></td>
           </tr>
           <tr *ngIf="viewinspectionTemplate?.length == 0">

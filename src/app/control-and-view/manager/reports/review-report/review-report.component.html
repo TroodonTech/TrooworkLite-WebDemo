@@ -40,10 +40,10 @@
       <tbody>
         <tr *ngFor="let x of viewReport">
           <td>{{x.ReviewDate}}</td>
-          <td>{{x.RoomName}}</td>
-          <td>{{x.Question}} </td>
-          <td *ngIf="x.ReviewTemplateQuestionID != 6">{{x.ReviewValue}}</td>
-          <td *ngIf="x.ReviewTemplateQuestionID == 6">{{x.Comments}}</td>
+          <td class=" notranslate">{{x.RoomName}}</td>
+          <td class=" notranslate">{{x.Question}} </td>
+          <td class=" notranslate" *ngIf="x.ReviewTemplateQuestionID != 6">{{x.ReviewValue}}</td>
+          <td class=" notranslate" *ngIf="x.ReviewTemplateQuestionID == 6">{{x.Comments}}</td>
         </tr>
         <tr *ngIf="viewReport?.length == 0">
           <td colspan="4" class="no-data-available">No records found</td>

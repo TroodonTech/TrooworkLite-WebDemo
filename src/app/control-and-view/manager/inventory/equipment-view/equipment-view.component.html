@@ -30,9 +30,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of equipments">
-          <td>{{ x.EquipmentType }}</td>
-          <td>{{ x.EquipmentName }}</td>
-          <td>{{ x.EquipmentDescription }}</td>
+          <td class="notranslate">{{ x.EquipmentType }}</td>
+          <td class="notranslate">{{ x.EquipmentName }}</td>
+          <td class="notranslate">{{ x.EquipmentDescription }}</td>
           <td>
             <a [routerLink]="['EquipmentEdit',x.EquipmentKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteEquipPass(x.EquipmentKey); "><b>Delete</b></a>

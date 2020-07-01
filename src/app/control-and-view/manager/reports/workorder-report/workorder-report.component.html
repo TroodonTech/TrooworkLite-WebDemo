@@ -125,18 +125,18 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of viewWorkorderReport">
-          <td>{{x.WorkorderTypeName}} </td>
+          <td class=" notranslate">{{x.WorkorderTypeName}} </td>
           <td>{{x.WorkorderDate}} {{x.WorkorderTime}}</td>
           <td>{{x.WorkorderStatus}}</td>
-          <td>{{x.LastName}},{{x.FirstName}}</td>
-          <td *ngIf=" x.WorkorderTypeKey == -1">Refer notes</td>
-          <td *ngIf=" x.WorkorderTypeKey != -1">{{x.RoomId}}</td>
-          <td>{{x.EquipmentName}}</td>
+          <td class=" notranslate">{{x.LastName}},{{x.FirstName}}</td>
+          <td class=" notranslate" *ngIf=" x.WorkorderTypeKey == -1">Refer notes</td>
+          <td class=" notranslate" *ngIf=" x.WorkorderTypeKey != -1">{{x.RoomId}}</td>
+          <td class=" notranslate">{{x.EquipmentName}}</td>
           <td>{{x.checkin}}</td>
           <td>{{x.checkout}}</td>
           <td>{{x.duration}}</td>
           <td>{{x.DelayTime}}</td>
-          <td>{{x.WorkorderNotes}}</td>
+          <td class=" notranslate">{{x.WorkorderNotes}}</td>
         </tr>
         <tr *ngIf="viewWorkorderReport?.length == 0">
           <td colspan="12" class="no-data-available">No records found</td>
@@ -164,18 +164,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let x of viewWorkorderReport">
-        <td>{{x.WorkorderTypeName}} </td>
+        <td class=" notranslate">{{x.WorkorderTypeName}} </td>
         <td>{{x.WorkorderDate}} {{x.WorkorderTime}}</td>
         <td>{{x.WorkorderStatus}}</td>
-        <td>{{x.LastName}},{{x.FirstName}}</td>
-        <td *ngIf="x.RoomId==='Dummy'">Refer notes</td>
-        <td *ngIf="x.RoomId!=='Dummy'">{{x.RoomId}}</td>
-        <td>{{x.EquipmentName}}</td>
+        <td class=" notranslate">{{x.LastName}},{{x.FirstName}}</td>
+        <td class=" notranslate" *ngIf="x.RoomId==='Dummy'">Refer notes</td>
+        <td class=" notranslate" *ngIf="x.RoomId!=='Dummy'">{{x.RoomId}}</td>
+        <td class=" notranslate">{{x.EquipmentName}}</td>
         <td>{{x.checkin}}</td>
         <td>{{x.checkout}}</td>
         <td>{{x.duration}}</td>
         <td>{{x.DelayTime}}</td>
-        <td>{{x.WorkorderNotes}}</td>
+        <td class=" notranslate">{{x.WorkorderNotes}}</td>
       </tr>
       <tr *ngIf="viewWorkorderReport?.length == 0">
         <td colspan="12" class="no-data-available">No records found</td>

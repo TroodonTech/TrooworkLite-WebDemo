@@ -25,9 +25,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of floor">
-          <td>{{ x.FacilityName }}</td>
-          <td>{{ x.FloorName }}</td>
-          <td>{{ x.FloorDescription }}</td>
+          <td class="notranslate">{{ x.FacilityName }}</td>
+          <td class="notranslate">{{ x.FloorName }}</td>
+          <td class="notranslate">{{ x.FloorDescription }}</td>
           <td><a  [routerLink]="['Flooredit',x.FloorKey,x.FacilityKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteFloorPass(x.FacilityKey,x.FloorKey); "><b>Delete</b></a></td>
         </tr>

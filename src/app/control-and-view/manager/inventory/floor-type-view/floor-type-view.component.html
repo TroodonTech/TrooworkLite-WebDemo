@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of floorType">
-          <td>{{ x.FloorTypeName }}</td>
+          <td class="notranslate">{{ x.FloorTypeName }}</td>
           <td>
             <a [routerLink]="['FloorTypeEdit',x.FloorTypeKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteFloorTypePass(x.FloorTypeKey); "><b>Delete</b></a>

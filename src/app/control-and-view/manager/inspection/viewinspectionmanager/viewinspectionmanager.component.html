@@ -1,4 +1,3 @@
- 
 <div *ngIf="inspectioneddetails" style="padding-left: 9rem;padding-right: 9rem;">
   <!-- <div class="container"> -->
   <div style="text-align:center">
@@ -6,7 +5,7 @@
     <h5><b>Inspected by {{inspectioneddetails[0].SupervisorName}} on {{inspectioneddetails[0].EmployeeName}}</b></h5>
     <h4>{{inspectioneddetails[0].TemplateName}}</h4>
   </div>
- 
+
   <div style="margin-left: 1.5rem;margin-right: 1.5rem;">
 
     <table class="table table-responsive table-hover table-bordered table" style="display: inline-table;">
@@ -18,9 +17,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of inspectioneddetails">
-          <td>{{x.Question}}</td>
-          <td>{{x.Value}}</td>
-          <td>{{x.Notes}}</td>
+          <td class="notranslate">{{x.Question}}</td>
+          <td class="notranslate">{{x.Value}}</td>
+          <td class="notranslate">{{x.Notes}}</td>
         </tr>
       </tbody>
     </table>

@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of departments">
-          <td>{{ x.DepartmentName }}</td>
+          <td class="notranslate">{{ x.DepartmentName }}</td>
           <td>
             <a [routerLink]="['departmentEdit', x.DepartmentKey]" class="btn btn-primary"><b>Edit</b></a>&nbsp;&nbsp;
             <a class="btn btn-danger" (click)="basicModal.show();deleteDeptPass(x.DepartmentKey); "><b>Delete</b></a>

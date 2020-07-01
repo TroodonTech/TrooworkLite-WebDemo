@@ -50,12 +50,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of reportarray">
-          <td>{{x.FacilityName}} </td>
-          <td>{{x.FloorName}}</td>
-          <td>{{x.ZoneName}}</td>
-          <td>{{x.RoomId}}</td>
-          <td>{{x.FloorTypeName}}</td>
-          <td>{{x.RoomType}}</td>
+          <td class=" notranslate">{{x.FacilityName}} </td>
+          <td class=" notranslate">{{x.FloorName}}</td>
+          <td class=" notranslate">{{x.ZoneName}}</td>
+          <td class=" notranslate">{{x.RoomId}}</td>
+          <td class=" notranslate">{{x.FloorTypeName}}</td>
+          <td class=" notranslate">{{x.RoomType}}</td>
           <td *ngIf="x.MetricType === 'Minutes Per'">{{x.MetricValue}}</td>
           <td *ngIf="x.MetricType != 'Minutes Per'">{{x.MetricValue * x.Area | number:'1.2-2'}}</td>
           <td>{{x.dailyFrequency}}</td>

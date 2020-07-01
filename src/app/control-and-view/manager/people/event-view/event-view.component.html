@@ -17,14 +17,14 @@
     <!-- <tbody> -->
     <tr *ngFor="let x of eventType;let k = index">
       <td>
-        <input type="text" class="form-control" maxlength="40" [disabled]='!(k===editQuestions)'
+        <input type="text" class="form-control notranslate" maxlength="40" [disabled]='!(k===editQuestions)'
           [(ngModel)]=" x.ActionType">
       </td>
       <td>
-        <input type="text" class="form-control" maxlength="40" [disabled]='!(k===editQuestions)' [(ngModel)]="x.Action">
+        <input type="text" class="form-control notranslate" maxlength="40" [disabled]='!(k===editQuestions)' [(ngModel)]="x.Action">
       </td>
       <td>
-        <input type="text" class="form-control" maxlength="240" [disabled]='!(k===editQuestions)'
+        <input type="text" class="form-control notranslate" maxlength="240" [disabled]='!(k===editQuestions)'
           [(ngModel)]="x.Description">
       </td>
       <td>

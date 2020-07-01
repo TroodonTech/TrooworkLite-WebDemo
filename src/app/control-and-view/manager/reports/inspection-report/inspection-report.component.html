@@ -64,11 +64,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of viewinspectionReport">
-          <td>{{x.TemplateName}}</td>
+          <td class=" notranslate">{{x.TemplateName}}</td>
           <td>{{x.InspectionDate}}</td>
-          <td>{{x.FacilityName}} - {{x.RoomId}}</td>
-          <td>{{x.LastName}},{{x.FirstName}}</td>
-          <td>{{x.EmployeeName}}</td>
+          <td class=" notranslate">{{x.FacilityName}} - {{x.RoomId}}</td>
+          <td class=" notranslate">{{x.LastName}},{{x.FirstName}}</td>
+          <td class=" notranslate">{{x.EmployeeName}}</td>
           <td *ngIf="x.InspectionCompletedBy !== null">Inspection Completed</td>
           <td *ngIf="x.InspectionCompletedBy === null "> Inspection Not Completed</td>
         </tr>
@@ -93,11 +93,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let x of viewinspectionReport">
-          <td>{{x.TemplateName}}</td>
+          <td class=" notranslate">{{x.TemplateName}}</td>
           <td>{{x.InspectionDate}}</td>
-          <td>{{x.FacilityName}} - {{x.RoomId}}</td>
-          <td>{{x.LastName}},{{x.FirstName}}</td>
-          <td>{{x.EmployeeName}}</td>
+          <td class=" notranslate">{{x.FacilityName}} - {{x.RoomId}}</td>
+          <td class=" notranslate">{{x.LastName}},{{x.FirstName}}</td>
+          <td class=" notranslate">{{x.EmployeeName}}</td>
           <td *ngIf="x.InspectionCompletedBy !== null">Inspection Completed</td>
           <td *ngIf="x.InspectionCompletedBy === null "> Inspection Not Completed</td>
         </tr>
