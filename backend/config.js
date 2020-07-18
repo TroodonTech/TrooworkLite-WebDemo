@@ -23,19 +23,16 @@ config.sendGrid.ApiKey='';//Varun->SendGrid ApiKey for sending Mail--- old key
 config.app.views = '../dist/mdb-angular-free';
 //configure database properties
 
-//live db
-//config.db.host = "us-cdbr-azure-west-b.cleardb.com";
-//config.db.user = "b8d7dccac78d6a";
-//config.db.password = "9293cbd8";
-//config.db.database = "trooworkdb_lite";
-
 //demo db
 // config.db.host = "trooworkdevdbinstance.c1c3s2r6mw5k.us-west-2.rds.amazonaws.com";
 // config.db.user = "trooworkroot";
 // config.db.password = "Zaq1Zaq1";
 // config.db.database = "trooworkdb_lite";
 
-
+// config.db.host = "troowork-lite-dev.mysql.database.azure.com";
+// config.db.user = "trooworkdbadmin@troowork-lite-dev";
+// config.db.password = "Zaq1Zaq1";
+// config.db.database = "trooworkdb_lite";
 
 // config.db.host = "192.168.1.113";
 config.db.host = "localhost";

@@ -1,18 +1,15 @@
 export const ConectionSettings = {
 
   // local
-  AbsUrl: 'http://localhost:3000',
-  Url: 'http://localhost:3000/api'
+  // AbsUrl: 'http://localhost:3000',
+  // Url: 'http://localhost:3000/api'
 
   // trooworkweb angular6
   // AbsUrl: 'http://trooworkweb.azurewebsites.net',
   // Url: 'http://trooworkweb.azurewebsites.net/api'
 
-  // demotroowork angular6
-  // AbsUrl: 'http://demotroowork.azurewebsites.net',
-  // Url: 'http://demotroowork.azurewebsites.net/api'
+  // demotroowork lite angular6
+  // AbsUrl: 'http://troowork-lite-dev.azurewebsites.net',
+  // Url: 'http://troowork-lite-dev.azurewebsites.net/api'
 
-  // production
-  // AbsUrl: 'https://troowork.azurewebsites.net',
-  // Url: 'https://troowork.azurewebsites.net/api'
 };
