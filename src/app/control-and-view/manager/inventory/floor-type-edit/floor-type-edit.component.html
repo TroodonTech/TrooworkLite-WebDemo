@@ -9,13 +9,14 @@
     <div class="row col-md-12">
       <h5 style="text-align:right" class="col-md-4"><label for="FloorType">Floor Type Name: </label></h5>
       <div class="col-md-3" style="text-align:left">
-        <input *ngIf="flrType" type="text" style="background-color: #D4F4FF !important;width: 30rem" class="form-control"
-          maxlength="20" id="FloorType" [(ngModel)]="flrType.FloorTypeName">
+        <input *ngIf="flrType" type="text" style="background-color: #D4F4FF !important;width: 30rem"
+          class="form-control" maxlength="20" id="FloorType" [(ngModel)]="flrType.FloorTypeName">
       </div>
     </div>
     <br>
     <div class="row col-md-12" style="margin-left: 35%">
-      <a style="color:white !important" class="btn btn-success" (click)="updateFloorType(flrType.FloorTypeName)"><b>Update</b>
+      <a style="color:white !important" class="btn btn-success"
+        (click)="basicModal.show();updateFloorType(flrType.FloorTypeName)"><b>Update</b>
       </a>
       <a (click)='goBack()' class="btn btn-warning" style="color:white !important"><b>Go
           Back
@@ -23,5 +24,28 @@
       </a>
     </div>
   </div>
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide();clear(); " mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>

@@ -8,7 +8,7 @@
     <div class="col-md-6">
       <h3 style="text-align: right"></h3>
       <div class="form-group">
-        <label style="margin-top: 2rem;" class="col-sm-4 col-md-4 col-lg-4 ">From Date</label>
+        <label style="margin-top: 2rem;">From Date</label>
         <ng-datepicker [options]="options" position="top-right" [(ngModel)]="fromdate"></ng-datepicker>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [value]="date" [(ngModel)]="fromdate"></igx-datePicker> -->
       </div>
@@ -101,7 +101,7 @@
     <div class="row col-md-12">
       <div style="margin-left: 45%">
         <button type="button" class="btn btn-success"
-          (click)=generateTaskReport(fromdate,todate,FacilityKey,FloorKey,RoomTypeKey,ZoneKey,RoomKey,EmployeeKey,WorkorderStatusKey)><b>GENERATE</b></button>
+          (click)=generateTaskReport(fromdate,todate,FacilityKey,FloorKey,RoomTypeKey,ZoneKey,RoomKey,EmployeeKey,WorkorderStatusKey);basicModal.show();><b>GENERATE</b></button>
       </div>
     </div>
     <br>
@@ -191,4 +191,28 @@
       </tr>
     </tbody>
   </table>
+
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide(); " mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

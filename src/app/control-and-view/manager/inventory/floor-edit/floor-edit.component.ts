@@ -16,7 +16,7 @@ export class FloorEditComponent implements OnInit {
   floorKey$: Object;
   flooroptions: Inventory[];
   buildingList: Inventory[];
-
+  message;
   role: String;
   name: String;
   employeekey: Number;
@@ -47,15 +47,18 @@ export class FloorEditComponent implements OnInit {
 
   updateFloor(FacilityKey, FloorKey, FloorName, FloorDescription) {
     if (FacilityKey == "--Select--") {
-      alert("Please Choose Building!");
+      // alert("Please Choose Building!");
+      this.message = "Please Choose Building!";
       return;
     }
     else if (!FloorName || !FloorName.trim()) {
-      alert("Please Enter Floor Name!");
+      // alert("Please Enter Floor Name!");
+      this.message = "Please Enter Floor Name!";
       return;
     }
     else if (!FloorDescription || !FloorDescription.trim()) {
-      alert("Please Enter Floor Description!");
+      // alert("Please Enter Floor Description!");
+      this.message = "Please Enter Floor Description!";
       return;
     }
     else {
@@ -64,15 +67,19 @@ export class FloorEditComponent implements OnInit {
 
       this.inventoryService.CheckNewFloor(FacilityKey, FloorName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
         if (data[0].count > 0) {
-          alert("Floor already present !");
+          // alert("Floor already present !");
+          this.message = "Floor already present !";
           return;
         }
         else {
           this.inventoryService
             .UpdateFloor(FacilityKey, FloorKey, FloorName, FloorDescription, this.employeekey, this.OrganizationID)
             .subscribe((data: Inventory[]) => {
-              alert("Floor updated successfully");
-              this._location.back();
+              // alert("Floor updated successfully");
+              this.message = "Floor updated successfully";
+              setTimeout(() => {
+                this._location.back();
+              }, 4000);
             });
         }
       });
@@ -102,4 +109,7 @@ export class FloorEditComponent implements OnInit {
     this._location.back();
   }
 
+  clear() {
+    this.message = "";
+  }
 }

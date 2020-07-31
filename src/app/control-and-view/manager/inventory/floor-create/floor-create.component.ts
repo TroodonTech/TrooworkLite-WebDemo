@@ -19,6 +19,7 @@ export class FloorCreateComponent implements OnInit {
   IsSupervisor: Number;
   OrganizationID: Number;
   FacilityKey;
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -47,15 +48,18 @@ export class FloorCreateComponent implements OnInit {
 
   addFloor(FacilityKey, FloorName, FloorDescription) {
     if (!FacilityKey) {
-      alert("Please Choose Building!");
+      // alert("Please Choose Building!");
+      this.message="Please Choose Building!";
       return;
     }
     if (!FloorName || !FloorName.trim()) {
-      alert("Please Enter Floor Name!");
+      // alert("Please Enter Floor Name!");
+      this.message="Please Enter Floor Name!";
       return;
     }
     if (!FloorDescription || !FloorDescription.trim()) {
-      alert("Please Enter Floor Description!");
+      // alert("Please Enter Floor Description!");
+      this.message="Please Enter Floor Description!";
       return;
     }
 
@@ -67,14 +71,18 @@ export class FloorCreateComponent implements OnInit {
 
     this.inventoryService.CheckNewFloor(FacilityKey, FloorName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
       if (data[0].count > 0) {
-        alert("Floor already present !");
+        // alert("Floor already present !");
+      this.message="Floor already present !";
         return;
       }
       else {
         this.inventoryService.createFloors(FacilityKey, FloorName, FloorDescription, this.employeekey, this.OrganizationID)
           .subscribe((data: Inventory[]) => {
-            alert("Floor created successfully");
-            this._location.back();
+            // alert("Floor created successfully");
+      this.message="Floor created successfully";
+      setTimeout(() => {
+        this._location.back();
+      }, 4000);
           });
       }
     });
@@ -103,4 +111,7 @@ export class FloorCreateComponent implements OnInit {
     this._location.back();
   }
 
+  clear() {
+    this.message = "";
+  }
 }

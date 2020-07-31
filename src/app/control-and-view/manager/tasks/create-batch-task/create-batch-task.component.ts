@@ -37,7 +37,7 @@ export class CreateBatchTaskComponent implements OnInit {
   workorderNotes;
   GpsSnapShot;
   Gps_SnapShot;
-
+  message;
   // temp-variables
   wot;
   notes;
@@ -355,34 +355,44 @@ export class CreateBatchTaskComponent implements OnInit {
     //   alert("Please select room!");
     // }
     if (!this.taskname) {
-      alert("Please enter task name");
+      // alert("");
+      this.message = "Please enter task name";
     } else if (!this.taskname.trim()) {
-      alert("Please enter task name");
+      // alert("");
+      this.message = "Please enter task name";
     }
     else if (!this.taskNotes) {
-      alert("Please enter task notes");
+      // alert("");
+      this.message = "Please enter task notes";
     } else if (!this.taskNotes.trim()) {
-      alert("Please enter task notes");
+      // alert("");
+      this.message = "Please enter task notes";
     }
     else if (!(this.TaskStartDate)) {
-      alert("Please provide start date!");
+      // alert("");
+      this.message = "Please provide start date!";
     }
     else if (!(this.TaskEndDate)) {
-      alert("Please provide end date!");
+      // alert("");
+      this.message = "Please provide end date!";
     } else if ((this.TaskEndDate) && (this.convert_DT(this.TaskStartDate) > this.convert_DT(this.TaskEndDate))) {
-      alert("Please check your end date!");
+      // alert("");
+      this.message = "Please check your end date!";
 
     }
     else if (this.dailyrecurring == true) {
       if (this.convert_DT(this.TaskStartDate) < this.convert_DT(new Date())) {
-        alert("Start date is less than current date");
+        // alert("");
+        this.message = "Start date is less than current date";
       }
       else if (!(this.dailyFrequency)) {
-        alert("Please select frequency !");
+        // alert("");
+        this.message = "Please select frequency !";
       } else if (this.dailyFrequency) {
         for (var i = 0; i < this.dailyFrequency; i++) {
           if (!(this.timetable.times[i])) {
-            alert("Please enter time values !");
+            // alert("");
+            this.message = "Please enter time values !";
           }
         }
         this.withoutequip_wo();
@@ -613,18 +623,22 @@ export class CreateBatchTaskComponent implements OnInit {
     console.log(this.workorderCreation);
     this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
       if (data) {
-        alert("Task Name already exists !!!");
+        // alert("");
+        this.message = "Task Name already exists !!!";
         return false;
       } else {
         this.taskServ.addtaskSchedule(this.workorderCreation).subscribe(res => {
-          alert("Batch task created successfully");
-          if (this.role == 'Manager') {
-            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
-          }
-          // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
-          else if (this.role == 'Supervisor') {
-            this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
-          }
+          // alert("");
+          this.message = "Batch task created successfully";
+          setTimeout(() => {
+            if (this.role == 'Manager') {
+              this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
+            }
+            // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
+            else if (this.role == 'Supervisor') {
+              this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
+            }
+          }, 4000);
         });
       }
     });
@@ -663,5 +677,9 @@ export class CreateBatchTaskComponent implements OnInit {
     this.newType = false;
     this.WorkorderTypeKey = "";
     this.newworkordertypetext = null;
+  }
+
+  clear() {
+    this.message = "";
   }
 }

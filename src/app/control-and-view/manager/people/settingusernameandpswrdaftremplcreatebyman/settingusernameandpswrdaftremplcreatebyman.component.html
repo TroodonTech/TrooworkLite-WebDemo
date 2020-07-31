@@ -9,15 +9,15 @@
     <div class="row col-md-12">
       <h5 style="text-align:right" class="col-md-4"><label for="username">User Name: </label></h5>
       <div class="col-md-8" style="text-align:left">
-        <input *ngIf="sasemail" type="text" style="background-color: #D4F4FF !important;" class="form-control" id="username"
-          [(ngModel)]="username">
+        <input *ngIf="sasemail" type="text" style="background-color: #D4F4FF !important;" class="form-control"
+          id="username" [(ngModel)]="username">
       </div>
     </div>
     <div class="row col-md-12">
       <h5 style="text-align:right" class="col-md-4"><label for="Password">Password: </label></h5>
       <div class="col-md-8" style="text-align:left">
-        <input *ngIf="sasemail" type="password" disabled="disabled" style="background-color: #D4F4FF !important;" class="form-control"
-          id="Password" [(ngModel)]="password">
+        <input *ngIf="sasemail" type="password" disabled="disabled" style="background-color: #D4F4FF !important;"
+          class="form-control" id="Password" [(ngModel)]="password">
       </div>
     </div>
     <!-- <div class="row col-md-12">
@@ -31,9 +31,33 @@
     <div class="row col-md-12">
       <div class="col col-md-4"></div>
       <div style="text-align:right" class="col-md-3">
-        <a style="color:white !important" class="btn btn-success" (click)="setUsernamePassword()"><b>Save & Send Email</b>
+        <a style="color:white !important" class="btn btn-success"
+          (click)="basicModal.show();setUsernamePassword()"><b>Save & Send
+            Email</b>
         </a></div>
       <div class="col col-md-2"></div>
+    </div>
+  </div>
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide();clear() " mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
     </div>
   </div>
 

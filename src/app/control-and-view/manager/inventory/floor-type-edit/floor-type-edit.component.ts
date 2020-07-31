@@ -16,7 +16,7 @@ export class FloorTypeEDitComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
-
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -40,17 +40,22 @@ export class FloorTypeEDitComponent implements OnInit {
 
   updateFloorType(FloorTypeName) {
     if (!FloorTypeName || !FloorTypeName.trim()) {
-      alert("Please provide a FloorType Name");
+      // alert("Please provide a FloorType Name");
+      this.message = "Please provide a FloorType Name";
     } else {
       FloorTypeName = FloorTypeName.trim();
       this.inventoryService.checkForNewFloorType(FloorTypeName, this.employeekey, this.OrganizationID).subscribe((data: Array<any>) => {
         if (data.length > 0) {
-          alert("FloorType already present");
+          // alert("FloorType already present");
+          this.message = "FloorType already present";
         }
         else {
           this.inventoryService.UpdateFloorType(FloorTypeName, this.flrTypeKey$, this.employeekey, this.OrganizationID).subscribe(res => {
-            alert("FloorType updated successfully");
-            this._location.back();
+            // alert("FloorType updated successfully");
+            this.message = "FloorType updated successfully";
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
         }
       });
@@ -74,5 +79,8 @@ export class FloorTypeEDitComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }

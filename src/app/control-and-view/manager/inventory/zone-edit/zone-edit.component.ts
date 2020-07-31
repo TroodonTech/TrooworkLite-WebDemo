@@ -15,6 +15,7 @@ export class ZoneEditComponent implements OnInit {
   facKey$: Object;
   floorKey$: Object;
   zoneKey$: Object;
+  message;
 
   floorList: Inventory[] = [];
   buildingList: Inventory[] = [];
@@ -63,30 +64,38 @@ export class ZoneEditComponent implements OnInit {
   updateZone(FacilityKey, FacilityName, FloorName, FloorKey, ZoneKey, ZoneName) {
 
     if (!(this.zoneEditValues.FacilityKey)) {
-      alert("Please Choose Building!");
+      // alert("");
+      this.message = "Please Choose Building!";
       return;
     }
     if (!(this.zoneEditValues.FloorKey)) {
-      alert("Please Choose Floor!");
+      // alert("");
+      this.message = "Please Choose Floor!";
       return;
     }
     if (!(this.zoneEditValues.ZoneName) || !(this.zoneEditValues.ZoneName.trim())) {
-      alert("Please Enter Zone Name!");
+      // alert("");
+      this.message = "Please Enter Zone Name!";
       return;
     }
     this.zoneEditValues.ZoneName = this.zoneEditValues.ZoneName.trim();
     ZoneName = ZoneName.trim();
-    
+
     this.inventoryService.checkForZone(FacilityKey, FloorKey, ZoneName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
       this.zone = data;
       if (data.length > 0) {
-        alert("Zone already present !");
+        // alert("");
+        this.message = "Zone already present !";
       }
       else if (data.length == 0) {
         this.inventoryService.updateZone(FacilityKey, FacilityName, FloorName, FloorKey, ZoneKey, ZoneName, this.employeekey, this.OrganizationID)
           .subscribe(res => {
-            alert("Zone updated successfully");
-            this._location.back();
+            // alert("");
+            this.message = "Zone updated successfully";
+
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
       }
     });
@@ -123,5 +132,8 @@ export class ZoneEditComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }

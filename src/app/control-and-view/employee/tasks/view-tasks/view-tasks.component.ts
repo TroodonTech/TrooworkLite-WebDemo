@@ -58,6 +58,7 @@ export class ViewTasksComponent implements OnInit {
   BarcodeValue;
   SearchWO;
   showGenerate = false;
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -443,7 +444,8 @@ export class ViewTasksComponent implements OnInit {
     this.countCancel1 = this.countCancel;
     if (!this.BarcodeValue && barcodeRequired === 1) {
       this.BarcodeValue = null;
-      alert("Barcode is not provided !");
+      // alert("Barcode is not provided !");
+      this.message = "Barcode is not provided";
       return;
     }
     else if (this.BarcodeValue && barcodeRequired === 1) {
@@ -463,7 +465,8 @@ export class ViewTasksComponent implements OnInit {
     }
     if (!(this.fileName) && photoRequired === 1) {
       this.fileName = null;
-      alert("Photo is not provided !");
+      // alert("Photo is not provided !");
+      this.message = "Photo is not provided !";
       return;
     }
     else if (this.fileName && photoRequired === 1) {
@@ -572,7 +575,8 @@ export class ViewTasksComponent implements OnInit {
       console.log('ImageUpload:uploaded:', item, status, response);
       this.fileName = item.file.name;
 
-      alert('File uploaded successfully');
+      // alert('File uploaded successfully');
+      this.message = "File uploaded successfully";
     };
   }
   filterApplied() {
@@ -635,7 +639,8 @@ export class ViewTasksComponent implements OnInit {
     startDate = this.convert_DT(fromDate);
     endDate = this.convert_DT(toDate);
     if (endDate < startDate) {
-      alert("Please Check Dates !");
+      // alert("Please Check Dates !");
+      this.message = "Please Check Dates !";
       return;
     }
     let Wo = {
@@ -701,6 +706,9 @@ export class ViewTasksComponent implements OnInit {
           this.workorderViewsEmpByAll();
         });
     }
+  }
+  clear() {
+    this.message = "";
   }
   //@Rodney ends
 }

@@ -22,7 +22,7 @@ export class RoomTypeCreateComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
-
+  message;
 
   numberValid(event: any) {
     const pattern = /[0-9\+\-\ ]/;
@@ -74,16 +74,18 @@ export class RoomTypeCreateComponent implements OnInit {
   }
 
   addRoomType(MetricType, RoomTypeName, MetricTypeValue) {
-    RoomTypeName = RoomTypeName.trim();
+    if (RoomTypeName) { RoomTypeName = RoomTypeName.trim(); }
 
     this.inventoryService
       .checkRoomType(RoomTypeName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
         if (data.length > 0) {
-          alert("Room Type already present");
+          // alert("");
+          this.message = "Room Type already present";
         }
         else if (data.length == 0) {
           if (!RoomTypeName || !RoomTypeName.trim()) {
-            alert("Enter RoomType Name!");
+            // alert("");
+            this.message = "Enter RoomType Name!";
           }
           // } else if (!MetricType) {
           //   alert("Enter MetricType!");
@@ -92,8 +94,11 @@ export class RoomTypeCreateComponent implements OnInit {
           // } 
           else {
             this.inventoryService.addRoomType(RoomTypeName, MetricTypeValue, MetricType, this.employeekey, this.OrganizationID).subscribe(res => {
-              alert("RoomType created successfully");
-              this._location.back();
+              // alert("");
+              this.message = "RoomType created successfully";
+              setTimeout(() => {
+                this._location.back();
+              }, 4000);
             });
           }
         }
@@ -119,4 +124,7 @@ export class RoomTypeCreateComponent implements OnInit {
     this._location.back();
   }
 
+  clear() {
+    this.message = "";
+  }
 }

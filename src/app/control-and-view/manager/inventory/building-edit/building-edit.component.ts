@@ -15,9 +15,7 @@ import { Location } from '@angular/common';
 export class BuildingEditComponent implements OnInit {
   facKey$: Object;
   build: Inventory[];
-
-
-
+  message;
   role: String;
   name: String;
   employeekey: Number;
@@ -51,21 +49,26 @@ export class BuildingEditComponent implements OnInit {
     var type = 'facility';
 
     if (!(FacilityName) || !(FacilityName.trim())) {
-      alert("Please Enter Building Name!");
+      // alert("Please Enter Building Name!");
+      this.message = "Please Enter Building Name!";
       return;
     }
     else {
-      FacilityName=FacilityName.trim();
+      FacilityName = FacilityName.trim();
       this.inventoryService.CheckNewBuilding(FacilityName, type, this.employeekey, this.OrganizationID).subscribe((data: any[]) => {
         if (data.length > 0) {
-          alert("Building already present !");
+          // alert("Building name already present !");
+          this.message = "Building name already present !";
           return;
         }
         else {
           this.inventoryService.UpdateBuilding(FacilityName, FacilityKey, this.employeekey, this.OrganizationID)
             .subscribe((data: Inventory[]) => {
-              alert("Building updated successfully");
-              this._location.back();
+              // alert("Building updated successfully");
+              this.message = "Building updated successfully";
+              setTimeout(() => {
+                this._location.back();
+              }, 4000);
             });
         }
       });
@@ -89,6 +92,9 @@ export class BuildingEditComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }
 

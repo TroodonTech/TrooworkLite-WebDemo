@@ -9,7 +9,7 @@
       <h3 style="text-align: right"></h3>
       <div class="form-group">
         <label>Building*</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FacilityKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FacilityKey"
           (change)="getFloorDisp($event.target.value);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of facilitylist" [value]="b.FacilityKey">
@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
         <label>Floor*</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FloorKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FloorKey"
           [disabled]="!FacilityKey" (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of FloorList" [value]="b.FloorKey">
@@ -29,7 +29,7 @@
       </div>
       <div class="form-group">
         <label>Zone</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="ZoneKey"
           [disabled]="!FloorKey" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of zonelist" [value]="b.ZoneKey">
@@ -39,7 +39,7 @@
       </div>
       <div class="form-group">
         <label>Room Type</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomTypeKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomTypeKey"
           [disabled]="!FloorKey" (change)="getRoom($event.target.value,ZoneKey,FacilityKey,FloorKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of RoomTypeList" [value]="b.RoomTypeKey">
@@ -49,7 +49,7 @@
       </div>
       <div class="form-group">
         <label>Room</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomKey"
           [disabled]="!FloorKey" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of RoomList" [value]="b.RoomKey">
@@ -136,7 +136,7 @@
     <div class="row col-md-12">
       <div style="margin-left: 45%;margin-bottom: 2%;">
         <button type="button" class="btn btn-success"
-          (click)=genFlagActivate();viewtask_Filter();><b>GENERATE</b></button>
+          (click)=genFlagActivate();basicModal1.show();viewtask_Filter();><b>GENERATE</b></button>
       </div>
     </div>
   </div><br>
@@ -296,6 +296,8 @@
       </div>
     </div>
   </div>
+
+
   <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -318,6 +320,31 @@
       </div>
     </div>
   </div>
+
+
+
+  <div mdbModal #basicModal1="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModal1Label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal1.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal1.hide();clear()" mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <button class="btn btn-success" style="float:left" (click)="previousPage()" *ngIf="showHide1">&#60;&#60;
     Previous</button>
   <button class="btn btn-success" (click)="nextPage()" style="float:right" *ngIf="showHide2">Next >></button>

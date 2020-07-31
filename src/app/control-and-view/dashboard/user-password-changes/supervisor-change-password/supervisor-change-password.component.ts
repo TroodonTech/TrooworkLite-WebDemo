@@ -31,7 +31,7 @@ export class SupervisorChangePasswordComponent implements OnInit {
   UserLoginId: Number;
   managerMail: Object;
   userMail: Object;
-
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -57,14 +57,18 @@ export class SupervisorChangePasswordComponent implements OnInit {
 
   paswordchange() {
     if (!this.Password) {
-      alert(" Enter new password");
+      // alert(
+      this.message = " Enter new password";
     } else if (!this.repeatPassword) {
-      alert(" Enter retype password");
+      // alert(
+      this.message = " Enter retype password";
     } else if (this.Password === this.newPassword) {
-      alert("Current and new passwords are same.");
+      // alert(
+      this.message = "Current and new passwords are same.";
     }
     else if (this.newPassword != this.repeatPassword) {
-      alert("New and retype password are not same.");
+      // alert(
+      this.message = "New and retype password are not same.";
     } else {
       this.loginService
         .setPassword(this.username, this.newPassword, this.employeekey, this.UserLoginId, this.OrganizationID)
@@ -73,14 +77,15 @@ export class SupervisorChangePasswordComponent implements OnInit {
         });
       if (this.passDetails.length > 0) {
         this.peopleService.getUserEmail(this.username, this.employeekey, this.OrganizationID).subscribe((data: People[]) => {
- 
+
           this.managerMail = data[0].EmailID;
           this.userMail = data[0].newmail;
 
           if (this.userMail == null) {
-            alert("Password Changed Successfully! Mail not send , Mail-Id not found !");
+            // alert("");
+            this.message = "Password Changed Successfully! Mail not send , Mail-Id not found !";
           } else {
-            var message = 'Your Username is ' + this.username + ' and ' + 'Your Password is ' + this.newPassword + "                https://troowork.azurewebsites.net";
+            var message = 'Your Username is ' + this.username + ' and ' + 'Your Password is ' + this.newPassword + "                http://troowork-lite-dev.azurewebsites.net/#/";
             console.log(message);
             const obj = {
               from: this.managerMail,
@@ -88,13 +93,13 @@ export class SupervisorChangePasswordComponent implements OnInit {
               subject: 'Login Credentials',
               text: message
             };
-            const url = ConectionSettings.Url+"/sendmail";
+            const url = ConectionSettings.Url + "/sendmail";
             return this.http.post(url, obj)
               .subscribe(res => console.log('Mail Sent Successfully...'));
           }
 
         });
-        this.router.navigate(['/SupervisorDashboard',{ outlets: { Superout: ['Supervisor_welcomePage'] } }]);
+        this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['Supervisor_welcomePage'] } }]);
       }
     }
   }
@@ -117,5 +122,8 @@ export class SupervisorChangePasswordComponent implements OnInit {
         this.username = this.passDetails[0].UserId;
         this.UserLoginId = this.passDetails[0].UserLoginId;
       });
+  }
+  clear(){
+    this.message="";
   }
 }

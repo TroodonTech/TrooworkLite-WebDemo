@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class FloorTypeCreateComponent implements OnInit {
   flrType: Inventory[];
-
+  message;
   role: String;
   name: String;
   employeekey: Number;
@@ -41,22 +41,28 @@ export class FloorTypeCreateComponent implements OnInit {
 
   addFloorType(FloorTypeName) {
     if (FloorTypeName && !FloorTypeName.trim()) {
-      alert("Please Enter Floor Type Name!");
+      // alert("Please Enter Floor Type Name!");
+      this.message = "Please Enter Floor Type Name!";
       return;
     }
     if (!FloorTypeName) {
-      alert("Please provide a Floor Type Name");
+      // alert("Please provide a Floor Type Name");
+      this.message = "Please provide a Floor Type Name";
     } else {
       FloorTypeName = FloorTypeName.trim();
       this.inventoryServ.checkForNewFloorType(FloorTypeName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
         this.flrType = data;
         if (data.length > 0) {
-          alert("Floor Type already present");
+          // alert("Floor Type already present");
+          this.message = "Floor Type already present";
         }
         else if (data.length == 0) {
           this.inventoryServ.addNewFloorType(FloorTypeName, this.employeekey, this.OrganizationID).subscribe(res => {
-            alert("FloorType created successfully");
-            this._location.back();
+            // alert("FloorType created successfully");
+            this.message = "FloorType created successfully";
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
         }
       });
@@ -78,4 +84,7 @@ export class FloorTypeCreateComponent implements OnInit {
     this._location.back();
   }
 
+  clear() {
+    this.message = "";
+  }
 }

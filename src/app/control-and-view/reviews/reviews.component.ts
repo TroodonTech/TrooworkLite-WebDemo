@@ -29,7 +29,7 @@ export class ReviewsComponent implements OnInit {
   names;
   ScoreName;
   Scoringtype = { ratingValue: [], inspectionNotes: [], rating_yn: [] };
-
+serial;
 
   lastIndexValue;
 
@@ -214,6 +214,7 @@ export class ReviewsComponent implements OnInit {
 
       this.reviewservice.getReviewQuestions(this.tempKey$, this.OrgId$).subscribe((data: any[]) => {
         this.reviewQuestions = data;
+        this.serial=this.reviewQuestions.length+1;
         if (data.length > 0) {
           if (this.reviewQuestions[0].ScoreName === 'Yes/No') {
             this.names = ['Yes', 'No'];

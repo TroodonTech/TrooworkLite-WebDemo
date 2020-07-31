@@ -91,6 +91,7 @@ export class EditBatchTaskComponent implements OnInit {
   emp_key;
   TaskName;
   taskNotes;
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -416,21 +417,24 @@ export class EditBatchTaskComponent implements OnInit {
     this.taskServ
       .deleteCurrent_BatchTask(this.deleteWO)
       .subscribe((data: any[]) => {
-        alert("Batch task deleted successfully");
-        // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
-        if (this.role == 'Manager') {
-          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
-        }
-        // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
-        else if (this.role == 'Supervisor') {
-          this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
-        }
+        // alert("");
+        this.message = "Batch task deleted successfully";
+        setTimeout(() => {
+
+          if (this.role == 'Manager') {
+            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
+          }
+          else if (this.role == 'Supervisor') {
+            this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
+          }
+        }, 4000);
       });
   }
 
   UpdateWO() {//function for updatewo without equipment
     if (!(this.TaskName)) {
-      alert("Please select Task Name!");
+      // alert("");
+      this.message = "Please select Task Name!";
     }
     // else if (!this.workordertypekey) {
     //   alert("Please select work-order type!");
@@ -442,22 +446,27 @@ export class EditBatchTaskComponent implements OnInit {
     //   alert("Please select floor!");
     // }
     else if (!(this.TaskStartDate)) {
-      alert("Please provide work-order start date!");
+      // alert("");
+      this.message = "Please provide work-order start date!";
     }
     else if (!(this.TaskEndDate)) {
-      alert("Please provide work-order end date!")
+      // alert("")
+      this.message = "Please provide work-order end date!";
     }
     else if ((this.TaskEndDate) && (this.convert_DT(this.TaskStartDate) > this.convert_DT(this.TaskEndDate))) {
-      alert("Please check your start date!");
+      // alert("");
+      this.message = "Please check your start date!";
 
     }
     else if (this.dailyrecurring == true) {
       if (!(this.dailyFrequency)) {
-        alert("Please select frequency !");
+        // alert("");
+        this.message = "Please select frequency !";
       } else if (this.dailyFrequency) {
         for (var i = 0; i < this.dailyFrequency; i++) {
           if (!(this.timetable.times[i])) {
-            alert("Please enter time values !");
+            // alert("");
+            this.message = "Please enter time values !";
           }
         }
         this.withoutequip_wo();
@@ -672,13 +681,16 @@ export class EditBatchTaskComponent implements OnInit {
       this.taskServ//if updated successfully delete the current batchwo
         .deleteCurrent_BatchTask(this.deleteWO)
         .subscribe((data: any[]) => {
-          alert("Batch task updated successfully");
-          if (this.role == 'Manager') {
-            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
-          }
-          else if (this.role == 'Supervisor') {
-            this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
-          }
+          // alert("");
+          this.message = "Batch task updated successfully";
+          setTimeout(() => {
+            if (this.role == 'Manager') {
+              this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewBatchTask'] } }]);
+            }
+            else if (this.role == 'Supervisor') {
+              this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
+            }
+          }, 4000);
         });
     });
   }
@@ -716,5 +728,8 @@ export class EditBatchTaskComponent implements OnInit {
     else if (this.role == 'Supervisor') {
       this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewBatchTask'] } }]);
     }
+  }
+  clear() {
+    this.message = "";
   }
 }

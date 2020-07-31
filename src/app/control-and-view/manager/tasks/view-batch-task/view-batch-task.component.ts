@@ -54,7 +54,7 @@ export class ViewBatchTaskComponent implements OnInit {
   marked = false;
   workorderKey = [];
   searchWorkorder;
-
+  message;
   role: String;
   name: String;
   employeekey: Number;
@@ -329,8 +329,8 @@ export class ViewBatchTaskComponent implements OnInit {
   //function called to view wo while applying filter
   viewWO_Filter() {
     if ((this.todate) && (this.convert_DT(this.ondate) > this.convert_DT(this.todate))) {
-      alert("Please check your start date!");
-
+      // alert("Please check your start date!");
+      this.message = "Please check your start date!";
     }
     else {
       var fac_key;
@@ -610,8 +610,12 @@ export class ViewBatchTaskComponent implements OnInit {
         this.checkValue = [];
         this.checkflag = false;
         this.workorderKey = [];
-        alert("Batch Task(s) deleted successfully");
+        // alert("Batch Task(s) deleted successfully");
+        this.message = "Batch Task(s) deleted successfully";
         this.viewWO_Filter();
       });
+  }
+  clear() {
+    this.message = "";
   }
 }

@@ -11,7 +11,7 @@
       <tbody>
         <!-- already present array -->
         <tr *ngFor="let field of fieldArray">
-          <td>
+          <td class="notranslate">
             {{field.Question}}
           </td>
           <td>
@@ -34,7 +34,7 @@
         <tr>
           <td style="text-align: center" colspan="2">
             <button class="btn btn-success" type="button" (click)="addFieldValue()"><b>ADD QUESTION</b></button>
-            <button class="btn btn-success" type="button" (click)="savetemplate()"
+            <button class="btn btn-success" type="button" (click)="savetemplate();basicModal1.show();"
               *ngIf="newAttribute?.length>0"><b>SAVE</b></button>
           </td>
 
@@ -55,9 +55,32 @@
               </div>
               <div class="modal-footer">
                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                  (click)="basicModal.hide(); deleteFieldValue()" mdbWavesEffect>Yes</button>
+                  (click)="basicModal.hide(); deleteFieldValue();basicModal1.show();" mdbWavesEffect>Yes</button>
                 <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.hide()"
                   mdbWavesEffect>No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div mdbModal #basicModal1="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModal1Label"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal1.hide();clear()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel"></h4>
+              </div>
+              <div class="modal-body" *ngIf="message">
+                {{message}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                  (click)="basicModal1.hide();clear()" mdbWavesEffect>OK</button>
+
               </div>
             </div>
           </div>

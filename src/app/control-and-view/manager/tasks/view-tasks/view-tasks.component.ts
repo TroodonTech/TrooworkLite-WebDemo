@@ -86,6 +86,7 @@ export class ViewTasksComponent implements OnInit {
   latitude;
   longitude;
   basicModal1;
+  message;
 
   constructor(private formBuilder: FormBuilder, private WorkOrderServiceService: WorkOrderServiceService, private taskServ: TaskService, private el: ElementRef) { }
   //function for token decoding
@@ -562,8 +563,8 @@ export class ViewTasksComponent implements OnInit {
   //function called when filter is applied
   viewtask_Filter() {
     if ((this.todate) && (this.convert_DT(this.ondate) > this.convert_DT(this.todate))) {
-      alert("Please check your start date!");
-
+      // alert("");
+      this.message = "Please check your start date!";
     }
     else {
       this.loading = true;
@@ -758,8 +759,11 @@ export class ViewTasksComponent implements OnInit {
         this.checkValue = [];
         this.checkflag = false;
         this.workorderKey = [];
-        alert("Task(s) deleted successfully");
-        this.viewtask_Filter();
+        // alert("");
+        this.message = "Task(s) deleted successfully";
+        setTimeout(() => {
+          this.viewtask_Filter();
+        }, 4000);
 
       });
   }
@@ -771,31 +775,35 @@ export class ViewTasksComponent implements OnInit {
 
   }
 
-  canceltheWorkorder(woKey) {
+  // canceltheWorkorder(woKey) {
 
-    var reason = prompt("Enter the reason for cancelling the workorder...");
+  //   var reason = prompt("Enter the reason for cancelling the workorder...");
 
-    var t = new Date();
-    var t = new Date();
-    var y = t.getFullYear();
-    var m = t.getMonth();
-    var d = t.getDate();
-    var h = t.getHours();
-    var mi = t.getMinutes();
-    var s = t.getSeconds();
-    console.log(reason);
+  //   var t = new Date();
+  //   var t = new Date();
+  //   var y = t.getFullYear();
+  //   var m = t.getMonth();
+  //   var d = t.getDate();
+  //   var h = t.getHours();
+  //   var mi = t.getMinutes();
+  //   var s = t.getSeconds();
+  //   console.log(reason);
 
-    var today_DT = this.convert_DT(new Date());
-    var p = "";
-    p = today_DT + " " + h + ":" + mi + ":" + s;
+  //   var today_DT = this.convert_DT(new Date());
+  //   var p = "";
+  //   p = today_DT + " " + h + ":" + mi + ":" + s;
 
-    if ((reason.trim())) {
-      this.WorkOrderServiceService
-        .setCancelWorkorder(woKey, reason, today_DT, p, this.emp_key, this.org_id)
-        .subscribe((data: any[]) => {
-          alert("Selected workorder has been cancelled");
-          this.viewtask_Filter();
-        });
-    }
+  //   if ((reason.trim())) {
+  //     this.WorkOrderServiceService
+  //       .setCancelWorkorder(woKey, reason, today_DT, p, this.emp_key, this.org_id)
+  //       .subscribe((data: any[]) => {
+  //         alert("Selected workorder has been cancelled");
+  //         this.viewtask_Filter();
+  //       });
+  //   }
+  // }
+
+  clear() {
+    this.message = "";
   }
 }

@@ -3,7 +3,7 @@ import { InventoryService } from '../../../../service/inventory.service';
 import { Inventory } from '../../../../model-class/Inventory';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-floor-type-view',
@@ -25,7 +25,7 @@ export class FloorTypeViewComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
-
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -46,7 +46,7 @@ export class FloorTypeViewComponent implements OnInit {
   //validation starts ..... @rodney
   regexStr = '^[a-zA-Z0-9_ ]*$';
   @Input() isAlphaNumeric: boolean;
-  constructor(private formBuilder: FormBuilder, private inventoryService: InventoryService, private el: ElementRef,private _location: Location) { }
+  constructor(private formBuilder: FormBuilder, private inventoryService: InventoryService, private el: ElementRef, private _location: Location) { }
   @HostListener('keypress', ['$event']) onKeyPress(event) {
     return new RegExp(this.regexStr).test(event.key);
   }
@@ -106,7 +106,7 @@ export class FloorTypeViewComponent implements OnInit {
 
   searchFloorType(SearchValue) {
 
-    var value=SearchValue.trim();
+    var value = SearchValue.trim();
 
     if (value.length >= 3) {
       this.inventoryService
@@ -116,9 +116,8 @@ export class FloorTypeViewComponent implements OnInit {
           this.showHide1 = false;
         });
     } else if (value.length == 0) {
-      if((value.length == 0) &&(SearchValue.length == 0) )
-      {
-     this.loading = true;
+      if ((value.length == 0) && (SearchValue.length == 0)) {
+        this.loading = true;
       }
       this.inventoryService
         .getFloorTypeList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
@@ -144,22 +143,26 @@ export class FloorTypeViewComponent implements OnInit {
   deleteFloorType() {
     this.inventoryService
       .DeleteFloorType(this.delete_FloorTypeKey, this.employeekey, this.OrganizationID).subscribe(() => {
-        alert("Floor Type deleted successfully...");
-        this.loading = true;
-        this.inventoryService
-          .getFloorTypeList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
-          .subscribe((data: Inventory[]) => {
-            this.floorType = data;
-            this.loading = false;
-            if (this.floorType[0].totalItems > this.itemsPerPage) {
-              this.showHide2 = true;
-              this.showHide1 = false;
-            }
-            else if (this.floorType[0].totalItems <= this.itemsPerPage) {
-              this.showHide2 = false;
-              this.showHide1 = false;
-            }
-          });
+        // alert("");
+        this.message = "Floor Type deleted successfully...";
+        setTimeout(() => {
+          this.loading = true;
+          this.inventoryService
+            .getFloorTypeList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
+            .subscribe((data: Inventory[]) => {
+              this.floorType = data;
+              this.loading = false;
+              if (this.floorType[0].totalItems > this.itemsPerPage) {
+                this.showHide2 = true;
+                this.showHide1 = false;
+              }
+              else if (this.floorType[0].totalItems <= this.itemsPerPage) {
+                this.showHide2 = false;
+                this.showHide1 = false;
+              }
+            });
+        }, 4000);
+
       });
   }
 
@@ -192,7 +195,7 @@ export class FloorTypeViewComponent implements OnInit {
       SearchFloorType: ['', Validators.required]
     });
   }
-  goBack(){
+  goBack() {
     this._location.back();
   }
 }

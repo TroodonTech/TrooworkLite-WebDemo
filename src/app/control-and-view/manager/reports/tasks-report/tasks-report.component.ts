@@ -85,7 +85,7 @@ export class TasksReportComponent implements OnInit {
   todate: Date;
   workorderTypeList;
   WorkorderTypeKey;
-
+  message;
   public workexcel: Array<any> = [{
     WorkorderTypeName: '', DateandTime: '', Status: '', Employee: '', Room: '', Equipment: '', CheckinTime: '', CheckoutTime: '', Duration: '', DelayTime: '', Notes: ''
   }];
@@ -180,7 +180,8 @@ export class TasksReportComponent implements OnInit {
     var WorkorderType_Key;
     if ((to_date) && (this.convert_DT(from_date) > this.convert_DT(to_date))) {
       todate = null;
-      alert("Please check your Start Date!");
+      // alert("Please check your Start Date!");
+      this.message = "Please check your Start Date!";
       return;
     }
     else {
@@ -271,5 +272,5 @@ export class TasksReportComponent implements OnInit {
       type: EXCEL_TYPE
     });
     FileSaver.saveAs(blob, "Task_Report.xls");
-  }
+  }zz
 }

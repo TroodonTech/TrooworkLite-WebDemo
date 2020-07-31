@@ -23,7 +23,7 @@
     <div class="row col-md-12">
       <div style="margin-left: 45%">
         <button type="button" class="btn btn-success"
-          (click)="viewserviceRequest(fromdate,todate)"><b>GENERATE</b></button>
+          (click)="basicModal.show();viewserviceRequest(fromdate,todate)"><b>GENERATE</b></button>
       </div>
     </div>
 
@@ -70,13 +70,14 @@
             <input type="text" name="taskname" class="form-control" placeholder="Task Name" [(ngModel)]="taskname">
           </td>
           <td>
-            <textarea class="form-control rounded-1" maxlength="200" [(ngModel)]="taskNotes" maxlength="200" rows="3"></textarea>
+            <textarea class="form-control rounded-1" maxlength="200" [(ngModel)]="taskNotes" maxlength="200"
+              rows="3"></textarea>
           </td>
           <td>{{ x.WorkorderStatus }}</td>
           <td>
             <span *ngIf="x.IsWorkorderCreated === 0">
               <button type="button" class="btn btn-success"
-                (click)="createtaskbyservicerequest(x.Workorder_servicerequestID,x.EmployeeKey)"><b>GENERATE
+                (click)="basicModal1.show();createtaskbyservicerequest(x.Workorder_servicerequestID,x.EmployeeKey)"><b>GENERATE
                   TASK</b></button>
             </span>
             <span *ngIf="x.IsWorkorderCreated === 1">
@@ -91,4 +92,50 @@
       </tbody>
     </table>
   </div>
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide();clear() " mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div mdbModal #basicModal1="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModal1Label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal1.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal1.hide();" mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

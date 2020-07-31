@@ -9,7 +9,7 @@
 
     <div class="form-group col-md-6">
       <label>Building*</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="FacilityKey"
+      <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="FacilityKey"
         (change)="getFloorDisp($event.target.value);rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of building" [value]="b.FacilityKey">
@@ -19,7 +19,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Floor*</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="FloorKey" [disabled]="!FacilityKey"
+      <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="FloorKey" [disabled]="!FacilityKey"
         (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of FloorList" [value]="b.FloorKey">
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Zone</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="ZoneKey" [disabled]="!FloorKey"
+      <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="ZoneKey" [disabled]="!FloorKey"
         (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of zonelist" [value]="b.ZoneKey">
@@ -39,7 +39,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Room Type</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="RoomTypeKey" [disabled]="!FloorKey"
+      <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="RoomTypeKey" [disabled]="!FloorKey"
         (change)="getRoom($event.target.value,ZoneKey,FacilityKey,FloorKey);rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of RoomTypeList" [value]="b.RoomTypeKey">
@@ -49,7 +49,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Floor Type</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="FloorTypeKey" [disabled]="!FloorKey"
+      <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="FloorTypeKey" [disabled]="!FloorKey"
         (change)="setFlrTypeKey($event.target.value);rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of floorTypeList" [value]="b.FloorTypeKey">
@@ -59,7 +59,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Room</label><br>
-      <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="RoomKey" [disabled]="!FloorKey"
+      <select style="background-color: #D4F4FF ;" class="form- notranslate" [(ngModel)]="RoomKey" [disabled]="!FloorKey"
         (change)="rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of RoomList" [value]="b.RoomKey">

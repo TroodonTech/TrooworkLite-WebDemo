@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, Directive, HostListener, ElementRef, Inpu
 import { InventoryService } from '../../../../service/inventory.service';
 import { Inventory } from '../../../../model-class/Inventory';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-room-type-view',
@@ -24,6 +24,7 @@ export class RoomTypeViewComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
+  message;
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -45,7 +46,7 @@ export class RoomTypeViewComponent implements OnInit {
   //validation starts ..... @rodney
   regexStr = '^[a-zA-Z0-9_ ]*$';
   @Input() isAlphaNumeric: boolean;
-  constructor(private formBuilder: FormBuilder, private inventoryService: InventoryService, private el: ElementRef,private _location: Location) { }
+  constructor(private formBuilder: FormBuilder, private inventoryService: InventoryService, private el: ElementRef, private _location: Location) { }
   @HostListener('keypress', ['$event']) onKeyPress(event) {
     return new RegExp(this.regexStr).test(event.key);
   }
@@ -104,8 +105,8 @@ export class RoomTypeViewComponent implements OnInit {
 
 
   searchRoomType(SearchValue) {
-    
-    var value=SearchValue.trim();
+
+    var value = SearchValue.trim();
 
     if (value.length >= 3) {
       this.inventoryService
@@ -115,9 +116,8 @@ export class RoomTypeViewComponent implements OnInit {
           this.showHide1 = false;
         });
     } else if (value.length == 0) {
-      if((value.length == 0) &&(SearchValue.length == 0) )
-      {
-     this.loading = true;
+      if ((value.length == 0) && (SearchValue.length == 0)) {
+        this.loading = true;
       }
       this.inventoryService
         .getRoomTypeList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
@@ -143,22 +143,26 @@ export class RoomTypeViewComponent implements OnInit {
   deleteRoomType() {
     this.inventoryService
       .DeleteRoomType(this.delete_RoomTypeKey, this.employeekey, this.OrganizationID).subscribe(() => {
-        alert("Room Type deleted successfully");
-        this.loading=true;
-        this.inventoryService
-          .getRoomTypeList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
-          .subscribe((data: Inventory[]) => {
-            this.roomTypes = data;
-            this.loading = false;
-            if (this.roomTypes[0].totalItems > this.itemsPerPage) {
-              this.showHide2 = true;
-              this.showHide1 = false;
-            }
-            else if (this.roomTypes[0].totalItems <= this.itemsPerPage) {
-              this.showHide2 = false;
-              this.showHide1 = false;
-            }
-          });
+        // alert("");
+        this.message = "Room Type deleted successfully";
+        setTimeout(() => {
+          this.loading = true;
+          this.inventoryService
+            .getRoomTypeList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
+            .subscribe((data: Inventory[]) => {
+              this.roomTypes = data;
+              this.loading = false;
+              if (this.roomTypes[0].totalItems > this.itemsPerPage) {
+                this.showHide2 = true;
+                this.showHide1 = false;
+              }
+              else if (this.roomTypes[0].totalItems <= this.itemsPerPage) {
+                this.showHide2 = false;
+                this.showHide1 = false;
+              }
+            });
+        }, 4000);
+
       });
   }
 
@@ -191,7 +195,7 @@ export class RoomTypeViewComponent implements OnInit {
       SearchRoomType: ['', Validators.required]
     });
   }
-  goBack(){
+  goBack() {
     this._location.back();
   }
 

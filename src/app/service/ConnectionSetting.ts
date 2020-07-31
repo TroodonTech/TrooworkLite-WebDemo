@@ -9,7 +9,7 @@ export const ConectionSettings = {
   // Url: 'http://trooworkweb.azurewebsites.net/api'
 
   // demotroowork lite angular6
-  // AbsUrl: 'http://troowork-lite-dev.azurewebsites.net',
-  // Url: 'http://troowork-lite-dev.azurewebsites.net/api'
+  AbsUrl: 'http://troowork-lite-dev.azurewebsites.net',
+  Url: 'http://troowork-lite-dev.azurewebsites.net/api'
 
 };

@@ -22,6 +22,7 @@ export class ReviewReportComponent implements OnInit {
   loading: boolean;// loading
   fromdate;
   todate;
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -133,7 +134,8 @@ export class ReviewReportComponent implements OnInit {
 
     if (todate && fromdate > todate) {
       todate = null;
-      alert("Please check your Start Date!");
+      // alert("");
+      this.message = "Please check your Start Date!";
       return;
     }
     this.loading = true;

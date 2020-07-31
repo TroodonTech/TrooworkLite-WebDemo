@@ -210,8 +210,8 @@
 <div style="padding-left: 2rem;padding-top:0rem !important; padding-bottom:0rem !important;">
   <!-- <div *ngIf="isemployeecalendar==1">
     <div class="row bg-info col-md-12"> -->
-      <!-- style="width: 121%;max-width: 200%;padding-left: 2rem !important;padding-right: 14rem !important;" -->
-      <!-- <h3 class="text-gray-dark col-md-12" style="margin-top: 1.5rem;margin-bottom: 1.5rem; color: #00cc67;">Weekly
+  <!-- style="width: 121%;max-width: 200%;padding-left: 2rem !important;padding-right: 14rem !important;" -->
+  <!-- <h3 class="text-gray-dark col-md-12" style="margin-top: 1.5rem;margin-bottom: 1.5rem; color: #00cc67;">Weekly
         Schedule</h3>
       <table class="table table-hover table-responsive table-bordered table"
         style="display: inline-table;width: 121%;max-width: 200%;">
@@ -515,7 +515,7 @@
         </tbody>
       </table> -->
 
-      <!-- <div class="col-md-6">
+  <!-- <div class="col-md-6">
         <div class="form-group">
           <label>Exceptions</label><br>
           <select name="sch_exception" style="background-color: #d4f4ff;width: 75% !important"
@@ -527,7 +527,7 @@
           </select>
         </div>
       </div> -->
-      <!-- <div class="col-md-6">
+  <!-- <div class="col-md-6">
         <div class="form-group">
           <label>Weekend</label><br>
           <select name="sch_exception_weekend" [(ngModel)]="idmaster_exception_weekend" [value]="value"
@@ -539,7 +539,7 @@
           </select>
         </div>
       </div> -->
-      <!-- <div class="col-md-6">
+  <!-- <div class="col-md-6">
         <div class="form-group">
           <label>Weekend Date</label><br>
           <ng-datepicker [options]="options" position="top-right" [(ngModel)]="exceptionstartdate"></ng-datepicker>
@@ -551,8 +551,32 @@
 
   <div class="row col-md-12">
     <!-- <div> -->
-    <button type="button" style="margin-left: 42%;" class="btn btn-success" (click)="createEmployee();"><b>CREATE
+    <button type="button" style="margin-left: 42%;" class="btn btn-success"
+      (click)="basicModal.show();createEmployee();"><b>CREATE
         EMPLOYEE</b></button>
     <!-- </div> -->
   </div>
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide();clear() " mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

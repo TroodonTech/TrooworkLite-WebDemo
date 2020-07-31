@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 export class DepartmentEditComponent implements OnInit {
   deptKey$: Object;
   dept: Array<any>;
-
+  message;
 
   role: String;
   name: String;
@@ -42,17 +42,22 @@ export class DepartmentEditComponent implements OnInit {
   updateDepartment(DepartmentName) {
 
     if (!(DepartmentName) || !(DepartmentName.trim())) {
-      alert("Please provide a Department Name");
+      // alert("Please provide a Department Name");
+      this.message = "Please provide a Department Name";
     } else {
       DepartmentName = DepartmentName.trim();
       this.inventoryService.checkForNewDepartment(DepartmentName, this.employeekey, this.OrganizationID).subscribe((data: Array<any>) => {
         if (data.length > 0) {
-          alert("Department already present");
+          // alert("Department already present");
+          this.message = "Department already present";
         }
         else {
           this.inventoryService.UpdateDepartment(DepartmentName, this.deptKey$, this.employeekey, this.OrganizationID).subscribe(res => {
-            alert("Department updated successfully");
-            this._location.back();
+            // alert("Department updated successfully");
+            this.message = "Department updated successfully";
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
         }
       });
@@ -77,5 +82,8 @@ export class DepartmentEditComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }

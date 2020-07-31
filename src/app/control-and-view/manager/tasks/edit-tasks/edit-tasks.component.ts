@@ -18,7 +18,7 @@ export class EditTasksComponent implements OnInit {
   OrganizationID: Number;
   delete_curwo;
   loading;
-
+  message;
   //for token decoding
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -374,23 +374,31 @@ export class EditTasksComponent implements OnInit {
     this.taskServ
       .deleteCurrent_task(this.deleteWO)
       .subscribe((data: any[]) => {
-        alert("Task deleted successfully");
-        this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+        // alert("Task deleted successfully");
+        this.message = "Task deleted successfully";
+        setTimeout(() => {
+          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+        }, 4000);
+
       });
   }
   //function for updating workorder
 
   UpdateWO() {
     if (!this.WorkorderNotes) {
-      alert("Please enter task notes");
+      // alert("Please enter task notes");
+      this.message = "Please enter task notes"
     } else if (!this.WorkorderNotes.trim()) {
-      alert("Please enter task notes");
+      // alert("Please enter task notes");
+      this.message = "Please enter task notes";
     } else if (!this.TaskName) {
-      alert("Please enter a task name");
+      // alert("Please enter a task name");
+      this.message = "Please enter a task name";
     }
 
     else if (!(this.timeValue)) {
-      alert("Please provide time!");
+      // alert("Please provide time!");
+      this.message = "Please provide time!";
     }
     else {
       this.intervaltype = '0'; // char(1),/*d for day, w for week, m for month*/
@@ -556,7 +564,7 @@ export class EditTasksComponent implements OnInit {
       this.workTime = new Date().getHours() + ':' + new Date().getMinutes();
     }
     if (this.keepActive == true) {
-    this.keep_active = 1;
+      this.keep_active = 1;
     }
     else {
       this.keep_active = 0;
@@ -603,8 +611,11 @@ export class EditTasksComponent implements OnInit {
       this.taskServ//service for deleting current workorder after updating
         .deleteCurrent_task(this.deleteWO)
         .subscribe((data: any[]) => {
-          alert("Task updated successfully");
-          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+          // alert("Task updated successfully");
+          this.message = "Task updated successfully";
+          setTimeout(() => {
+            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+          }, 4000);
         });
     });
   }
@@ -625,4 +636,7 @@ export class EditTasksComponent implements OnInit {
     this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
   }
 
+  clear(){
+    this.message="";
+  }
 }

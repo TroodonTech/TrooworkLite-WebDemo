@@ -80,7 +80,7 @@ export class SupeadminChangePasswordComponent implements OnInit {
           if (this.userMail == null) {
             alert("Password Changed Successfully! Mail not send , Mail-Id not found !");
           } else {
-            var message = 'Your Username is ' + this.username + ' and ' + 'Your Password is ' + this.newPassword + "                https://troowork.azurewebsites.net";
+            var message = 'Your Username is ' + this.username + ' and ' + 'Your Password is ' + this.newPassword + "                http://troowork-lite-dev.azurewebsites.net/#/";
             console.log(message);
             const obj = {
               from: this.managerMail,

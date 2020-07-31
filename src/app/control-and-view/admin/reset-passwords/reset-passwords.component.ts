@@ -67,7 +67,7 @@ export class ResetPasswordsComponent implements OnInit {
         if (this.userMail == null) {
           alert("Password Changed Successfully! Mail not send , Mail-Id not found !");
         } else {
-          var message = 'Your Username is ' + username + ' and ' + 'Your Password is ' + password + "                https://troowork.azurewebsites.net";
+          var message = 'Your Username is ' + username + ' and ' + 'Your Password is ' + password + "                http://troowork-lite-dev.azurewebsites.net/#/";
           console.log(message);
           const obj = {
             from: this.managerMail,

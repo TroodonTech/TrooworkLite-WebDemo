@@ -10,7 +10,7 @@
       <h3 style="text-align: right"></h3>
       <div class="form-group">
         <label>Building*</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FacilityKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FacilityKey"
           (change)="getFloorDisp($event.target.value);viewWO_Filter();" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of facilitylist" [value]="b.FacilityKey">
@@ -20,7 +20,7 @@
       </div>
       <div class="form-group">
         <label>Floor*</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FloorKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FloorKey"
           [disabled]="!FacilityKey" (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);viewWO_Filter();"
           required>
           <option value="">--Select--</option>
@@ -31,7 +31,7 @@
       </div>
       <div class="form-group">
         <label>Zone</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="ZoneKey"
           [disabled]="!FloorKey" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);viewWO_Filter();"
           required>
           <option value="">--Select--</option>
@@ -42,7 +42,7 @@
       </div>
       <div class="form-group">
         <label>Room Type</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomTypeKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomTypeKey"
           [disabled]="!FloorKey" (change)="getRoom($event.target.value,ZoneKey,FacilityKey,FloorKey);viewWO_Filter();"
           required>
           <option value="">--Select--</option>
@@ -55,7 +55,7 @@
     <div class="col-md-6" style="margin-top: 0.7rem">
       <div class="form-group">
         <label>Room</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomKey"
           [disabled]="!FloorKey" (change)="viewWO_Filter();" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of RoomList" [value]="b.RoomKey">
@@ -65,7 +65,7 @@
       </div>
       <div class="form-group">
         <label>Employee*</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="EmployeeKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="EmployeeKey"
           (change)="viewWO_Filter();" required>
           <option value="">--Select--</option>
           <option *ngFor="let e of EmployeeOption" [value]="e.EmployeeKey">
@@ -85,8 +85,8 @@
       </div> -->
       <div class="form-group">
         <label>Schedule Name</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="BatchScheduleNameKey"
-          (change)="viewWO_Filter();" required>
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate"
+          [(ngModel)]="BatchScheduleNameKey" (change)="viewWO_Filter();" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of scheduleList" [value]="b.BatchScheduleNameKey">
             {{b.ScheduleName}}
@@ -151,6 +151,7 @@
       </tbody>
     </table>
   </div>
+
   <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -173,6 +174,30 @@
       </div>
     </div>
   </div>
+
+
+  <div mdbModal #basicModal1="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModal1Label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal1.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal1.hide();clear()" mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <button class="btn btn-success" style="float:left" (click)="previousPage()" *ngIf="showHide1">&#60;&#60;
     Previous</button>
   <button class="btn btn-success" (click)="nextPage()" style="float:right" *ngIf="showHide2">Next >></button>

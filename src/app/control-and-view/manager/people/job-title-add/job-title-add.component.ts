@@ -14,6 +14,7 @@ export class JobTitleAddComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
+  message;
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -37,45 +38,53 @@ export class JobTitleAddComponent implements OnInit {
 
   addNewJobtitle(JobtitleName, JobTitleDescription) {
     if (!JobtitleName) {
-      alert('Job title is not provided !');
+      // alert('');
+      this.message = "Job title is not provided !";
       return;
     }
     if (!JobTitleDescription) {
-      alert('Job title description is not provided !');
+      // alert('');
+      this.message = "Job title description is not provided !";
       return;
     }
     if (JobtitleName && !JobtitleName.trim()) {
-      alert('Job title is not provided !');
+      // alert('');
+      this.message = "Job title is not provided !";
       return;
     }
     if (JobTitleDescription && !JobTitleDescription.trim()) {
-      alert('Job Title Description is not provided !');
+      // alert('');
+      this.message = "Job Title Description is not provided !";
       return;
     }
-    if(JobtitleName){
-      JobtitleName=JobtitleName.trim()
+    if (JobtitleName) {
+      JobtitleName = JobtitleName.trim()
     }
-    if(JobTitleDescription){
-      JobTitleDescription=JobTitleDescription.trim()
+    if (JobTitleDescription) {
+      JobTitleDescription = JobTitleDescription.trim()
     }
 
     this.peopleServiceService.checkfor_jobtitle(JobtitleName, this.employeekey, this.OrganizationID)
       .subscribe((data: any[]) => {
         if (data[0].count != 0) {
-          alert('Job title already exists !');
+          // alert('');
+          this.message = "Job title already exists !";
         }
         else {
           this.peopleServiceService.addJobtitle(JobtitleName, JobTitleDescription, this.employeekey, this.OrganizationID)
             .subscribe((data: any[]) => {
-              alert('Job title successfully created !');
-              // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['JobTitileView'] } }]);
-              if (this.role == 'Manager') {
-                this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['JobTitileView'] } }]);
-              }
-              // else  if(this.role=='Employee' && this.IsSupervisor==1){
-              else if (this.role == 'Supervisor') {
-                this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['JobTitileView'] } }]);
-              }
+              // alert('');
+              this.message = "Job title successfully created !";
+              setTimeout(() => {
+                if (this.role == 'Manager') {
+                  this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['JobTitileView'] } }]);
+                }
+                // else  if(this.role=='Employee' && this.IsSupervisor==1){
+                else if (this.role == 'Supervisor') {
+                  this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['JobTitileView'] } }]);
+                }
+              }, 4000);
+
             });
         }
       });
@@ -101,5 +110,8 @@ export class JobTitleAddComponent implements OnInit {
     else if (this.role == 'Supervisor') {
       this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['JobTitileView'] } }]);
     }
+  }
+  clear(){
+    this.message="";
   }
 }

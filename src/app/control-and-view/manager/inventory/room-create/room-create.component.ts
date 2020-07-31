@@ -31,7 +31,7 @@ export class RoomCreateComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
-
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -86,62 +86,76 @@ export class RoomCreateComponent implements OnInit {
 
     if (!FacilityKey) {
       FacilityKey = null;
-      alert("Building name is not provided !");
+      // alert("Building name is not provided !");
+      this.message = "Building name is not provided !";
     } else if (!FloorKey) {
       FloorKey = null;
-      alert("Floor name is not provided!");
+      // alert("Floor name is not provided!");
+      this.message = "Floor name is not provided!";
     } else if (!FloorTypeKey) {
       FloorTypeKey = null;
-      alert("FloorType is not provided !");
+      // alert("FloorType is not provided !");
+      this.message = "FloorType is not provided !";
     } else if (!ZoneKey) {
       ZoneKey = null;
-      alert("Zone name is not provided !");
+      // alert("Zone name is not provided !");
+      this.message = "Zone name is not provided !";
     } else if (!RoomTypeKey) {
       RoomTypeKey = null;
-      alert("RoomType is not provided !");
+      // alert("RoomType is not provided !");
+      this.message = "RoomType is not provided !";
     } else if (!RoomName || !(RoomName.trim())) {
       RoomName = null;
-      alert("Room name is not provided !");
-    } else if (!SquareFoot ) {
+      // alert("Room name is not provided !");
+      this.message = "Room name is not provided !";
+    } else if (!SquareFoot) {
       SquareFoot = null;
-      alert("SquareFoot is not provided !");
-    } else if (!Barcode ) {
+      // alert("SquareFoot is not provided !");
+      this.message = "SquareFoot is not provided !";
+    } else if (!Barcode) {
       Barcode = null;
-      alert("Barcode is not provided !");
+      // alert("Barcode is not provided !");
+      this.message = "Barcode is not provided !";
     } else {
       if (RoomName) {
         RoomName = RoomName.trim();
       }
-     
+
       this.inventoryService
         .checkNewRoom(FacilityKey, FloorKey, FloorTypeKey, ZoneKey, RoomTypeKey, RoomName, this.employeekey, this.OrganizationID)
         .subscribe((data: Inventory[]) => {
           if (data.length > 0) {
-            alert("Room already present");
+            // alert("Room already present");
+            this.message = "Room already present";
           } else {
             this.inventoryService
               .checkRoomBarcode(Barcode, this.employeekey, this.OrganizationID)
               .subscribe((data: Inventory[]) => {
                 this.unqBar = data;
                 if (this.unqBar.Barcode != 0) {
-                  alert("Barcode already exists! Please enter a unique barcode.");
+                  // alert("Barcode already exists! Please enter a unique barcode.");
+                  this.message = "Barcode already exists! Please enter a unique barcode.";
                 } else {
                   this.inventoryService
                     .checkRoomName(FacilityKey, FloorKey, RoomName, this.OrganizationID)
                     .subscribe((data: Inventory[]) => {
                       if (data[0].count > 0) {
-                        alert("Room Name already exists !");
+                        // alert("Room Name already exists !");
+                        this.message = "Room Name already exists !";
                       } else {
                         this.inventoryService.addRoom(FacilityKey, FloorKey, FloorTypeKey, ZoneKey, RoomTypeKey, RoomName, SquareFoot, Barcode, this.employeekey, this.OrganizationID)
                           .subscribe(res => {
-                            alert("Room created successfully");
-                            this.inventoryService
-                              .getBarcodeForRoom(this.employeekey, this.OrganizationID)
-                              .subscribe((data: Array<any>) => {
-                                this.Barcode = data[0];
-                                this.temp_barcode = data[0];
-                                this.RoomName = null;
-                              });
+                            // alert("Room created successfully");
+                            this.message = "Room created successfully";
+                            setTimeout(() => {
+                              this.inventoryService
+                                .getBarcodeForRoom(this.employeekey, this.OrganizationID)
+                                .subscribe((data: Array<any>) => {
+                                  this.Barcode = data[0];
+                                  this.temp_barcode = data[0];
+                                  this.RoomName = null;
+                                });
+                            }, 4000);
 
 
                           });
@@ -208,5 +222,8 @@ export class RoomCreateComponent implements OnInit {
   }
   zoneChange() {
     this.RoomTypeKey = '';
+  }
+  clear() {
+    this.message = "";
   }
 }

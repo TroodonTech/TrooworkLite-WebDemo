@@ -19,6 +19,7 @@ export class ViewTaskServiceRequestComponent implements OnInit {
   IsSupervisor: Number;
   OrganizationID: Number;
   EmployeeKey;
+  message;
 
   fromdate;
   todate;
@@ -125,7 +126,8 @@ export class ViewTaskServiceRequestComponent implements OnInit {
 
     if ((todate) && (this.convert_DT(fromdate) > this.convert_DT(todate))) {
       todate = null;
-      alert("Please check your Start Date!");
+      // alert("");
+      this.message = "Please check your Start Date!";
       return;
     }
     else {
@@ -164,12 +166,14 @@ export class ViewTaskServiceRequestComponent implements OnInit {
     }
 
     if (!this.taskname) {
-      alert("Task Name not provided !");
+      // alert("");
+      this.message = "Task Name not provided !";
       return;
     }
 
     if (!this.taskNotes) {
-      alert("Task Notes not provided !");
+      // alert("");
+      this.message = "Task Notes not provided !";
       return;
     }
 
@@ -188,11 +192,15 @@ export class ViewTaskServiceRequestComponent implements OnInit {
       .subscribe((data: any[]) => {
         this.requestdetails = data;
         if (data.length > 0) {
-          alert("WorkOrder created successfully");
-          this.viewserviceRequest(this.fromdate, this.todate);
+          // alert("");
+          this.message = "Task created successfully";
+          setTimeout(() => {
+            this.viewserviceRequest(this.fromdate, this.todate);
+          }, 4000);
+
         }
       });
 
   }
-
+  clear() { this.message = ""; }
 }

@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class DepartmentCreateComponent implements OnInit {
   dept: Inventory[];
   createbuilding: FormGroup;
-
+message;
   role: String;
   name: String;
   employeekey: Number;
@@ -40,7 +40,8 @@ export class DepartmentCreateComponent implements OnInit {
 
   addDepartment(DepartmentName) {
     if (!(DepartmentName) || !(DepartmentName.trim())) {
-      alert("Please provide a Department Name");
+      // alert("Please provide a Department Name");
+      this.message = "Please provide a Department Name";
       return;
     }
     else {
@@ -48,12 +49,16 @@ export class DepartmentCreateComponent implements OnInit {
       this.inventoryServ.checkForNewDepartment(DepartmentName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
         this.dept = data;
         if (data.length > 0) {
-          alert("Department already present");
+          // alert("Department already present");
+          this.message = "Department already present";
         }
         else if (data.length == 0) {
           this.inventoryServ.addDepartment(DepartmentName, this.employeekey, this.OrganizationID).subscribe(res => {
-            alert("Department created successfully");
-            this._location.back();
+            // alert("Department created successfully");
+            this.message = "Department created successfully";
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
         }
       });
@@ -73,6 +78,9 @@ export class DepartmentCreateComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }
 

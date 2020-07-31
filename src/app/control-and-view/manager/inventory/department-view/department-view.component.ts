@@ -17,12 +17,13 @@ export class DepartmentViewComponent implements OnInit {
   departments: Inventory[];
   delete_DeptKey: number;
   searchform: FormGroup;
+  message;
   role: String;
   name: String;
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
-  loading:boolean;
+  loading: boolean;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -42,13 +43,13 @@ export class DepartmentViewComponent implements OnInit {
 
   //validation starts ..... @rodney
   previousPage() {
-    this.loading=true;
+    this.loading = true;
     this.pageNo = +this.pageNo - 1;
     this.inventoryService
       .getDepartmentList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
       .subscribe((data: Inventory[]) => {
         this.departments = data;
-        this.loading=false;
+        this.loading = false;
         if (this.pageNo == 1) {
           this.showHide2 = true;
           this.showHide1 = false;
@@ -60,13 +61,13 @@ export class DepartmentViewComponent implements OnInit {
   }
 
   nextPage() {
-    this.loading=true;
+    this.loading = true;
     this.pageNo = +this.pageNo + 1;
     this.inventoryService
       .getDepartmentList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
       .subscribe((data: Inventory[]) => {
         this.departments = data;
-        this.loading=false;
+        this.loading = false;
         this.pagination = +this.departments[0].totalItems / (+this.pageNo * (+this.itemsPerPage));
         if (this.pagination > 1) {
           this.showHide2 = true;
@@ -102,7 +103,7 @@ export class DepartmentViewComponent implements OnInit {
 
   searchDepartment(SearchValue) {
 
-    var value=SearchValue.trim();
+    var value = SearchValue.trim();
 
     if (value.length >= 3) {
       this.inventoryService
@@ -112,15 +113,14 @@ export class DepartmentViewComponent implements OnInit {
           this.showHide1 = false;
         });
     } else if (value.length == 0) {
-      if((value.length == 0) &&(SearchValue.length == 0) )
-      {
-     this.loading = true;
+      if ((value.length == 0) && (SearchValue.length == 0)) {
+        this.loading = true;
       }
       this.inventoryService
         .getDepartmentList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
         .subscribe((data: Inventory[]) => {
           this.departments = data;
-          this.loading=false;
+          this.loading = false;
           if (this.departments[0].totalItems > this.itemsPerPage) {
             this.showHide2 = true;
             this.showHide1 = false;
@@ -140,22 +140,26 @@ export class DepartmentViewComponent implements OnInit {
   deleteDepartment() {
     this.inventoryService
       .DeleteDepartment(this.delete_DeptKey, this.OrganizationID).subscribe(() => {
-        alert("Department deleted successfully");
-        this.loading=true;
-        this.inventoryService
-          .getDepartmentList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
-          .subscribe((data: Inventory[]) => {
-            this.departments = data;
-            this.loading=false;
-            if (this.departments[0].totalItems > this.itemsPerPage) {
-              this.showHide2 = true;
-              this.showHide1 = false;
-            }
-            else if (this.departments[0].totalItems <= this.itemsPerPage) {
-              this.showHide2 = false;
-              this.showHide1 = false;
-            }
-          });
+        // alert("Department deleted successfully");
+        this.message = "Department deleted successfully";
+        setTimeout(() => {
+          this.loading = true;
+          this.inventoryService
+            .getDepartmentList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
+            .subscribe((data: Inventory[]) => {
+              this.departments = data;
+              this.loading = false;
+              if (this.departments[0].totalItems > this.itemsPerPage) {
+                this.showHide2 = true;
+                this.showHide1 = false;
+              }
+              else if (this.departments[0].totalItems <= this.itemsPerPage) {
+                this.showHide2 = false;
+                this.showHide1 = false;
+              }
+            });
+        }, 4000);
+
       });
   }
 
@@ -169,12 +173,12 @@ export class DepartmentViewComponent implements OnInit {
     this.name = profile.username;
     this.employeekey = profile.employeekey;
     this.OrganizationID = profile.OrganizationID;
-    this.loading=true;
+    this.loading = true;
     this.inventoryService
       .getDepartmentList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
       .subscribe((data: Inventory[]) => {
         this.departments = data;
-        this.loading=false;
+        this.loading = false;
         if (this.departments[0].totalItems > this.itemsPerPage) {
           this.showHide2 = true;
           this.showHide1 = false;

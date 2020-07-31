@@ -23,7 +23,7 @@ export class CreatebuildingComponent implements OnInit {
   OrganizationID: Number;
 
   BuildingName;
-
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -48,21 +48,26 @@ export class CreatebuildingComponent implements OnInit {
   }
   addBuilding(newbuildingName) {
     if (!(newbuildingName) || !(newbuildingName.trim())) {
-      alert("Please Enter Building Name!");
+      // alert("Please Enter Building Name!");
+      this.message = "Please Enter Building Name!";
       return;
     }
 
     newbuildingName = newbuildingName.trim();
     this.CreatebuildingService.checkNewBuilding(this.BuildingName, 'facility', this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
       if (data.length > 0) {
-        alert("Building name already present !");
+        // alert("Building name already present !");
+        this.message = "Building name already present !";
         return;
       }
       else {
         this.CreatebuildingService.createBuildings(newbuildingName, this.employeekey, this.OrganizationID)
           .subscribe((data: Inventory[]) => {
-            alert("Building created successfully");
-            this._location.back();
+            // alert("");
+            this.message = "Building created successfully !";
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
       }
     });
@@ -83,5 +88,8 @@ export class CreatebuildingComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }

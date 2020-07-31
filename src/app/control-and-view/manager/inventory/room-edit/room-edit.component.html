@@ -1,4 +1,5 @@
-<div class="py-5" style="overflow-x: hidden; padding-left: 9rem; padding-top:0rem !important; padding-bottom:0rem !important;margin-left: 2rem">
+<div class="py-5"
+  style="overflow-x: hidden; padding-left: 9rem; padding-top:0rem !important; padding-bottom:0rem !important;margin-left: 2rem">
   <br>
   <div class="row col-md-12 ">
     <h4 style="margin-left: 42%;">UPDATE ROOM</h4>
@@ -9,8 +10,8 @@
     <div class="col-md-6">
       <div class="form-group">
         <label>Building*</label>
-        <select style="background-color: #d4f4ff;" (change)="selectFloorfromBuildings($event.target.value)" class="form-control col-sm-9 col-md-9 col-lg-9"
-          [(ngModel)]="facKey">
+        <select style="background-color: #d4f4ff;" (change)="selectFloorfromBuildings($event.target.value)"
+          class="form-control col-sm-9 col-md-9 col-lg-9 notranslate" [(ngModel)]="facKey">
           <option value="">--Select--</option>
           <option *ngFor="let f of building" [value]="f.FacilityKey">
             {{f.FacilityText}}
@@ -19,8 +20,8 @@
       </div>
       <div class="form-group">
         <label>Floor Type Name*</label>
-        <select style="background-color: #d4f4ff;" class="form-control col-sm-9 col-md-9 col-lg-9" [(ngModel)]="floorTypeKey"
-          (change)="setFloorType($event.target.value)">
+        <select style="background-color: #d4f4ff;" class="form-control col-sm-9 col-md-9 col-lg-9 notranslate"
+          [(ngModel)]="floorTypeKey" (change)="setFloorType($event.target.value)">
           <option value="">--Select--</option>
           <option *ngFor="let f of floorType" [value]="f.FloorTypeKey">
             {{f.FloorTypeName}}
@@ -31,8 +32,8 @@
     <div class="col-md-6">
       <div class="form-group">
         <label>Floor Name* </label>
-        <select style="background-color: #d4f4ff;" (change)="selectZonefromFloor($event.target.value)" class="form-control col-sm-9 col-md-9 col-lg-9"
-          [(ngModel)]="floorKey">
+        <select style="background-color: #d4f4ff;" (change)="selectZonefromFloor($event.target.value)"
+          class="notranslate form-control col-sm-9 col-md-9 col-lg-9" [(ngModel)]="floorKey">
           <option value="">--Select--</option>
           <option *ngFor="let f of floor" [value]="f.FloorKey">
             {{f.FloorName}}
@@ -41,8 +42,8 @@
       </div>
       <div class="form-group">
         <label>Zone Name*</label>
-        <select style="background-color: #d4f4ff;" class="form-control col-sm-9 col-md-9 col-lg-9" (change)='zoneChange()' [(ngModel)]="zoneKey"
-          (change)="setZoneName($event.target.value)">
+        <select style="background-color: #d4f4ff;" class="form-control col-sm-9 col-md-9 col-lg-9 notranslate"
+          (change)='zoneChange()' [(ngModel)]="zoneKey" (change)="setZoneName($event.target.value)">
           <option value="">--Select--</option>
           <option *ngFor="let f of zone" [value]="f.ZoneKey">
             {{f.ZoneName}}
@@ -55,8 +56,8 @@
     <div class="col-md-6">
       <div class="form-group">
         <label>Room Type Name* </label>
-        <select style="background-color: #d4f4ff;" class="form-control col-sm-9 col-md-9 col-lg-9" [(ngModel)]="roomTypeKey"
-          (change)="setRoomType($event.target.value)">
+        <select style="background-color: #d4f4ff;" class="form-control col-sm-9 col-md-9 col-lg-9 notranslate"
+          [(ngModel)]="roomTypeKey" (change)="setRoomType($event.target.value)">
           <option value="">--Select--</option>
           <option *ngFor="let f of roomType" [value]="f.RoomTypeKey">
             {{f.RoomTypeName}}
@@ -65,8 +66,8 @@
       </div>
       <div class="form-group">
         <label>Room Name*</label>
-        <input type="text" maxlength="40" style="background-color: #D4F4FF !important;" class="form-control col-sm-9 col-md-9 col-lg-9"
-          [(ngModel)]="room.RoomName">
+        <input type="text" maxlength="40" style="background-color: #D4F4FF !important;"
+          class="form-control col-sm-9 col-md-9 col-lg-9" [(ngModel)]="room.RoomName">
       </div>
     </div>
     <div class="col-md-6">
@@ -77,8 +78,8 @@
       </div>
       <div class="form-group">
         <label>Barcode* </label>
-        <input type="text" readonly style="background-color: #D4F4FF !important;" class="form-control col-sm-9 col-md-9 col-lg-9"
-          [(ngModel)]="room.Barcode">
+        <input type="text" readonly style="background-color: #D4F4FF !important;"
+          class="form-control col-sm-9 col-md-9 col-lg-9" [(ngModel)]="room.Barcode">
       </div>
 
     </div>
@@ -86,7 +87,8 @@
   <br>
   <div class="row col-md-12" style="margin-left: 35%">
     <div>
-      <a style="color:white !important" class="btn btn-success" (click)="updateRoom(room.RoomName,room.Area,room.Barcode)"><b>Save
+      <a style="color:white !important" class="btn btn-success"
+        (click)="basicModal.show();updateRoom(room.RoomName,room.Area,room.Barcode)"><b>Save
           Room
         </b>
       </a>
@@ -95,4 +97,28 @@
       </a>
     </div>
   </div>
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide();clear()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" *ngIf="message">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide();clear(); " mdbWavesEffect>OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

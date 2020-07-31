@@ -38,6 +38,7 @@ export class CreateEmployeeComponent implements OnInit {
   DepartmentKey;
   temp_res;
 
+  message;
   minDate;
   maxDate;
   role: String;
@@ -204,17 +205,19 @@ export class CreateEmployeeComponent implements OnInit {
     var IsSupervisor;
     // managerkey = this.employeekey;
     if (!(this.EmployeeNumber) || !this.EmployeeNumber.trim()) {
-      alert("Employee Number Not provided !");
+      // alert("");
+      this.message = "Employee Number Not provided !";
       return;
     }
     if (!(this.UserRoleTypeKey)) {
-      alert("User Role Type Not provided !");
+      // alert("");
+      this.message = "User Role Type Not provided !";
       return;
     }
 
     if (this.UserRoleTypeKey == 3) {
       managerkey = this.employeekey;
-      this.SupervisorKey=this.employeekey;
+      this.SupervisorKey = this.employeekey;
     } else if (this.UserRoleTypeKey == 5) {
       managerkey = this.employeekey;
     }
@@ -230,30 +233,36 @@ export class CreateEmployeeComponent implements OnInit {
     }
 
     if (!(this.FirstName) || !this.FirstName.trim()) {
-      alert("First Name is not provided !");
+      // alert("");
+      this.message = "First Name is not provided !";
       return;
     }
     if (!(this.LastName) || !this.LastName.trim()) {
-      alert("Last Name is not provided !");
+      // alert("");
+      this.message = "Last Name is not provided !";
       return;
     }
     if (!(this.Gender)) {
       this.Gender = null;
     }
     if (!(this.PrimaryPhone) || !this.PrimaryPhone.trim()) {
-      alert("Primary Phone is not provided !");
+      // alert("");
+      this.message = "Primary Phone is not provided !";
       return;
     }
     if (!(this.HireDate)) {
-      alert("Hire Date is not provided !");
+      // alert("");
+      this.message = "Hire Date is not provided !";
       return;
     }
     if (!(this.JobTitleKey)) {
-      alert("Job Title is not provided !");
+      // alert("");
+      this.message = "Job Title is not provided !";
       return;
     }
     if (!(this.DepartmentKey)) {
-      alert("Department is not provided !");
+      // alert("");
+      this.message = "Department is not provided !";
       return;
     }
     var BD;
@@ -269,15 +278,18 @@ export class CreateEmployeeComponent implements OnInit {
     }
     var HD = this.convert_DT(this.HireDate);
     if (BD > currentDate) {
-      alert("Wrong Birth Date !");
+      // alert("");
+      this.message = "Wrong Birth Date !";
       return;
     }
     if (HD > currentDate) {
-      alert("Wrong Hire Date !");
+      // alert("");
+      this.message = "Wrong Hire Date !";
       return;
     }
     if (HD < BD) {
-      alert("Hire Date must be greater than birth date !");
+      // alert("");
+      this.message = "Hire Date must be greater than birth date !";
       return;
     }
     var str = "";
@@ -467,22 +479,27 @@ export class CreateEmployeeComponent implements OnInit {
     this.PeopleServiceService.checkEmpNumber(this.EmployeeNumber, this.employeekey, this.OrganizationID).subscribe((data: any[]) => {
       if (data[0].count == 0) {
         // this.PeopleServiceService.createEmployeebyManager(empschobj).subscribe((data22: any[]) => {
-        this.PeopleServiceService.createEmployeebyManager(this.EmployeeNumber, this.FirstName, this.LastName, this.MiddleName, BD, this.Gender, this.AddressLine1, this.City, this.AddressLine2, this.State, this.Country, this.PrimaryPhone, this.ZipCode, this.AlternatePhone, this.EmailID, HD, this.theCheckbox, this.JobTitleKey, this.SupervisorKey, this.DepartmentKey, this.employeekey, this.OrganizationID, managerkey,IsSupervisor).subscribe((data22: any[]) => {
+        this.PeopleServiceService.createEmployeebyManager(this.EmployeeNumber, this.FirstName, this.LastName, this.MiddleName, BD, this.Gender, this.AddressLine1, this.City, this.AddressLine2, this.State, this.Country, this.PrimaryPhone, this.ZipCode, this.AlternatePhone, this.EmailID, HD, this.theCheckbox, this.JobTitleKey, this.SupervisorKey, this.DepartmentKey, this.employeekey, this.OrganizationID, managerkey, IsSupervisor).subscribe((data22: any[]) => {
           this.temp_res = data22;
-          alert("Employee Created !");
-          var empKey = this.temp_res.EmployeeKey;
-          // this.router.navigate(['/Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey]);
-          // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey] } }]);
-          if (this.role == 'Manager') {
-            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey] } }]);
-          }
-          // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
-          else if (this.role == 'Supervisor') {
-            this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey] } }]);
-          }
+          // alert("");
+          this.message = "Employee Created !";
+          setTimeout(() => {
+            var empKey = this.temp_res.EmployeeKey;
+            // this.router.navigate(['/Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey]);
+            // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey] } }]);
+            if (this.role == 'Manager') {
+              this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey] } }]);
+            }
+            // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
+            else if (this.role == 'Supervisor') {
+              this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['Settingusernameandpswrdaftremplcreatebyman', empKey, str, this.UserRoleTypeKey] } }]);
+            }
+          }, 4000);
+
         });
       } else {
-        alert('Employee number already present!');
+        // alert('');
+        this.message = "Employee number already present!";
         return;
       }
     });
@@ -648,5 +665,8 @@ export class CreateEmployeeComponent implements OnInit {
     } else {
       this.marked = false;
     }
+  }
+  clear(){
+    this.message="";
   }
 }

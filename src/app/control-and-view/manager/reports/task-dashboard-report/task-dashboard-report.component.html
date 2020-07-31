@@ -38,7 +38,7 @@
       <h3 style="text-align: right"></h3>
       <div class="form-group" style="width: 85%;">
         <label>Employee</label>
-        <select [(ngModel)]="EmployeeKey" style="background-color: #d4f4ff;" class="form-control"
+        <select [(ngModel)]="EmployeeKey" style="background-color: #d4f4ff;" class="form-control notranslate"
           (change)="dashboardreportbyfilter()">
           <option value="">--Select--</option>
           <option *ngFor="let e of employeeoption" [value]="e.EmployeeKey">
@@ -64,7 +64,7 @@
       </div> -->
       <div class="form-group" style="width: 85%;">
         <label>Task Name</label>
-        <select style="background-color: #D4F4FF ;" class="form-control" [(ngModel)]="TaskID"
+        <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="TaskID"
           (change)="dashboardreportbyfilter()">
           <option value="">--Select--</option>
           <option *ngFor="let b of taskList" [value]="b.TaskID">
@@ -75,7 +75,7 @@
       <div class="form-group" style="width: 68%;">
         <label>To Date</label>
         <ng-datepicker [options]="options" position="top-right" [(ngModel)]="todate"
-          (ngModelChange)="dashboardreportbyfilter()"></ng-datepicker>
+          (ngModelChange)="basicModal.show();dashboardreportbyfilter()"></ng-datepicker>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [value]="date" [(ngModel)]="todate"
           (onSelection)="dashboardreportbyfilter()"></igx-datePicker> -->
       </div>
@@ -102,31 +102,21 @@
       style="border: none">
       <thead class="tableHead">
         <tr>
-          <th> Employee Name </th>
-          <th> Percentage Completed </th>
-          <!-- <th> WorkOrder Type</th> -->
+          <th>Employee Name</th>
+          <th>Percentage Completed</th>
           <th>Total Tasks</th>
-          <!-- <th>Cancelled WorkOrder</th> -->
-          <th> Quantity Left</th>
-          <th> Quantity Completed</th>
+          <th>Quantity Left</th>
+          <th>Quantity Completed</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let x of reporttable">
           <td class=" notranslate">{{x.EmployeeName}} </td>
           <td>{{((x.CompletedCount + x.CancelCount)/x.totalCount)*100|number:'1.0-0'}}% </td>
-          <!-- <td>{{x.TaskName}}</td> -->
           <td>{{x.totalCount}} </td>
-          <!-- <td>{{x.CancelCount}} </td> -->
           <td>
-            <!-- <a id="tooltip" (click)="viewWODetails(x.empkey,x.TaskID,x.EmployeeName,x.TaskName)"
-            style="color: red !important;"
+            <a (click)="viewTaskDetails(x.empkey,x.TaskID,x.EmployeeName,x.TaskName)" style="color: blue !important;"
               *ngIf="(x.totalCount-(x.CompletedCount + x.CancelCount))>0">
-              {{x.totalCount-(x.CompletedCount + x.CancelCount)}}
-              <span class="tooltiptext">Click to see WorkOrder </span>
-            </a> -->
-            <a (click)="viewTaskDetails(x.empkey,x.TaskID,x.EmployeeName,x.TaskName)"
-              style="color: blue !important;" *ngIf="(x.totalCount-(x.CompletedCount + x.CancelCount))>0">
               <abbr title="Click to see pending task details">
                 {{x.totalCount-(x.CompletedCount + x.CancelCount)}}
               </abbr>
@@ -155,4 +145,27 @@
 <div style="margin-left: 1.5rem;margin-right: 1.5rem;" class="row col-md-12"
   *ngIf="((reporttable?.length== 0)&&(!loading))">
   <span style="margin-left: 35rem;"><b>No Records Found</b></span>
+</div>
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" *ngIf="message">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide();clear()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        {{message}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+          (click)="basicModal.hide();clear()" mdbWavesEffect>OK</button>
+
+      </div>
+    </div>
+  </div>
 </div>

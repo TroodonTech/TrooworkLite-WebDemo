@@ -26,6 +26,7 @@ export class RoomTypeUpdateComponent implements OnInit {
   MetricTypeValue;
   roomtypeval;
   metricType1;
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -81,15 +82,18 @@ export class RoomTypeUpdateComponent implements OnInit {
 
     if (!this.metricType || this.metricType == "--Select--") {
       this.metricType = null;
-      alert("Select a metric type !");
+      // alert("");
+      this.message = "Select a metric type !";
     }
     else if (!RoomTypeName || !RoomTypeName.trim()) {
       RoomTypeName = null;
-      alert("RoomTypeName is not provided !");
+      // alert("");
+      this.message = "RoomTypeName is not provided !";
     }
     else if (this.metricType != 'Default' && !MetricTypeValue1.trim()) {
       MetricTypeValue1 = null;
-      alert("MetricTypeValue is not provided !");
+      // alert("");
+      this.message = "MetricTypeValue is not provided !";
     }
     // else if (MetricTypeValue1 && !MetricTypeValue1.trim()) {
     //   MetricTypeValue1 = null;
@@ -110,14 +114,19 @@ export class RoomTypeUpdateComponent implements OnInit {
       // if (this.roomtypeval != RoomTypeName) {
       this.inventoryService.CheckRoomType(RoomTypeName, 'roomtype', this.employeekey, this.OrganizationID).subscribe((data: any[]) => {
         if (data.length > 0) {
-          alert("Room Type already present !");
+          // alert("");
+          this.message = "Room Type already present !";
           return;
         }
         else {
           this.inventoryService.updateRoomType(this.rTypeKey$, this.metricTypeKey, this.metricType, RoomTypeName, MetricTypeValue1, this.employeekey, this.OrganizationID)
             .subscribe(res => {
-              alert("RoomType updated successfully");
-              this._location.back();
+              // alert("");
+              this.message = "RoomType updated successfully";
+
+              setTimeout(() => {
+                this._location.back();
+              }, 4000);
             });
         }
       });
@@ -165,5 +174,8 @@ export class RoomTypeUpdateComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+  clear() {
+    this.message = "";
   }
 }

@@ -24,6 +24,7 @@ export class EditEmployeedetailsComponent implements OnInit {
   HireDate: Date;
   delete_EmpKey: Number;
   employeedetailstable: People[];
+  message;
 
   role: String;
   name: String;
@@ -138,48 +139,58 @@ export class EditEmployeedetailsComponent implements OnInit {
     var superKey;
 
     if (!(this.editempdtails.EmployeeNumber) || !EmployeeNumber.trim()) {
-      alert("Employee Number is not provided !");
+      // alert("");
+      this.message = "Employee Number is not provided !";
       return;
     }
     if (!(this.editempdtails.UserRoleTypeKey)) {
-      alert("User Role Type is not provided !");
+      // alert("");
+      this.message = "User Role Type is not provided !";
       return;
     }
 
     if (!(FirstName) || !(FirstName.trim())) {
-      alert("First Name is not provided !");
+      // alert("");
+      this.message = "First Name is not provided !";
       return;
     }
     if (!(LastName) || !(LastName.trim())) {
-      alert("Last Name is not provided !");
+      // alert("");
+      this.message = "Last Name is not provided !";
       return;
     }
     if (!(this.editempdtails.Gender)) {
       Gender = null;
     }
     if (!(this.editempdtails.EmployeeStatusKey)) {
-      alert("Employee Status is not provided !");
+      // alert("");
+      this.message = "Employee Status is not provided !";
       return;
     }
     if (!(PrimaryPhone) || !(PrimaryPhone.trim())) {
-      alert("Primary Phone is not provided !");
+      // alert("");
+      this.message = "Primary Phone is not provided !";
       return;
     }
 
     if ((EmployeeStatusKey != 1) && !(this.remark)) {
-      alert("Remarks are not provided !");
+      // alert("");
+      this.message = "Remarks are not provided !";
       return;
     }
     if (!(this.HireDate)) {
-      alert("Hire Date is not provided !");
+      // alert("");
+      this.message = "Hire Date is not provided !";
       return;
     }
     if (!(this.editempdtails.JobTitleKey)) {
-      alert("Job Title is not provided !");
+      // alert("");
+      this.message = "Job Title is not provided !";
       return;
     }
     if (!(this.editempdtails.DepartmentKey)) {
-      alert("Department is not provided !");
+      // alert("");
+      this.message = "Department is not provided !";
       return;
     }
     var birthdt;
@@ -193,24 +204,28 @@ export class EditEmployeedetailsComponent implements OnInit {
     }
     var hiredt = this.convert_DT(this.HireDate);
     if (birthdt > currentDate) {
-      alert("Wrong Birth Date !");
+      // alert("");
+      this.message = "Wrong Birth Date !";
       return;
     }
     if (hiredt > currentDate) {
-      alert("Wrong Hire Date !");
+      // alert("");
+      this.message = "Wrong Hire Date !";
       return;
     }
     if (hiredt < birthdt) {
-      alert("Hire Date must be greater than birth date !");
+      // alert("");
+      this.message = "Hire Date must be greater than birth date !";
       return;
     }
 
     if (!(managerKey)) {
-      alert("Manager is not provided !");
+      // alert("");
+      this.message = "Manager is not provided !";
       return;
     }
-    if(!SupervisorKey && this.editempdtails.UserRoleTypeKey == 3){
-      SupervisorKey=this.employeekey;
+    if (!SupervisorKey && this.editempdtails.UserRoleTypeKey == 3) {
+      SupervisorKey = this.employeekey;
     }
     if (this.editempdtails.UserRoleTypeKey == 3 && !(managerKey)) {
       manKey = this.employeekey;
@@ -316,15 +331,16 @@ export class EditEmployeedetailsComponent implements OnInit {
     if (this.empNum == this.editempdtails.EmployeeNumber) {
       this.PeopleServiceService.UpdateEmployeeDetailsbyManager(this.employeekey, manKey, this.empk$, this.OrganizationID, EmployeeNumber, UserRoleTypeKey, FirstName, LastName, MiddleName, birthdt, Gender, AddressLine1, City, AddressLine2, State, Country, PrimaryPhone, ZipCode, AlternatePhone, EmailID, EmployeeStatusKey, hiredt, SupervisorKey, JobTitleKey, DepartmentKey, this.remark).subscribe((data: People[]) => {
         // start_sun_hour, start_sun_min, start_sun_format, start_mon_hour, start_mon_min, start_mon_format, start_tue_hour, start_tue_min, start_tue_format, start_wed_hour, start_wed_min, start_wed_format, start_thu_hour, start_thu_min, start_thu_format, start_fri_hour, start_fri_min, start_fri_format, start_sat_hour, start_sat_min, start_sat_format, end_sun_hour, end_sun_min, end_sun_format, end_mon_hour, end_mon_min, end_mon_format, end_tue_hour, end_tue_min, end_tue_format, end_wed_hour, end_wed_min, end_wed_format, end_thu_hour, end_thu_min, end_thu_format, end_fri_hour, end_fri_min, end_fri_format, end_sat_hour, end_sat_min, end_sat_format, idscheduler_exception, idmaster_exception_weekend, idemployeegrouping
-        alert("Updated Successfully!");
-        // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewEmployee'] } }]);
-        if (this.role == 'Manager') {
-          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewEmployee'] } }]);
-        }
-        // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
-        else if (this.role == 'Supervisor') {
-          this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['ViewEmployee'] } }]);
-        }
+        // alert("");
+        this.message = "Updated Successfully!";
+        setTimeout(() => {
+          if (this.role == 'Manager') {
+            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewEmployee'] } }]);
+          }
+          else if (this.role == 'Supervisor') {
+            this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['ViewEmployee'] } }]);
+          }
+        }, 4000);
       });
     }
     else {
@@ -334,19 +350,22 @@ export class EditEmployeedetailsComponent implements OnInit {
           this.PeopleServiceService.UpdateEmployeeDetailsbyManager(this.employeekey, manKey, this.empk$, this.OrganizationID, EmployeeNumber, UserRoleTypeKey, FirstName, LastName, MiddleName, birthdt, Gender, AddressLine1, City, AddressLine2, State, Country, PrimaryPhone, ZipCode, AlternatePhone, EmailID, EmployeeStatusKey, hiredt, SupervisorKey, JobTitleKey, DepartmentKey, this.remark)
             //  start_sun_hour, start_sun_min, start_sun_format, start_mon_hour, start_mon_min, start_mon_format, start_tue_hour, start_tue_min, start_tue_format, start_wed_hour, start_wed_min, start_wed_format, start_thu_hour, start_thu_min, start_thu_format, start_fri_hour, start_fri_min, start_fri_format, start_sat_hour, start_sat_min, start_sat_format, end_sun_hour, end_sun_min, end_sun_format, end_mon_hour, end_mon_min, end_mon_format, end_tue_hour, end_tue_min, end_tue_format, end_wed_hour, end_wed_min, end_wed_format, end_thu_hour, end_thu_min, end_thu_format, end_fri_hour, end_fri_min, end_fri_format, end_sat_hour, end_sat_min, end_sat_format, idscheduler_exception, idmaster_exception_weekend, idemployeegrouping
             .subscribe((data: People[]) => {
-              alert("Updated Successfully!");
-              // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewEmployee'] } }]);
-              if (this.role == 'Manager') {
-                this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewEmployee'] } }]);
-              }
-              // else if (this.role == 'Employee' && this.IsSupervisor == 1) {
-              else if (this.role == 'Supervisor') {
-                this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['ViewEmployee'] } }]);
-              }
+              // alert("");
+              this.message = "Updated Successfully!";
+              setTimeout(() => {
+                if (this.role == 'Manager') {
+                  this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['ViewEmployee'] } }]);
+                }
+                else if (this.role == 'Supervisor') {
+                  this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['ViewEmployee'] } }]);
+                }
+              }, 4000);
+
             });
         }
         else {
-          alert("Employee Number already exist !");
+          // alert("");
+          this.message = "Employee Number already exist !";
         }
       });
     }
@@ -568,5 +587,10 @@ export class EditEmployeedetailsComponent implements OnInit {
       this.marked = false;
     }
     // console.log(this.marked);
+  }
+
+
+  clear(){
+    this.message="";
   }
 }

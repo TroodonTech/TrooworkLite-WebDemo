@@ -44,6 +44,7 @@ export class RoomViewComponent implements OnInit {
   RoomTypeKey;
   RoomKey;
   FacilityKey;
+  message;
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -65,7 +66,7 @@ export class RoomViewComponent implements OnInit {
   //validation starts ..... @rodney
   regexStr = '^[a-zA-Z0-9_ ]*$';
   @Input() isAlphaNumeric: boolean;
-  constructor(private WorkOrderServiceService: WorkOrderServiceService, private formBuilder: FormBuilder, private inventoryService: InventoryService, private el: ElementRef, private scheduleServ: SchedulingService, ) { }
+  constructor(private WorkOrderServiceService: WorkOrderServiceService, private formBuilder: FormBuilder, private inventoryService: InventoryService, private el: ElementRef, private scheduleServ: SchedulingService,) { }
   @HostListener('keypress', ['$event']) onKeyPress(event) {
     return new RegExp(this.regexStr).test(event.key);
   }
@@ -216,22 +217,26 @@ export class RoomViewComponent implements OnInit {
   deleteRoom() {
     this.inventoryService
       .DeleteRoom(this.delete_roomKey, this.employeekey, this.OrganizationID).subscribe(() => {
-        alert(" Room deleted succesfully");
-        this.loading = true;
-        this.inventoryService
-          .getRoomList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
-          .subscribe((data: Inventory[]) => {
-            this.rooms = data;
-            this.loading = false;
-            if (this.rooms[0].totalItems > this.itemsPerPage) {
-              this.showHide2 = true;
-              this.showHide1 = false;
-            }
-            else if (this.rooms[0].totalItems <= this.itemsPerPage) {
-              this.showHide2 = false;
-              this.showHide1 = false;
-            }
-          });
+        // alert(" ");
+        this.message = "Room deleted succesfully";
+        setTimeout(() => {
+          this.loading = true;
+          this.inventoryService
+            .getRoomList(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
+            .subscribe((data: Inventory[]) => {
+              this.rooms = data;
+              this.loading = false;
+              if (this.rooms[0].totalItems > this.itemsPerPage) {
+                this.showHide2 = true;
+                this.showHide1 = false;
+              }
+              else if (this.rooms[0].totalItems <= this.itemsPerPage) {
+                this.showHide2 = false;
+                this.showHide1 = false;
+              }
+            });
+        }, 4000);
+
       });
   }
 
@@ -394,7 +399,7 @@ export class RoomViewComponent implements OnInit {
         });
     }
     if (!(this.ZoneKey)) {
-      this.getZoneRoomTypeRoom(this.FloorKey,this.FacilityKey);
+      this.getZoneRoomTypeRoom(this.FloorKey, this.FacilityKey);
       this.RoomTypeKey = '';
       this.FloorTypeKey = '';
       this.RoomKey = '';

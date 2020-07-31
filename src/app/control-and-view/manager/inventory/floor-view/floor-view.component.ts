@@ -24,6 +24,7 @@ export class FloorViewComponent implements OnInit {
   IsSupervisor: Number;
   OrganizationID: Number;
   loading: boolean;
+  message;
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -105,22 +106,25 @@ export class FloorViewComponent implements OnInit {
   deleteFloor() {
     this.inventoryService
       .DeleteFloor(this.delete_faciKey, this.delete_floorKey, this.employeekey, this.OrganizationID).subscribe(res => {
-        alert("Floor deleted successfully");
-        this.loading = true;
-        this.inventoryService
-          .getFloors(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
-          .subscribe((data: Inventory[]) => {
-            this.floor = data;
-            this.loading = false;
-            if (this.floor[0].totalItems > this.itemsPerPage) {
-              this.showHide2 = true;
-              this.showHide1 = false;
-            }
-            else if (this.floor[0].totalItems <= this.itemsPerPage) {
-              this.showHide2 = false;
-              this.showHide1 = false;
-            }
-          });
+        // alert("Floor deleted successfully");
+        this.message = "Floor deleted successfully";
+        setTimeout(() => {
+          this.loading = true;
+          this.inventoryService
+            .getFloors(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
+            .subscribe((data: Inventory[]) => {
+              this.floor = data;
+              this.loading = false;
+              if (this.floor[0].totalItems > this.itemsPerPage) {
+                this.showHide2 = true;
+                this.showHide1 = false;
+              }
+              else if (this.floor[0].totalItems <= this.itemsPerPage) {
+                this.showHide2 = false;
+                this.showHide1 = false;
+              }
+            });
+        }, 4000);
       });
   }
   deleteFloorPass(FacilityKey, FloorKey) {

@@ -29,15 +29,15 @@ config.app.views = '../dist/mdb-angular-free';
 // config.db.password = "Zaq1Zaq1";
 // config.db.database = "trooworkdb_lite";
 
-// config.db.host = "troowork-lite-dev.mysql.database.azure.com";
-// config.db.user = "trooworkdbadmin@troowork-lite-dev";
-// config.db.password = "Zaq1Zaq1";
-// config.db.database = "trooworkdb_lite";
+config.db.host = "troowork-lite-dev.mysql.database.azure.com";
+config.db.user = "trooworkdbadmin@troowork-lite-dev";
+config.db.password = "Zaq1Zaq1";
+config.db.database = "trooworkdb_lite";
 
 // config.db.host = "192.168.1.113";
-config.db.host = "localhost";
-config.db.user = "root";
-config.db.password = "root";
-config.db.database = "trooworkdb_lite";
+// config.db.host = "localhost";
+// config.db.user = "root";
+// config.db.password = "root";
+// config.db.database = "trooworkdb_lite";
 
 module.exports = config;

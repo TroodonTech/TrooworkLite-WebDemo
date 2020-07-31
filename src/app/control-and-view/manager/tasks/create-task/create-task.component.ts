@@ -106,6 +106,7 @@ export class CreateTaskComponent implements OnInit {
   employeeKey: Number;
   IsSupervisor: Number;
   taskname;
+  message;
   //converting date from GMT to yyyy/mm/dd
   public convert_DT(str) {
     var date = new Date(str),
@@ -433,11 +434,14 @@ export class CreateTaskComponent implements OnInit {
     // }
 
     if (!this.taskNotes) {
-      alert("Please enter task notes");
+      // alert("");
+      this.message = "Please enter task notes";
     } else if (!this.taskNotes.trim()) {
-      alert("Please enter task notes");
+      // alert("");
+      this.message = "Please enter task notes";
     } else if (!this.taskname) {
-      alert("Please enter a task name");
+      // alert("");
+      this.message = "Please enter a task name";
     }
     // else if (!this.FacilityKey) {
     //   alert("Please select building!");
@@ -453,7 +457,8 @@ export class CreateTaskComponent implements OnInit {
     //   alert("Please provide time!");
     // } 
     else if ((this.TaskEndDate) && (this.convert_DT(this.TaskStartDate) > this.convert_DT(this.TaskEndDate))) {
-      alert("Please check your end date!");
+      // alert("");
+      this.message = "Please check your end date!";
 
     }
     else if (this.isRecurring == true) {
@@ -462,17 +467,22 @@ export class CreateTaskComponent implements OnInit {
       // }
       if (this.dailyrecurring == true) {
         if (this.convert_DT(this.TaskStartDate) < this.convert_DT(new Date())) {
-          alert("Start date is less than current date"); return;
+          // alert(""); 
+          this.message = "Start date is less than current date";
+          return;
         }
         else if (!this.TaskEndDate) {
-          alert("Please provide end date!");
+          // alert("");
+          this.message = "Please provide end date!";
         }
         else if (!(this.dailyFrequency)) {
-          alert("Please select frequency !");
+          // alert("");
+          this.message = "Please select frequency !";
         } else if (this.dailyFrequency) {
           for (var i = 0; i < this.dailyFrequency; i++) {
             if (!(this.timetable.times[i])) {
-              alert("Please enter time values !");
+              // alert("");
+              this.message = "Please enter time values !";
             }
           }
           this.withoutequip_wo();
@@ -721,7 +731,8 @@ export class CreateTaskComponent implements OnInit {
       // else {
       if (this.TaskStartDate) {
         if (this.convert_DT(this.TaskStartDate) < this.convert_DT(new Date())) {
-          alert("Start date is less than current date");
+          // alert("");
+          this.message = "Start date is less than current date";
           return;
         }
         else {
@@ -919,14 +930,19 @@ export class CreateTaskComponent implements OnInit {
       };
       this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
         if (data) {
-          alert("Task Name already exists !!!");
+          // alert("");
+          this.message = "Task Name already exists !!!";
           return false;
 
         } else {
 
           this.taskServ.addTasks(this.taskCreation).subscribe(res => {
-            alert("Task created successfully");
-            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+            // alert("");
+            this.message = "Task created successfully";
+            setTimeout(() => {
+              this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+            }, 4000);
+
           });
         }
       });
@@ -1998,7 +2014,9 @@ export class CreateTaskComponent implements OnInit {
     // else {
     if (this.TaskStartDate) {
       if (this.convert_DT(this.TaskStartDate) < this.convert_DT(new Date())) {
-        alert("Start date is less than current date"); return;
+        // alert(""); 
+        this.message = "Start date is less than current date";
+        return;
       }
       else {
         this.startDT = this.convert_DT(this.TaskStartDate);
@@ -2015,11 +2033,13 @@ export class CreateTaskComponent implements OnInit {
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
     if (this.intervaltype == 'w' && diffDays < 7) {
-      alert("Please Select One week Date Range!");
+      // alert("");
+      this.message = "Please Select One week Date Range!";
       return;
     }
     if (this.intervaltype == 'm' && diffDays < 31) {
-      alert("Please Select One month Date Range!");
+      // alert("");
+      this.message = "Please Select One month Date Range!";
       return;
     }
     // }
@@ -2195,16 +2215,23 @@ export class CreateTaskComponent implements OnInit {
     };
     this.taskServ.checkTaskName(this.taskname, this.org_id).subscribe((data: any[]) => {
       if (data) {
-        alert("Task Name already exists !!!");
+        // alert("");
+        this.message = "Task Name already exists !!!";
         return false;
 
       } else {
         this.taskServ.addTasks(this.taskCreation).subscribe(res => {
-          alert("Task created successfully");
-          this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+          // alert("");
+          this.message = "Task created successfully";
+          setTimeout(() => {
+            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+          }, 4000);
         });
       }
     });
     // }
+  }
+  clear() {
+    this.message = "";
   }
 }

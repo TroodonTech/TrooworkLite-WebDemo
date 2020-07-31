@@ -19,6 +19,7 @@ export class ZoneCreateComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
+  message;
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -39,31 +40,38 @@ export class ZoneCreateComponent implements OnInit {
   constructor(private inventoryService: InventoryService, private router: Router, private _location: Location) { }
 
   addZone(FacilityKey, FloorName, ZoneName, FloorKey) {
-
     if (!(this.FacilityKey) || !(this.FacilityKey.trim())) {
-      alert("Please Choose Building!");
+      // alert("");
+      this.message = "Please Choose Building!";
       return;
     }
     if (!(this.FloorName) || !(this.FloorName.trim())) {
-      alert("Please Choose Floor!");
+      // alert("");
+      this.message = "Please Choose Floor!";
       return;
     }
     if (!(this.ZoneName) || !(this.ZoneName.trim())) {
-      alert("Please Enter Zone Name!");
+      // alert("");
+      this.message = "Please Enter Zone Name!";
       return;
     }
 
     this.ZoneName = this.ZoneName.trim();
-    
+
     this.inventoryService.checkForZone(this.FacilityKey, this.FloorName, this.ZoneName, this.employeekey, this.OrganizationID).subscribe((data: Inventory[]) => {
       if (data.length > 0) {
-        alert("Zone already present !");
+        // alert("");
+        this.message = "Zone already present !";
       }
       else if (data.length == 0) {
         this.inventoryService.createZones(this.FacilityKey, this.FloorName, this.ZoneName, this.employeekey, this.OrganizationID)
           .subscribe((data: Inventory[]) => {
-            alert("Zone created successfully");
-            this._location.back();
+            // alert("");
+            this.message = "Zone created successfully";
+
+            setTimeout(() => {
+              this._location.back();
+            }, 4000);
           });
       }
     });
@@ -101,5 +109,9 @@ export class ZoneCreateComponent implements OnInit {
   }
   goBack() {
     this._location.back();
+  }
+
+  clear() {
+    this.message = "";
   }
 }

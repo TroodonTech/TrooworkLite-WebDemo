@@ -22,6 +22,7 @@ export class ResetPassWordComponent implements OnInit {
   employeekey: Number;
   IsSupervisor: Number;
   OrganizationID: Number;
+  message;
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -46,12 +47,13 @@ export class ResetPassWordComponent implements OnInit {
 
   resetUserPassword(username, password, userLoginId) {
     if (!(username) || !username.trim()) {
-      alert("Please Enter User Name!");
+      // alert("");
+      this.message = "Please Enter User Name!";
       return;
     }
     else {
-      if(username){
-        username=username.trim();
+      if (username) {
+        username = username.trim();
       }
       this.peopleService.resetUserPassword(username, password, this.empKey$, userLoginId, this.employeekey, this.OrganizationID).subscribe((data: People[]) => {
         this.response = data[0];
@@ -74,9 +76,13 @@ export class ResetPassWordComponent implements OnInit {
           this.userMail = data[0].newmail;
 
           if (this.userMail == null) {
-            alert("Password Changed Successfully! Mail not send , Mail-Id not found !");
+            // alert("");
+            this.message = "Password Changed Successfully! Mail not send , Mail-Id not found !";
+            // setTimeout(() => {
+            //   this._location.back();
+            // }, 4000);
           } else {
-            var message = 'Your Username is ' + username + ' and ' + 'Your Password is ' + password + "                https://troowork.azurewebsites.net";
+            var message = 'Your Username is ' + username + ' and ' + 'Your Password is ' + password + "                http://troowork-lite-dev.azurewebsites.net/";
             console.log(message);
             const obj = {
               from: this.managerMail,
@@ -119,5 +125,9 @@ export class ResetPassWordComponent implements OnInit {
     else if (this.role == 'Supervisor') {
       this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['manageLoginCredentials'] } }]);
     }
+  }
+
+  clear() {
+    this.message = "";
   }
 }

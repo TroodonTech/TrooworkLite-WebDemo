@@ -23,6 +23,8 @@ export class BuildingViewComponent implements OnInit {
   IsSupervisor: Number;
   OrganizationID: Number;
   loading: boolean;
+  message;
+
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -103,31 +105,34 @@ export class BuildingViewComponent implements OnInit {
   deleteFacility() {
     this.inventoryService
       .DeleteBuilding(this.delete_faciKey, this.employeekey, this.OrganizationID).subscribe(() => {
-        alert("Building deleted successfully");
-        this.loading = true;
-        this.inventoryService
-          .getBuildings(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
-          .subscribe((data: Inventory[]) => {
-            this.build = data;
-            this.loading = false;
-            if (this.build[0].totalItems > this.itemsPerPage) {
-              this.showHide2 = true;
-              this.showHide1 = false;
-            }
-            else if (this.build[0].totalItems <= this.itemsPerPage) {
-              this.showHide2 = false;
-              this.showHide1 = false;
-            }
-          });
+        // alert("");
+        this.message = "Building deleted successfully";
 
+        setTimeout(() => {
+          this.loading = true;
+          this.inventoryService
+            .getBuildings(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
+            .subscribe((data: Inventory[]) => {
+              this.build = data;
+              this.loading = false;
+              if (this.build[0].totalItems > this.itemsPerPage) {
+                this.showHide2 = true;
+                this.showHide1 = false;
+              }
+              else if (this.build[0].totalItems <= this.itemsPerPage) {
+                this.showHide2 = false;
+                this.showHide1 = false;
+              }
+            });
+        }, 4000);
       });
 
 
   }
 
   searchFacility(SearchValue) {
-   
-    var value=SearchValue.trim();
+
+    var value = SearchValue.trim();
 
     if (value.length >= 3) {
       this.inventoryService
@@ -138,9 +143,8 @@ export class BuildingViewComponent implements OnInit {
         });
     }
     else if (value.length == 0) {
-      if((value.length == 0) &&(SearchValue.length == 0) )
-      {
-     this.loading = true;
+      if ((value.length == 0) && (SearchValue.length == 0)) {
+        this.loading = true;
       }
       this.inventoryService
         .getBuildings(this.pageNo, this.itemsPerPage, this.employeekey, this.OrganizationID)
