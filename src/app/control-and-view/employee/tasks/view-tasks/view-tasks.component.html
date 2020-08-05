@@ -9,12 +9,12 @@
       <h4 style="text-align: right"></h4>
       <div class="form-group">
         <label>On Date</label><br>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="WorkorderDate"
+        <ng-datepicker class="notranslate" [options]="options" position="top-right" [(ngModel)]="WorkorderDate"
           (ngModelChange)="filterApplied();"></ng-datepicker>
       </div>
       <div class="form-group">
         <label>Building</label><br>
-        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control" [(ngModel)]="FacilityKey"
+        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control notranslate" [(ngModel)]="FacilityKey"
           (change)="selectFloorfromBuildings($event.target.value);filterApplied();" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of facilityList" [value]="b.FacilityKey">
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group">
         <label>Zone</label><br>
-        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control" [(ngModel)]="ZoneKey"
+        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control notranslate" [(ngModel)]="ZoneKey"
           [disabled]="!FloorKey" (change)="filterApplied();selectedZone()" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of zoneList" [value]="b.ZoneKey">
@@ -37,12 +37,12 @@
       <h4 style="text-align: right"></h4>
       <div class="form-group">
         <label>To Date</label><br>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="WorkorderDate2"
+        <ng-datepicker [options]="options" position="top-right" class="notranslate" [(ngModel)]="WorkorderDate2"
           (ngModelChange)="filterApplied();"></ng-datepicker>
       </div>
       <div class="form-group">
         <label>Floor</label><br>
-        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control" [(ngModel)]="FloorKey"
+        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control notranslate" [(ngModel)]="FloorKey"
           [disabled]="!FacilityKey"
           (change)="selectZoneRoomtypefromFloor($event.target.value,FacilityKey);filterApplied();" required>
           <option value="">--Select--</option>
@@ -53,7 +53,7 @@
       </div>
       <div class="form-group">
         <label>Room Type</label><br>
-        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control" [(ngModel)]="RoomTypeKey"
+        <select style="background-color: #D4F4FF !important;width: 75%" class="form-control notranslate" [(ngModel)]="RoomTypeKey"
           [disabled]="!FloorKey" (change)="filterApplied();" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of roomtypeList" [value]="b.RoomTypeKey">

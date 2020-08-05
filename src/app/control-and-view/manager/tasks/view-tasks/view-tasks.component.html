@@ -74,14 +74,14 @@
         <label>On Date</label><br>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [value]="date"
           [(ngModel)]="ondate" (onSelection)=""></igx-datePicker> -->
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="ondate">
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="ondate">
         </ng-datepicker>
       </div>
       <div class="form-group">
         <label>To Date</label><br>
         <!-- <igx-datePicker style="margin-top: -0.7rem" cancelButtonLabel="CANCEL" todayButtonLabel="TODAY"
           [labelVisibility]="none" [value]="date" [(ngModel)]="todate" (onSelection)=""></igx-datePicker> -->
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="todate">
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="todate">
         </ng-datepicker>
       </div>
       <div class="form-group">
@@ -236,7 +236,7 @@
                 (change)="toggleVisibility($event);checkBoxValueForDelete(i,x.workorderCheckValue, x.WorkorderKey);">
             </span>
           </td>
-          <td style="width:15%;word-wrap: break-word;">{{x.WorkorderNotes}}</td>
+          <td class=" notranslate" style="width:15%;word-wrap: break-word;">{{x.WorkorderNotes}}</td>
           <td>
             <a href="pho1/{{x.ImageName}}" target="_self" onclick="window.open(this.href, 'popup', 'width=600,height=600,scrollbars=no,resizable=no');
                               return false;">

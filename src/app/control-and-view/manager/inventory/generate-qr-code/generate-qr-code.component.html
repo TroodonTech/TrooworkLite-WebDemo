@@ -59,7 +59,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Room</label><br>
-      <select style="background-color: #D4F4FF ;" class="form- notranslate" [(ngModel)]="RoomKey" [disabled]="!FloorKey"
+      <select style="background-color: #D4F4FF ;" class="form-control notranslate" [(ngModel)]="RoomKey" [disabled]="!FloorKey"
         (change)="rooms_Filter();" required>
         <option value="">--Select--</option>
         <option *ngFor="let b of RoomList" [value]="b.RoomKey">

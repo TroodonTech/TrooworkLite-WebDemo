@@ -2224,7 +2224,14 @@ export class CreateTaskComponent implements OnInit {
           // alert("");
           this.message = "Task created successfully";
           setTimeout(() => {
-            this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+            // this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+
+            if (this.role == 'Manager') {
+              this.router.navigate(['/ManagerDashBoard', { outlets: { ManagerOut: ['viewTask'] } }]);
+            }
+            else if (this.role == 'Supervisor') {
+              this.router.navigate(['/SupervisorDashboard', { outlets: { Superout: ['viewTask'] } }]);
+            }
           }, 4000);
         });
       }

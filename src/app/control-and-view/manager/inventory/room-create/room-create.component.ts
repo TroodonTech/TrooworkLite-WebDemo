@@ -147,7 +147,7 @@ export class RoomCreateComponent implements OnInit {
                           .subscribe(res => {
                             // alert("Room created successfully");
                             this.message = "Room created successfully";
-                            setTimeout(() => {
+                            // setTimeout(() => {
                               this.inventoryService
                                 .getBarcodeForRoom(this.employeekey, this.OrganizationID)
                                 .subscribe((data: Array<any>) => {
@@ -155,7 +155,7 @@ export class RoomCreateComponent implements OnInit {
                                   this.temp_barcode = data[0];
                                   this.RoomName = null;
                                 });
-                            }, 4000);
+                            // }, 3000);
 
 
                           });

@@ -48,7 +48,7 @@
       </div>
       <div class="form-group" style="width: 68%;">
         <label>From Date</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="fromdate"
+        <ng-datepicker [options]="options" position="top-right" class="notranslate" [(ngModel)]="fromdate"
           (ngModelChange)="dashboardreportbyfilter()"></ng-datepicker>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [(ngModel)]="fromdate" (onSelection)="dashboardreportbyfilter()"></igx-datePicker> -->
       </div>
@@ -74,7 +74,7 @@
       </div>
       <div class="form-group" style="width: 68%;">
         <label>To Date</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="todate"
+        <ng-datepicker [options]="options" position="top-right" class="notranslate" [(ngModel)]="todate"
           (ngModelChange)="basicModal.show();dashboardreportbyfilter()"></ng-datepicker>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [value]="date" [(ngModel)]="todate"
           (onSelection)="dashboardreportbyfilter()"></igx-datePicker> -->

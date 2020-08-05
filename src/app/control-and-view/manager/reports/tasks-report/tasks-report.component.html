@@ -9,12 +9,12 @@
       <h3 style="text-align: right"></h3>
       <div class="form-group">
         <label style="margin-top: 2rem;">From Date</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="fromdate"></ng-datepicker>
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="fromdate"></ng-datepicker>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [value]="date" [(ngModel)]="fromdate"></igx-datePicker> -->
       </div>
       <div class="form-group">
         <label>Building</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FacilityKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FacilityKey"
           (change)="getFloorDisp($event.target.value)">
           <option value="">--Select--</option>
           <option *ngFor="let b of facilitylist" [value]="b.FacilityKey">
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group">
         <label>Floor</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FloorKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FloorKey"
           (change)="getZoneRoom($event.target.value,FacilityKey)" [disabled]="!FacilityKey">
           <option value="">--Select--</option>
           <option *ngFor="let f of floor" [value]="f.FloorKey">
@@ -34,7 +34,7 @@
       </div>
       <div class="form-group">
         <label>Zone</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="ZoneKey"
           (change)="getRoomsName($event.target.value,FacilityKey,FloorKey)" [disabled]="!FloorKey">
           <option value="">--Select--</option>
           <option *ngFor="let z of zoneroom" [value]="z.ZoneKey">
@@ -44,7 +44,7 @@
       </div>
       <div class="form-group">
         <label>Room Type</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomTypeKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomTypeKey"
           [disabled]="!FloorKey">
           <option value="">--Select--</option>
           <option *ngFor="let r of room" [value]="r.RoomTypeKey">
@@ -57,7 +57,7 @@
       <div class="form-group" style="margin-top: 0.8rem">
         <label style="margin-top: 2rem;" class="col-sm-4 col-md-4 col-lg-4 ">To Date</label>
         <!-- <igx-datePicker cancelButtonLabel="CANCEL" todayButtonLabel="TODAY" [labelVisibility]="none" [value]="date" [(ngModel)]="todate"></igx-datePicker> -->
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="todate"></ng-datepicker>
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="todate"></ng-datepicker>
       </div>
       <!-- <div class="form-group">
         <label>Work-Order Type</label><br>
@@ -70,7 +70,7 @@
       </div> -->
       <div class="form-group">
         <label>Employee</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="EmployeeKey">
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="EmployeeKey">
           <option value="">--Select--</option>
           <option *ngFor="let e of emp" [value]="e.EmployeeKey">
             {{e.EmployeeText}}
@@ -88,7 +88,7 @@
       </div>
       <div class="form-group">
         <label>Room</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomKey"
           [disabled]="!FloorKey">
           <option value="">--Select--</option>
           <option *ngFor="let r of rooms" [value]="r.RoomKey">
@@ -101,7 +101,8 @@
     <div class="row col-md-12">
       <div style="margin-left: 45%">
         <button type="button" class="btn btn-success"
-          (click)=generateTaskReport(fromdate,todate,FacilityKey,FloorKey,RoomTypeKey,ZoneKey,RoomKey,EmployeeKey,WorkorderStatusKey);basicModal.show();><b>GENERATE</b></button>
+          (click)=generateTaskReport(fromdate,todate,FacilityKey,FloorKey,RoomTypeKey,ZoneKey,RoomKey,EmployeeKey,WorkorderStatusKey);><b>GENERATE</b></button>
+          <!-- basicModal.show(); -->
       </div>
     </div>
     <br>
@@ -193,7 +194,7 @@
   </table>
 
 
-  <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
+  <!-- <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -213,6 +214,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>

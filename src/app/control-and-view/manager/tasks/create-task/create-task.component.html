@@ -32,7 +32,7 @@
       </div>
       <div class="form-group">
         <label>Building</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FacilityKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FacilityKey"
           (change)="getFloorDisp($event.target.value);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of facilitylist" [value]="b.FacilityKey">
@@ -42,7 +42,7 @@
       </div>
       <div class="form-group">
         <label>Zone</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="ZoneKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="ZoneKey"
           [disabled]="!FloorKey||showEqTypes" (change)="getRoomTypeRoom($event.target.value,FacilityKey,FloorKey);"
           required>
           <option value="">--Select--</option>
@@ -53,7 +53,7 @@
       </div>
       <div class="form-group">
         <label>Room Type</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomTypeKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomTypeKey"
           [disabled]="!FloorKey||showEqTypes" (change)="getRoom($event.target.value,ZoneKey,FacilityKey,FloorKey);"
           required>
           <option value="">--Select--</option>
@@ -76,7 +76,7 @@
 
       <div class="form-group" *ngIf="isRecurring==true">
         <label>From When</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="TaskStartDate"></ng-datepicker>
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="TaskStartDate"></ng-datepicker>
       </div>
     </div>
 
@@ -92,7 +92,7 @@
       </div>
       <div class="form-group">
         <label>Floor</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="FloorKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="FloorKey"
           [disabled]="!FacilityKey" (change)="getZoneRoomTypeRoom($event.target.value,FacilityKey);" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of FloorList" [value]="b.FloorKey">
@@ -133,7 +133,7 @@
       </div>
       <div class="form-group">
         <label>Room</label><br>
-        <select style="background-color: #D4F4FF !important;" class="form-control" [(ngModel)]="RoomKey"
+        <select style="background-color: #D4F4FF !important;" class="form-control notranslate" [(ngModel)]="RoomKey"
           [disabled]="!FloorKey||showEqTypes" required>
           <option value="">--Select--</option>
           <option *ngFor="let b of RoomList" [value]="b.RoomKey">
@@ -186,7 +186,7 @@
       <div class="form-group"
         *ngIf="isRecurring==true && (dailyrecurring==true||weeklyrecurring==true||monthlyrecurring==true)">
         <label style="margin-top: 6.5%;">End Date*</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="TaskEndDate"></ng-datepicker>
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="TaskEndDate"></ng-datepicker>
       </div>
     </div>
     <!--Daily-Dropdowns-->
@@ -211,7 +211,7 @@
         </select>
       </div>
       <div class="form-group" *ngIf="((dailyrecurring==true && isRecurring==true)&&(dailyFrequency))">
-        <p-calendar [inputStyle]="{'width':'105%','margin-top':'1rem'}" placeholder="TIME"
+        <p-calendar [inputStyle]="{'width':'105%','margin-top':'1rem'}" placeholder="TIME" class="notranslate"
           [(ngModel)]="timetable.times[i]" *ngFor=" let field of timetable.times;let i = index" [timeOnly]="true"
           hourFormat="12" required>
           {{index+' '+field}}

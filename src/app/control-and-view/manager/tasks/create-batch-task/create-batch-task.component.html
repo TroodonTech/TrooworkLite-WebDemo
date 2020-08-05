@@ -74,7 +74,7 @@
 
       <div class="form-group" *ngIf="isRecurring==true">
         <label>From When</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="TaskStartDate"></ng-datepicker>
+        <ng-datepicker [options]="options" position="top-right" class="notranslate" [(ngModel)]="TaskStartDate"></ng-datepicker>
       </div>
     </div>
 
@@ -184,7 +184,7 @@
       <div class="form-group"
         *ngIf="isRecurring==true && (dailyrecurring==true||weeklyrecurring==true||monthlyrecurring==true)">
         <label style="margin-top: 6.5%;">End Date*</label>
-        <ng-datepicker [options]="options" position="top-right" [(ngModel)]="TaskEndDate"></ng-datepicker>
+        <ng-datepicker [options]="options" class="notranslate" position="top-right" [(ngModel)]="TaskEndDate"></ng-datepicker>
       </div>
     </div>
     <!--Daily-Dropdowns-->
@@ -209,7 +209,7 @@
         </select>
       </div>
       <div class="form-group" *ngIf="((dailyrecurring==true && isRecurring==true)&&(dailyFrequency))">
-        <p-calendar [inputStyle]="{'width':'105%','margin-top':'1rem'}" placeholder="TIME"
+        <p-calendar [inputStyle]="{'width':'105%','margin-top':'1rem'}" placeholder="TIME" class="notranslate"
           [(ngModel)]="timetable.times[i]" *ngFor=" let field of timetable.times;let i = index" [timeOnly]="true"
           hourFormat="12" required>
           {{index+' '+field}}

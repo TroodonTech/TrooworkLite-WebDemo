@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   isAuthenticated: boolean;
   rev_orgid: Number = 103;
   room_key: Number = 100;
+  message;
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -48,12 +49,15 @@ export class LoginComponent implements OnInit {
   }
   loginFn(userName, passWord, tenantID) {
     if (!userName) {
-      alert("Enter User Name");
+      // alert("Enter User Name");
+      this.message = "Enter User Name"
     }
     else if (!passWord) {
-      alert("Enter Password");
+      // alert("Enter Password");
+      this.message = "Enter Password";
     } else if (!tenantID) {
-      alert("Enter Tenant ID");
+      // alert("Enter Tenant ID");
+      this.message = "Enter Tenant ID";
     }
     else {
       this.loginService
@@ -66,7 +70,8 @@ export class LoginComponent implements OnInit {
             window.localStorage.clear();
             window.localStorage.removeItem('employeekey');
             delete localStorage.employeekey;
-            alert("Invalid login credentials. Please enter correct credentials to login...");
+            // alert("Invalid login credentials. Please enter correct credentials to login...");
+            this.message = "Invalid login credentials. Please enter correct credentials to login...";
           } else {
             this.isAuthenticated = true;
             localStorage.setItem('token', this.tokenobj.token);
@@ -127,12 +132,15 @@ export class LoginComponent implements OnInit {
 
           res => {
             if (res.error.text === "Wrong user or password") {
-              alert("Invalid login credentials. Please enter correct credentials to login...");
+              // alert("Invalid login credentials. Please enter correct credentials to login...");
+              this.message = "Invalid login credentials. Please enter correct credentials to login...";
             }
           });
     }
   }
   ngOnInit() {
   }
-
+  clear() {
+    this.message = "";
+  }
 }
