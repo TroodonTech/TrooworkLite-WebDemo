@@ -1,0 +1,691 @@
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getEmployeesForSchedulerWithrowFiltering`(
+	IN groupID varchar(45),
+    IN searchtext text,
+    IN eventsonly varchar(45),
+    IN datetype varchar(45),
+	IN todaydate date,
+	in OrganizationID bigint
+)
+begin
+	declare grpID bigint;
+	declare enddate date;
+    DECLARE QryEmployeeKey text;
+    
+	start transaction;
+		if(strcmp(datetype,'Week')=0) then
+			set enddate=DATE_ADD(todaydate, INTERVAL 1 WEEK);
+		elseif(strcmp(datetype,'Month')=0) then
+			set enddate=DATE_ADD(todaydate, INTERVAL 1 MONTH);
+		end if;
+/*
+		DROP TEMPORARY TABLE IF EXISTS empDetails;
+		CREATE TEMPORARY TABLE empDetails (
+			id BIGINT ,
+			`name` varchar(500),
+			FirstName varchar(100),
+			LastName varchar(100),
+			PrimaryPhone varchar(100),
+			Idemployeegrouping int,
+			Description varchar(500),
+			backColor varchar(45)
+        );
+*/
+             
+		if(strcmp(groupID,'Manager')=0) then # user manager Or not
+
+			if(strcmp(eventsonly,'true')=0) then
+				if(strcmp(searchtext,'null')=0) then
+					SELECT 
+						e.EmployeeKey AS id
+						, concat(e.LastName, ',',e.FirstName ) AS `name`
+						, e.FirstName
+						, e.LastName
+						, e.PrimaryPhone
+						,eg.Idemployeegrouping
+						,eg.Description
+						,eg.Colour as backColor
+						,e.GroupSeniorityOrder
+					FROM  employee e
+					inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+					inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+					inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+					inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+					WHERE e.IsDeleted = 0 and e.IsActive=1
+					  and e.OrganizationID = OrganizationID
+					  and e.EmployeeStatusKey=1
+					  and u.UserRoleTypeKey=3
+					  and eg.IsDeleted = 0
+					  and e.EmployeeKey in (
+							select 
+								a.EmployeeKey
+							from assignment_calender a
+							inner join batchschedulename b on b.BatchScheduleNameKey=a.BatchScheduleNameKey
+							where Date(a.AssignmentDate) between todaydate and enddate
+							and a.OrganizationID=OrganizationID
+							and a.IsDeleted=0
+							and b.IsDeleted=0
+						)
+					order by  eg.Description,e.GroupSeniorityOrder,`name`;            
+                
+                else
+                
+					SET QryEmployeeKey = searchtext;
+					SET QryEmployeeKey = CONCAT('SELECT DISTINCT \'',replace(QryEmployeeKey, ',', '\' UNION SELECT \''), '\'');
+
+					DROP TEMPORARY TABLE IF EXISTS TblQryEmployeeKeys;
+					CREATE TEMPORARY TABLE TblQryEmployeeKeys (			employeekey bigint			);
+					SET @QryEmployeeKey = CONCAT('INSERT INTO TblQryEmployeeKeys (employeekey) ', QryEmployeeKey);
+					PREPARE QryEmployeeKeyStatement FROM @QryEmployeeKey;
+					EXECUTE QryEmployeeKeyStatement;
+					DEALLOCATE PREPARE QryEmployeeKeyStatement;
+                    
+					SELECT 
+						e.EmployeeKey AS id
+						, concat(e.LastName, ',',e.FirstName ) AS `name`
+						, e.FirstName
+						, e.LastName
+						, e.PrimaryPhone
+						,eg.Idemployeegrouping
+						,eg.Description
+						,eg.Colour as backColor
+						,e.GroupSeniorityOrder
+					FROM  employee e
+					inner join TblQryEmployeeKeys t on e.EmployeeKey=t.employeekey
+					inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+					inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+					inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+					inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+					WHERE e.IsDeleted = 0 and e.IsActive=1
+					  and e.OrganizationID = OrganizationID
+					  and e.EmployeeStatusKey=1
+					  and u.UserRoleTypeKey=3
+					  and eg.IsDeleted = 0
+					#  and (e.LastName like CONCAT('%', searchtext ,'%') or e.FirstName like CONCAT('%', searchtext ,'%'))
+					  and e.EmployeeKey in (
+							select 
+								a.EmployeeKey
+							from assignment_calender a
+							inner join batchschedulename b on b.BatchScheduleNameKey=a.BatchScheduleNameKey
+							where Date(a.AssignmentDate) between todaydate and enddate
+							and a.OrganizationID=OrganizationID
+							and a.IsDeleted=0
+							and b.IsDeleted=0
+						)
+					order by  eg.Description,e.GroupSeniorityOrder,`name`;            
+                    
+                end if;
+			else
+				if(strcmp(searchtext,'null')=0) then
+	
+					SELECT 
+						e.EmployeeKey AS id
+						, concat(e.LastName, ',',e.FirstName ) AS `name`
+						, e.FirstName
+						, e.LastName
+						, e.PrimaryPhone
+						,eg.Idemployeegrouping
+						,eg.Description
+						,eg.Colour as backColor
+						,e.GroupSeniorityOrder
+					FROM  employee e
+					inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+					inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+					inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+					inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+					WHERE e.IsDeleted = 0 and e.IsActive=1
+					  and e.OrganizationID = OrganizationID
+					  and e.EmployeeStatusKey=1
+					  and u.UserRoleTypeKey=3
+					  and eg.IsDeleted = 0
+					order by  eg.Description,e.GroupSeniorityOrder,`name`;
+									
+                else
+                
+					SET QryEmployeeKey = searchtext;
+					SET QryEmployeeKey = CONCAT('SELECT DISTINCT \'',replace(QryEmployeeKey, ',', '\' UNION SELECT \''), '\'');
+
+					DROP TEMPORARY TABLE IF EXISTS TblQryEmployeeKeys;
+					CREATE TEMPORARY TABLE TblQryEmployeeKeys (			employeekey bigint			);
+					SET @QryEmployeeKey = CONCAT('INSERT INTO TblQryEmployeeKeys (employeekey) ', QryEmployeeKey);
+					PREPARE QryEmployeeKeyStatement FROM @QryEmployeeKey;
+					EXECUTE QryEmployeeKeyStatement;
+					DEALLOCATE PREPARE QryEmployeeKeyStatement;
+					
+					SELECT 
+						e.EmployeeKey AS id
+						, concat(e.LastName, ',',e.FirstName ) AS `name`
+						, e.FirstName
+						, e.LastName
+						, e.PrimaryPhone
+						,eg.Idemployeegrouping
+						,eg.Description
+						,eg.Colour as backColor
+						,e.GroupSeniorityOrder
+					FROM  employee e
+					inner join TblQryEmployeeKeys t on e.EmployeeKey=t.employeekey
+					inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+					inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+					inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+					inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+					WHERE e.IsDeleted = 0 and e.IsActive=1
+					  and e.OrganizationID = OrganizationID
+					  and e.EmployeeStatusKey=1
+					  and u.UserRoleTypeKey=3
+					  and eg.IsDeleted = 0
+				   #   and (e.LastName like CONCAT('%', searchtext ,'%') or e.FirstName like CONCAT('%', searchtext ,'%'))
+					order by  eg.Description,e.GroupSeniorityOrder,`name`;
+										
+                end if;
+
+			end if;
+/*
+		else # user not manager
+        
+			select 
+				e.EmployeeGroupID into grpID # to get employee groupID
+			from employee e 
+			where e.EmployeeKey=empkey;
+
+			insert into empDetails   # to get current employee delails on top
+				SELECT 
+					e.EmployeeKey ,
+					concat(e.LastName, ',',e.FirstName ) as `name`,
+					e.FirstName,
+					e.LastName,
+					e.PrimaryPhone,
+					eg.Idemployeegrouping,
+					eg.Description,
+					eg.Colour as backColor
+				FROM employee e
+				inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+				inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+				inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+				inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+				WHERE e.IsDeleted = 0 and e.IsActive=1
+				  and e.EmployeeKey = empkey
+				  and e.EmployeeStatusKey=1
+                  and e.EmployeeGroupID=grpID 
+                  and e.OrganizationID = OrganizationID
+				  and u.UserRoleTypeKey=3		
+				order by  eg.Description,`name`;
+
+			insert into empDetails # to get shift details without current employee
+				SELECT 
+					e.EmployeeKey ,
+					concat(e.LastName, ',',e.FirstName ) as `name`,
+					e.FirstName,
+					e.LastName,
+					e.PrimaryPhone,
+					eg.Idemployeegrouping,
+					eg.Description,
+					eg.Colour as backColor
+				FROM employee e
+				inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+				inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+				inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+				inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+				WHERE e.IsDeleted = 0 and e.IsActive=1
+				  and e.EmployeeKey != empkey
+				  and e.EmployeeStatusKey=1
+				  and u.UserRoleTypeKey=3
+				  and e.EmployeeGroupID=grpID 
+                  and e.OrganizationID = OrganizationID
+				order by  eg.Description,e.GroupSeniorityOrder,`name`;
+                
+			insert into empDetails # to get other shift details without current employee shift
+				SELECT 
+					e.EmployeeKey AS id
+					, concat(e.LastName, ',',e.FirstName ) AS `name`
+					, e.FirstName
+					, e.LastName
+					, e.PrimaryPhone
+					,eg.Idemployeegrouping
+					,eg.Description
+					,eg.Colour as backColor
+				FROM employee e
+				inner join userlogin l on l.EmployeeKey = e.EmployeeKey
+				inner join userloginrolemap um on l.UserLoginId = um.UserLoginId
+				inner join userroletype u on u.UserRoleTypeKey = um.UserRoleTypeKey
+				inner join  employeegrouping eg on  eg.Idemployeegrouping = e.EmployeeGroupID
+				WHERE e.IsDeleted = 0 and e.IsActive=1
+				  and e.EmployeeStatusKey=1
+                  and e.OrganizationID = OrganizationID 
+				  and e.EmployeeGroupID!=grpID
+                  and u.UserRoleTypeKey=3
+				order by  eg.Description,e.GroupSeniorityOrder,`name`;
+
+			select id,`name`,FirstName,LastName,PrimaryPhone,Idemployeegrouping,Description,backColor from empDetails;
+            */
+		end if; 
+	commit;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getExpiredAssignments`(
+	in limitVal varchar(45),
+	in OrganizationID int
+)
+BEGIN
+	start transaction;
+		set @todayDate=date(sysdate());
+		set @enddate =DATE_ADD(@todayDate, INTERVAL -1 MONTH);
+		select 
+			count(distinct bn.BatchScheduleNameKey) into @count
+		from batchschedulename bn
+		inner join workorderschedule ws on bn.BatchScheduleNameKey=ws.BatchScheduleNameKey
+		inner join employee e on e.EmployeeKey=bn.EmployeeKey
+		where bn.OrganizationID=OrganizationID 
+		and bn.IsDeleted=0
+		and ws.ScheduleEndDate between @enddate and @todayDate;
+		#group by bn.BatchScheduleNameKey;        
+        
+		if(strcmp(limitVal,'Limit')=0) then
+
+			select 
+				bn.BatchScheduleNameKey,
+				ws.WorkorderScheduleKey,
+				bn.BatchSchduleName,
+				DATE_FORMAT(ws.ScheduleStartDate,'%Y-%m-%d') as ScheduleStartDate,
+				DATE_FORMAT(ws.ScheduleEndDate,'%Y-%m-%d') as ScheduleEndDate,
+				CONCAT(e.LastName, ',', e.FirstName) as EmployeeName ,
+				bn.EmployeeKey,
+				bn.ScheduleDescription as WorkorderNotes,
+				Date_Format(ws.ScheduleStartDate,'%M-%d-%Y') as workStartDate1,
+				Date_Format(ws.ScheduleEndDate,'%M-%d-%Y') as workEndDate1,
+				TIME_FORMAT(bn.BatchScheduleTime,"%H:%i:%s") as BatchScheduleTime,
+                TIME_FORMAT(bn.BatchScheduleEndTime,"%H:%i:%s") as BatchScheduleEndTime,
+                @count as count
+			from batchschedulename bn
+			inner join workorderschedule ws on bn.BatchScheduleNameKey=ws.BatchScheduleNameKey
+			inner join employee e on e.EmployeeKey=bn.EmployeeKey
+			where bn.OrganizationID=OrganizationID 
+			and bn.IsDeleted=0
+			and ws.ScheduleEndDate between @enddate and @todayDate
+			group by bn.BatchScheduleNameKey
+			order by ws.ScheduleEndDate
+			limit 5;
+		elseif(strcmp(limitVal,'Detail')=0) then
+			select 
+				bn.BatchScheduleNameKey,
+				ws.WorkorderScheduleKey,
+				bn.BatchSchduleName,
+				DATE_FORMAT(ws.ScheduleStartDate,'%Y-%m-%d') as ScheduleStartDate,
+				DATE_FORMAT(ws.ScheduleEndDate,'%Y-%m-%d') as ScheduleEndDate,
+				CONCAT(e.LastName, ',', e.FirstName) as EmployeeName ,
+				bn.EmployeeKey,
+				bn.ScheduleDescription as WorkorderNotes,
+				Date_Format(ws.ScheduleStartDate,'%M-%d-%Y') as workStartDate1,
+				Date_Format(ws.ScheduleEndDate,'%M-%d-%Y') as workEndDate1,
+				TIME_FORMAT(bn.BatchScheduleTime,"%H:%i:%s") as BatchScheduleTime,
+                TIME_FORMAT(bn.BatchScheduleEndTime,"%H:%i:%s") as BatchScheduleEndTime,
+                @count as count
+			from batchschedulename bn
+			inner join workorderschedule ws on bn.BatchScheduleNameKey=ws.BatchScheduleNameKey
+			inner join employee e on e.EmployeeKey=bn.EmployeeKey
+			where bn.OrganizationID=OrganizationID 
+			and bn.IsDeleted=0
+			and ws.ScheduleEndDate between @enddate and @todayDate
+			group by bn.BatchScheduleNameKey
+			order by ws.ScheduleEndDate;
+		end if;
+	commit;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getExpiringAssignments`(
+	in limitVal varchar(45),
+	in OrganizationID int
+)
+BEGIN
+	start transaction;
+		set @todayDate=date(sysdate());
+		set @enddate =DATE_ADD(@todayDate, INTERVAL 1 MONTH);
+        
+		select 
+			count(distinct bn.BatchScheduleNameKey) into @count
+		from batchschedulename bn
+		inner join workorderschedule ws on bn.BatchScheduleNameKey=ws.BatchScheduleNameKey
+		inner join employee e on e.EmployeeKey=bn.EmployeeKey
+		where bn.OrganizationID=OrganizationID 
+		and bn.IsDeleted=0
+		and ws.ScheduleEndDate between @todayDate and @enddate;
+		#group by bn.BatchScheduleNameKey;
+        
+        if(strcmp(limitVal,'Limit')=0) then
+			select 
+				bn.BatchScheduleNameKey,
+				ws.WorkorderScheduleKey,
+				bn.BatchSchduleName,
+				DATE_FORMAT(ws.ScheduleStartDate,'%Y-%m-%d') as ScheduleStartDate,
+				DATE_FORMAT(ws.ScheduleEndDate,'%Y-%m-%d') as ScheduleEndDate,
+				CONCAT(e.LastName, ',', e.FirstName) as EmployeeName ,
+				bn.EmployeeKey,
+				bn.ScheduleDescription as WorkorderNotes,
+				Date_Format(ws.ScheduleStartDate,'%M-%d-%Y') as workStartDate1,
+				Date_Format(ws.ScheduleEndDate,'%M-%d-%Y') as workEndDate1,
+				TIME_FORMAT(bn.BatchScheduleTime,"%H:%i:%s") as BatchScheduleTime,
+                TIME_FORMAT(bn.BatchScheduleEndTime,"%H:%i:%s") as BatchScheduleEndTime,
+                @count as count
+			from batchschedulename bn
+			inner join workorderschedule ws on bn.BatchScheduleNameKey=ws.BatchScheduleNameKey
+			inner join employee e on e.EmployeeKey=bn.EmployeeKey
+			where bn.OrganizationID=OrganizationID 
+			and bn.IsDeleted=0
+			and ws.ScheduleEndDate between @todayDate and @enddate
+			group by bn.BatchScheduleNameKey
+			order by ws.ScheduleEndDate
+			limit 5;        
+        elseif(strcmp(limitVal,'Detail')=0) then
+			select 
+				bn.BatchScheduleNameKey,
+				ws.WorkorderScheduleKey,
+				bn.BatchSchduleName,
+				DATE_FORMAT(ws.ScheduleStartDate,'%Y-%m-%d') as ScheduleStartDate,
+				DATE_FORMAT(ws.ScheduleEndDate,'%Y-%m-%d') as ScheduleEndDate,
+				CONCAT(e.LastName, ',', e.FirstName) as EmployeeName ,
+				bn.EmployeeKey,
+				bn.ScheduleDescription as WorkorderNotes,
+				Date_Format(ws.ScheduleStartDate,'%M-%d-%Y') as workStartDate1,
+				Date_Format(ws.ScheduleEndDate,'%M-%d-%Y') as workEndDate1,
+				TIME_FORMAT(bn.BatchScheduleTime,"%H:%i:%s") as BatchScheduleTime,
+                TIME_FORMAT(bn.BatchScheduleEndTime,"%H:%i:%s") as BatchScheduleEndTime,
+                @count as count
+			from batchschedulename bn
+			inner join workorderschedule ws on bn.BatchScheduleNameKey=ws.BatchScheduleNameKey
+			inner join employee e on e.EmployeeKey=bn.EmployeeKey
+			where bn.OrganizationID=OrganizationID 
+			and bn.IsDeleted=0
+			and ws.ScheduleEndDate between @todayDate and @enddate
+			group by bn.BatchScheduleNameKey
+			order by ws.ScheduleEndDate;
+        end if;
+        
+	commit;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getInspectionPicklisttDetailsForReport`(
+	in fromdate date,
+	in todate date,
+	in template int,
+	in employeekey  int,
+	in OrganizationID int
+)
+BEGIN
+	
+start transaction;
+	set @fromdt=concat(fromdate,' 00:00:00');
+	set @todt=concat(todate,' 23:59:59');
+    
+    if(employeekey>0) then
+		select
+		
+			t.TemplateName,
+			tq.Question,
+			id.`Value`,
+			DATE_FORMAT(id.InspectionDT,'%Y-%m-%d') as InspectionDate,
+			concat(e1.LastName, ',',e1.FirstName ) AS Auditor,
+			concat(e2.LastName, ',',e2.FirstName ) AS AssignedEmployee,
+			i.InspectionOrderKey,
+			id.InspectionOrderDetailKey
+		from inspectionorder i
+		inner join  inspectionorderdetail id on i.InspectionOrderKey=id.InspectionOrderKey
+		inner join templatequestion tq on id.TemplateQuestionID=tq.TemplateQuestionID
+		inner join template t on t.TemplateID=tq.TemplateID
+		inner join employee e1 on e1.EmployeeKey=i.EmployeeKey
+		inner join employee e2 on e2.EmployeeKey=i.employeeID
+		where id.InspectionDT between @fromdt and @todt
+			and i.IsDeleted=0
+			and t.TemplateID=template
+			and i.employeeID=employeekey
+			and i.OrganizationID=OrganizationID
+			and i.InspectionCompletedDT is not null
+		order by i.InspectionOrderKey;
+
+    elseif(employeekey=0) then
+		select
+		
+			t.TemplateName,
+			tq.Question,
+			id.`Value`,
+			DATE_FORMAT(id.InspectionDT,'%Y-%m-%d') as InspectionDate,
+			concat(e1.LastName, ',',e1.FirstName ) AS Auditor,
+			concat(e2.LastName, ',',e2.FirstName ) AS AssignedEmployee,
+			i.InspectionOrderKey,
+			id.InspectionOrderDetailKey
+		from inspectionorder i
+		inner join  inspectionorderdetail id on i.InspectionOrderKey=id.InspectionOrderKey
+		inner join templatequestion tq on id.TemplateQuestionID=tq.TemplateQuestionID
+		inner join template t on t.TemplateID=tq.TemplateID
+		inner join employee e1 on e1.EmployeeKey=i.EmployeeKey
+		inner join employee e2 on e2.EmployeeKey=i.employeeID
+		where id.InspectionDT between @fromdt and @todt
+			and i.IsDeleted=0
+			and t.TemplateID=template
+			and i.OrganizationID=OrganizationID
+			and i.InspectionCompletedDT is not null
+		order by i.InspectionOrderKey;
+	end if;
+    
+commit;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getLastCleaningDetails`(
+	in roomKey varchar(10),
+	in OrganizationID int
+)
+BEGIN
+	START TRANSACTION;
+
+		DROP TEMPORARY TABLE IF EXISTS tbl_tmpWorkorderBarcode;
+		CREATE TEMPORARY TABLE tbl_tmpWorkorderBarcode (
+			WorkorderKey bigint,
+			checkin DateTime,
+			checkout datetime,
+			PRIMARY KEY (WorkorderKey)
+		) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+		insert into tbl_tmpWorkorderBarcode
+			SELECT 
+				br.WorkorderKey,
+				MIN(br.WorkorderScanDT) AS checkin,
+				MAX(br.WorkorderScanDT) AS checkout
+			FROM workorderbarcode br
+			INNER JOIN workorder wo ON br.WorkorderKey = wo.WorkorderKey
+			WHERE br.OrganizationID = OrganizationID
+				AND wo.OrganizationID = OrganizationID
+				AND wo.WorkorderKey > 0
+				AND wo.RoomKey=roomKey
+		#		AND 	(((   (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) >= (DATE_FORMAT(FromDate,'%Y-%m-%d'))  && (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) <= (DATE_FORMAT(ToDate,'%Y-%m-%d'))         )))
+				AND wo.IsDeleted = 0
+			GROUP BY br.WorkorderKey
+            order by br.WorkorderKey desc limit 1;
+
+		DROP TEMPORARY TABLE IF EXISTS tbl_tmpWorkorderphoto;
+		CREATE TEMPORARY TABLE tbl_tmpWorkorderphoto
+			SELECT 
+				wop.WorkorderKey,
+				MAX(`WorkorderPhotoKey`) AS WorkorderPhotoKey,
+				wop.ImageName
+			FROM workorderphoto wop
+			INNER JOIN workorder wo ON wop.WorkorderKey = wo.WorkorderKey
+			WHERE wop.OrganizationID = OrganizationID
+				AND wo.OrganizationID = OrganizationID
+				AND wo.WorkorderKey > 0
+				AND wo.RoomKey=roomKey 
+				#AND (((   (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) >= (DATE_FORMAT(FromDate,'%Y-%m-%d'))  && (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) <= (DATE_FORMAT(ToDate,'%Y-%m-%d'))         )))
+				AND wo.IsDeleted = 0
+			GROUP BY wo.WorkorderKey
+            order by wo.WorkorderKey desc limit 1;
+
+		DROP TEMPORARY TABLE IF EXISTS tbl_tmpWorkordersnapshot;
+		CREATE TEMPORARY TABLE tbl_tmpWorkordersnapshot
+			SELECT 
+				sp.WorkorderKey,
+				wo.IsSnapshot,
+				sp.Latitude,
+				sp.Longitude
+			FROM `snapshot` sp 
+			INNER JOIN workorder wo ON sp.WorkorderKey = wo.WorkorderKey
+			WHERE sp.OrganizationID = OrganizationID
+				AND wo.OrganizationID = OrganizationID
+				AND wo.WorkorderKey > 0
+				and wo.IsSnapshot=1
+				AND wo.RoomKey=roomKey
+				#AND (((   (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) >= (DATE_FORMAT(FromDate,'%Y-%m-%d'))  && (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) <= (DATE_FORMAT(ToDate,'%Y-%m-%d'))         )))
+				AND wo.IsDeleted = 0
+			GROUP BY sp.WorkorderKey
+            order by wo.WorkorderKey desc limit 1;
+
+		#Get only related workorderkeys for the org
+		DROP TEMPORARY TABLE IF EXISTS tbl_tmpWorkorders;
+		CREATE TEMPORARY TABLE tbl_tmpWorkorders
+			SELECT  DISTINCT
+				wo.WorkorderKey,
+				wo.WorkorderScheduleKey,
+				wo.WorkorderTypeKey,
+				wo.RoomKey,
+				wo.EmployeeKey,
+				wo.EquipmentKey,
+				CONCAT(DATE_FORMAT(wo.WorkorderScheduleDT,'%m-%d-%Y')) AS WorkorderTime,
+				wo.DelayTime,
+				wo.WorkorderNotes,
+				CAST(wo.IsDeleted AS UNSIGNED) AS IsDeleted,
+				wo.IsPhotoRequired,
+				wo.IsBarcodeRequired,
+				e.FirstName,
+				e.LastName,
+				pr.PriorityKey,
+				pr.PriorityValue,
+				wp.WorkorderPhotoKey,
+				wbar.checkin,
+				wbar.checkout,
+				wo.WorkorderScheduleDT,
+				wo.IsSnapshot,
+				tws.Latitude,
+				tws.Longitude,
+				wp.ImageName,
+				m.Color
+			FROM workorder wo
+			inner join masterintervaltype m on m.IntervalType=wo.IntervalType
+			INNER JOIN employee e ON wo.employeekey = e.employeekey
+			INNER JOIN priority pr ON wo.PriorityKey = pr.PriorityKey
+			LEFT OUTER JOIN tbl_tmpWorkorderphoto wp ON wo.WorkorderKey = wp.WorkorderKey
+			LEFT OUTER JOIN tbl_tmpWorkorderBarcode wbar ON wo.WorkorderKey = wbar.WorkorderKey
+			LEFT OUTER JOIN tbl_tmpWorkordersnapshot tws ON wo.WorkorderKey = tws.WorkorderKey
+			WHERE wo.WorkorderKey > 0
+				AND wo.IsDeleted = 0
+				AND wo.OrganizationID = OrganizationID
+				AND m.OrganizationID = OrganizationID
+				AND wo.RoomKey=roomKey;
+				#AND ((((DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) >= (DATE_FORMAT(FromDate,'%Y-%m-%d'))  && (DATE_FORMAT(wo.WorkorderScheduleDT,'%Y-%m-%d')) <= (DATE_FORMAT(ToDate,'%Y-%m-%d'))         )));
+		#Get remaining attributes from all tables (relatively smaller)
+
+		SELECT  DISTINCT
+			wo.WorkorderKey,
+			wh.WorkorderScheduleKey,
+			wo.WorkorderTypeKey,
+			wt.WorkorderTypeName,
+			ifnull(r.roomkey,-1) As RoomKey,
+			IFNULL(r.RoomId, 'Dummy') AS RoomId,
+			wh.IsReccurring,
+			wo.EmployeeKey,
+			wo.FirstName,
+			wo.LastName,
+			wo.WorkorderTime,
+            DATE_FORMAT(wo.checkout,'%Y-%m-%d') as cleanDate,
+			wo.WorkorderNotes,
+			wst.WorkorderStatusKey,
+			ws.WorkorderStatus,
+			CAST(wo.IsDeleted AS UNSIGNED) AS IsDeleted,
+			wo.IsPhotoRequired,
+			wo.IsBarcodeRequired,
+			wh.IsSchedule,
+			wh.BatchScheduleNameKey,
+			(SELECT bn.BatchSchduleName FROM batchschedulename bn WHERE bn.BatchScheduleNameKey = wh.BatchScheduleNameKey) AS ScheduleName,
+			wo.ImageName,
+			wo.IsDeleted,
+			wo.PriorityValue,
+			DATE_FORMAT((SELECT IFNULL(wo.checkin,'')) ,'%h:%i:%S %p') AS checkin,
+			DATE_FORMAT((SELECT IFNULL(wo.checkout,'')) ,'%h:%i:%S %p') AS checkout,
+			IFNULL(wo.checkin, '') AS checkin1,
+			IFNULL(wo.checkout, '') AS checkout1,
+			(SELECT IFNULL(TIMESTAMPDIFF(MINUTE, checkin1, checkout1), '') ) AS TotalTime,
+			(SELECT ABS(TotalTime - wo.DelayTime))AS duration,
+			wo.DelayTime,
+			wo.Latitude,
+			wo.Longitude,
+			wo.IsSnapshot,
+			wo.Color
+		FROM tbl_tmpWorkorders wo
+		INNER JOIN workorderschedule wh ON wo.WorkorderScheduleKey = wh.WorkorderScheduleKey
+		INNER JOIN workordertype wt ON wh.WorkorderTypeKey = wt.WorkorderTypeKey
+		INNER JOIN workorderstatustracker wst ON wo.WorkorderKey = wst.WorkorderKey
+		INNER JOIN workorderstatus ws ON wst.WorkorderStatusKey = ws.WorkorderStatusKey
+		LEFT OUTER JOIN room r on wo.RoomKey = r.RoomKey and r.RoomKey>0
+		Where  r.roomkey =  roomKey
+        order by wo.WorkorderKey desc limit 1;
+
+	COMMIT;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getPickValuesListForInspection`(in OrgID int)
+BEGIN
+	start transaction;
+	 
+		select 
+			p.idmasterpicklistvalue,p.picklistvalue 
+		from masterpicklistvalue p 
+		where p.IsDeleted=0 
+		and p.OrganizationID=OrgID
+        order by p.picklistvalue;
+
+	commit;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getTemplatesForPicklistReport`(
+	in employeekey int(11),
+	in OrganizationID int
+)
+BEGIN
+declare organization int(11);
+start transaction;
+    set organization=OrganizationID;
+    
+    select 
+		distinct t.TemplateID, t.TemplateName 
+    from template t
+    inner join templatequestion tq on tq.TemplateID=t.TemplateID
+    where t.IsDeleted = 0 and tq.IsDeleted=0
+      and t.OrganizationID=organization
+      and t.ScoreTypeKey in (select s.ScoreTypeKey from scoretype s where s.OrganizationID=organization and s.IsDeleted = 0 and s.ScoreName='0-25')
+    order by t.TemplateName  ;
+    
+commit;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`b8d7dccac78d6a`@`%` PROCEDURE `usp_getWebVersionDetails`()
+BEGIN
+  start transaction;
+	select v.idversion,v.Version,v.Product from version v 
+		where v.IsDeleted=0
+		  and v.Product='Web'
+        order by v.idversion desc 
+        limit 1;
+  commit;
+END$$
+DELIMITER ;
