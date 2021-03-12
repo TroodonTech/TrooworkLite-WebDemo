@@ -44,7 +44,7 @@
     "igniteui-angular": "^6.1.8",
     "jade": "~1.11.0",
     "jsonwebtoken": "^7.2.1",
-    "jspdf": "^1.4.1",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.0.2",
     "morgan": "~1.7.0",
     "multer": "1.1.0",
