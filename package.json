@@ -27,7 +27,7 @@
     "angular-bootstrap-md": "^6.2.6",
     "angular-cookies": "^1.5.6",
     "body-parser": "^1.18.3",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "classlist.js": "^1.1.20150312",
     "cli": "^1.0.1",
     "cookie-parser": "~1.4.3",
